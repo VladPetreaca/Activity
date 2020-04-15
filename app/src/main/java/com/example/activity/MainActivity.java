@@ -30,6 +30,7 @@ public class MainActivity extends AppCompatActivity {
 			@Override
 			public void onClick(View v) {
 				Toast.makeText(MainActivity.this, "Setting Button Clicked.", Toast.LENGTH_SHORT).show();
+				openSettings();
 			}
 		});
 
@@ -42,7 +43,10 @@ public class MainActivity extends AppCompatActivity {
 		});
 
 	}
-
+	public void openSettings() {
+		Intent intent = new Intent(this, Settings.class);
+		startActivity(intent);
+	}
 	public void openHelp() {
 		Intent intent = new Intent(this, Help.class);
 		startActivity(intent);
