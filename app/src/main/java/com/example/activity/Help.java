@@ -24,14 +24,15 @@ public class Help extends AppCompatActivity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_help);
 
+		// hide the navigation and the title bar from the phone
 		hideNavigationBar();
 
-		//TextView TitleWindow = (TextView) findViewById(R.id.titleWindow);
+		// execute the function after 2.3 seconds
 		mHand = new Handler();
 		mHand.postDelayed(mRun, 2300);
 
+		// take the back_button and click it
 		btn = (ImageButton) findViewById(R.id.imageButton2);
-
 		btn.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
@@ -40,6 +41,7 @@ public class Help extends AppCompatActivity {
 		});
 	}
 
+	// read the rules from the file and print them
 	private Runnable mRun = new Runnable() {
 		@Override
 		public void run() {

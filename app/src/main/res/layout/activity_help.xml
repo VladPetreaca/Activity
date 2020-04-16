@@ -26,17 +26,13 @@
     <TextView
         android:id="@+id/titleWindow"
         android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:gravity="center"
-        android:text="Regulament"
-        android:textSize="24sp"
-        android:textStyle="bold" />
+        android:layout_height="60dp" />
 
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginLeft="110dp"
-        android:layout_marginRight="110dp"
+        android:layout_marginLeft="90dp"
+        android:layout_marginRight="90dp"
         android:layout_marginTop="45dp"
         android:layout_marginBottom="100dp"
         android:layout_below="@+id/titleWindow" >

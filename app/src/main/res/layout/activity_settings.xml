@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/background"
+    tools:context=".Settings">
+
+    <TextView
+        android:id="@+id/titleWindow"
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:text="Setări"
+        android:textColor="#ffffff"
+        android:gravity="center"
+        android:textSize="35sp"/>
+
+    <TextView
+        android:layout_below="@+id/titleWindow"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+    <Switch
+        android:id="@+id/switch1"
+        android:layout_below="@+id/titleWindow"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="15dp"
+        android:theme="@style/MySwitch"
+        android:text="Muzică"
+        android:textSize="25sp"
+        android:gravity="left"
+        android:checked="true"
+        android:textColor="#ffffff" />
+
+    <Button
+        android:id="@+id/button4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Back" />
+
+    <Button
+        android:id="@+id/button6"
+        android:layout_width="80dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="190dp"
+        android:layout_marginLeft="130dp"
+        android:text="-" />
+
+    <Button
+        android:id="@+id/button7"
+        android:layout_width="80dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="190dp"
+        android:layout_marginLeft="210dp"
+        android:text="+" />
+
+    <SeekBar
+        android:id="@+id/seekBar"
+        android:layout_width="250dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="270dp"
+        android:layout_marginStart="85dp"
+        android:theme="@style/MySwitch"/>
+
+
+</RelativeLayout>
