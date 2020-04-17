@@ -4,31 +4,34 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/background"
     tools:context=".Settings">
+
+    <pl.droidsonroids.gif.GifImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:src="@drawable/dollars"
+        android:background="@drawable/gold_bars"
+        />
 
     <TextView
         android:id="@+id/titleWindow"
         android:layout_width="match_parent"
         android:layout_height="80dp"
-        android:text="Setări"
-        android:textColor="#ffffff"
-        android:gravity="center"
-        android:textSize="35sp"/>
+        android:background="@drawable/money_strap_100bills" />
 
     <TextView
         android:layout_below="@+id/titleWindow"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 
-    <Switch
+    <androidx.appcompat.widget.SwitchCompat
         android:id="@+id/switch1"
         android:layout_below="@+id/titleWindow"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="40dp"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="15dp"
+        android:layout_marginLeft="50dp"
+        android:layout_marginRight="50dp"
         android:theme="@style/MySwitch"
         android:text="Muzică"
         android:textSize="25sp"
@@ -38,9 +41,10 @@
 
     <Button
         android:id="@+id/button4"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Back" />
+        android:layout_width="70dp"
+        android:layout_height="35dp"
+        android:layout_marginTop="21dp"
+        android:background="@drawable/cinque_euro" />
 
     <Button
         android:id="@+id/button6"
@@ -58,13 +62,58 @@
         android:layout_marginLeft="210dp"
         android:text="+" />
 
+    <Button
+        android:id="@+id/button8"
+        android:layout_width="70dp"
+        android:layout_height="30dp"
+        android:layout_marginTop="287dp"
+        android:layout_marginLeft="260dp"
+        android:background="@drawable/eur_1_2" />
+
+    <Button
+        android:id="@+id/button9"
+        android:layout_width="70dp"
+        android:layout_height="30dp"
+        android:layout_marginTop="287dp"
+        android:layout_marginLeft="340dp"
+        android:background="@drawable/euro_2_2" />
+
+    <Button
+        android:id="@+id/button10"
+        android:layout_width="70dp"
+        android:layout_height="30dp"
+        android:layout_marginTop="287dp"
+        android:layout_marginLeft="420dp"
+        android:background="@drawable/euro_3_3" />
+
+    <Button
+        android:id="@+id/button11"
+        android:layout_width="70dp"
+        android:layout_height="30dp"
+        android:layout_marginTop="287dp"
+        android:layout_marginLeft="500dp"
+        android:background="@drawable/euro_4_4" />
+
+
     <SeekBar
         android:id="@+id/seekBar"
         android:layout_width="250dp"
         android:layout_height="40dp"
-        android:layout_marginTop="270dp"
-        android:layout_marginStart="85dp"
-        android:theme="@style/MySwitch"/>
+        android:layout_marginStart="400dp"
+        android:layout_marginTop="190dp"
+        android:theme="@style/MySwitch" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="fill_parent"
+        android:layout_height="45dp"
+        android:layout_marginTop="280dp"
+        android:layout_marginLeft="50dp"
+        android:layout_marginRight="50dp"
+        android:text="Fundal"
+        android:textSize="30sp"
+        android:textColor="#fff"
+        android:background="@drawable/gold_bars"/>
 
 
 </RelativeLayout>

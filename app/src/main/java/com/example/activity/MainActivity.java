@@ -19,21 +19,22 @@ import com.example.activity.R;
 public class MainActivity extends AppCompatActivity {
 
 	ImageButton setting_btn, info_btn;
-	Button asd;
+	Button joc_nou;
 	public static MediaPlayer mySong;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
+		setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
-		setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_UNSPECIFIED);
-
 		// hide the navigation and the title bar from the phone
 		hideNavigationBar();
+
 
 		// take the buttons
 		setting_btn = (ImageButton) findViewById(R.id.button2);
 		info_btn = (ImageButton) findViewById(R.id.imageButton2);
+		joc_nou = (Button) findViewById(R.id.button);
 
 		//play music
 		mySong = MediaPlayer.create(MainActivity.this, R.raw.vremea);
@@ -53,6 +54,14 @@ public class MainActivity extends AppCompatActivity {
 			@Override
 			public void onClick(View v) {
 				openHelp();
+			}
+		});
+
+		// if the joc_nou button is clicked
+		joc_nou.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				openJocNou();
 			}
 		});
 	}
@@ -83,6 +92,11 @@ public class MainActivity extends AppCompatActivity {
 	//start help page
 	public void openHelp() {
 		Intent intent = new Intent(this, Help.class);
+		startActivity(intent);
+	}
+
+	public void openJocNou() {
+		Intent intent = new Intent(this, Joc.class);
 		startActivity(intent);
 	}
 }

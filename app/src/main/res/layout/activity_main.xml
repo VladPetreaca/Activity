@@ -1,12 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MainActivity"
-    android:background="@drawable/back_v3"
     >
+
+    <TextView
+        android:id="@+id/titleWindow"
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:background="@drawable/money_strap_100bills" />
+
+    <TextView
+        android:layout_below="@+id/titleWindow"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/back_cinque_euro"/>
 
     <Button
         android:id="@+id/button"
@@ -14,7 +25,7 @@
         android:layout_height="37dp"
         android:layout_marginStart="300dp"
         android:layout_marginLeft="300dp"
-        android:layout_marginTop="331dp"
+        android:layout_marginTop="291dp"
         android:layout_marginEnd="300dp"
         android:layout_marginRight="300dp"
         android:layout_marginBottom="16dp"
@@ -33,12 +44,31 @@
         android:layout_height="37dp"
         android:layout_marginStart="300dp"
         android:layout_marginLeft="300dp"
-        android:layout_marginTop="200dp"
+        android:layout_marginTop="250dp"
         android:layout_marginEnd="300dp"
         android:layout_marginRight="300dp"
         android:layout_marginBottom="32dp"
-        android:background="@android:color/holo_red_dark"
+        android:background="@android:color/holo_orange_dark"
         android:text="Continuare"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.794" />
+
+    <Button
+        android:id="@+id/button8"
+        android:layout_width="210dp"
+        android:layout_height="37dp"
+        android:layout_marginStart="300dp"
+        android:layout_marginLeft="300dp"
+        android:layout_marginTop="331dp"
+        android:layout_marginEnd="300dp"
+        android:layout_marginRight="300dp"
+        android:layout_marginBottom="32dp"
+        android:background="@android:color/holo_orange_dark"
+        android:text="Exit"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
@@ -50,25 +80,21 @@
         android:id="@+id/button2"
         android:layout_width="40dp"
         android:layout_height="40dp"
-        android:layout_marginStart="32dp"
-        android:layout_marginLeft="32dp"
-        android:layout_marginTop="32dp"
+        android:layout_marginStart="500dp"
+        android:layout_marginTop="20.2dp"
         android:src="@drawable/images"
-        android:text="@string/help"
-        android:textColor="@android:color/background_dark"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:contentDescription="@string/todo" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <ImageButton
         android:id="@+id/imageButton2"
         android:layout_width="40dp"
         android:layout_height="40dp"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="20.2dp"
         android:layout_marginEnd="32dp"
+        android:layout_marginStart="260dp"
         android:src="@drawable/unnamed"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:layout_marginRight="32dp" />
+        app:layout_constraintTop_toTopOf="parent" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+</RelativeLayout>

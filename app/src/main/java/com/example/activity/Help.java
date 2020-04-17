@@ -16,8 +16,7 @@ import java.util.TimerTask;
 
 public class Help extends AppCompatActivity {
 
-	Handler mHand;
-	ImageButton btn;
+	Button btn;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -27,12 +26,27 @@ public class Help extends AppCompatActivity {
 		// hide the navigation and the title bar from the phone
 		hideNavigationBar();
 
-		// execute the function after 2.3 seconds
-		mHand = new Handler();
-		mHand.postDelayed(mRun, 2300);
+		TextView MessageWindow = (TextView) findViewById(R.id.messageWindow);
+		StringBuilder strBuilder = new StringBuilder();
+		String text = "";
+
+		try {
+			InputStream in = getAssets().open("rules.txt");
+			int size = in.available();
+			byte[] buffer = new byte[size];
+			in.read(buffer);
+			in.close();
+			text = new String(buffer);
+			strBuilder.append(text);
+
+		} catch (IOException ex) {
+			ex.printStackTrace();
+		}
+
+		MessageWindow.setText(strBuilder.toString());
 
 		// take the back_button and click it
-		btn = (ImageButton) findViewById(R.id.imageButton2);
+		btn = (Button) findViewById(R.id.imageButton2);
 		btn.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
@@ -40,31 +54,6 @@ public class Help extends AppCompatActivity {
 			}
 		});
 	}
-
-	// read the rules from the file and print them
-	private Runnable mRun = new Runnable() {
-		@Override
-		public void run() {
-			TextView MessageWindow = (TextView) findViewById(R.id.messageWindow);
-			StringBuilder strBuilder = new StringBuilder();
-			String text = "";
-
-			try {
-				InputStream in = getAssets().open("rules.txt");
-				int size = in.available();
-				byte[] buffer = new byte[size];
-				in.read(buffer);
-				in.close();
-				text = new String(buffer);
-				strBuilder.append(text);
-
-			} catch (IOException ex) {
-				ex.printStackTrace();
-			}
-
-			MessageWindow.setText(strBuilder.toString());
-		}
-	};
 
 	public void onResume() {
 		super.onResume();
