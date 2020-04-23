@@ -2,24 +2,26 @@ package com.example.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.pm.ActivityInfo;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 
 public class Joc extends AppCompatActivity {
 
-	View view;
 	Button back;
+	TextView view;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_joc);
-
 		hideNavigationBar();
 
-		view = this.getWindow().getDecorView();
+		view = findViewById(R.id.title_content);
+
 		if(Settings.choice == 1){
 			view.setBackgroundResource(R.drawable.euro_1);
 		} else if(Settings.choice == 2) {

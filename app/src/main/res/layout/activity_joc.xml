@@ -6,9 +6,56 @@
     android:layout_height="match_parent"
     tools:context=".Joc">
 
+    <TextView
+        android:id="@+id/title_help"
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:background="@drawable/money_strap_100bills" />
+
+    <TextView
+        android:id="@+id/title_content"
+        android:layout_below="@id/title_help"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+    </TextView>
+
+    <TextView
+        android:id="@+id/darken_background"
+        android:layout_below="@+id/title_help"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#B3000000">
+    </TextView>
+
+    <TextView
+        android:id="@+id/title_name_box"
+        android:layout_below="@id/title_help"
+        android:layout_width="300dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="50dp"
+        android:layout_marginStart="215dp"
+        android:background="#000"
+        android:text="   Nume: "
+        android:gravity="center"
+        android:textAlignment="textStart"
+        android:textSize="20sp"
+        android:textColor="#fff"
+        tools:ignore="RtlCompat">
+    </TextView>
+
+    <TextView
+        android:id="@+id/insert_name"
+        android:layout_below="@id/title_help"
+        android:layout_width="215dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="50dp"
+        android:layout_marginStart="300dp"
+        android:background="#99555555"/>
+
     <Button
         android:id="@+id/button3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Button" />
+        android:layout_width="70dp"
+        android:layout_height="35dp"
+        android:layout_marginTop="21dp"
+        android:background="@drawable/cinque_euro" />
 </RelativeLayout>

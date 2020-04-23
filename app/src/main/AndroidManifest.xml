@@ -9,7 +9,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Joc"></activity>
+        <activity
+            android:name=".Joc"
+            android:screenOrientation="landscape" />
         <activity
             android:name=".Settings"
             android:screenOrientation="landscape" />
