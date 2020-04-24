@@ -10,7 +10,11 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".Joc"
+            android:name=".Pop_up_names"
+            android:theme="@style/AppTheme.Pop_up"
+            android:screenOrientation="landscape"/>
+        <activity
+            android:name=".Choose_names"
             android:screenOrientation="landscape" />
         <activity
             android:name=".Settings"

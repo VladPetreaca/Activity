@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Joc">
+    tools:context=".Choose_names">
 
     <TextView
         android:id="@+id/title_help"
@@ -14,43 +14,24 @@
 
     <TextView
         android:id="@+id/title_content"
-        android:layout_below="@id/title_help"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-    </TextView>
-
-    <TextView
-        android:id="@+id/darken_background"
-        android:layout_below="@+id/title_help"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="#B3000000">
+        android:layout_below="@id/title_help">
     </TextView>
 
     <TextView
-        android:id="@+id/title_name_box"
+        android:id="@+id/jupani_question"
         android:layout_below="@id/title_help"
-        android:layout_width="300dp"
-        android:layout_height="50dp"
-        android:layout_marginTop="50dp"
-        android:layout_marginStart="215dp"
-        android:background="#000"
-        android:text="   Nume: "
+        android:layout_width="190dp"
+        android:layout_height="35dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginStart="280dp"
+        android:layout_centerHorizontal="true"
+        android:background="#CC000000"
+        android:text="Care sunt jupanii?"
         android:gravity="center"
-        android:textAlignment="textStart"
-        android:textSize="20sp"
-        android:textColor="#fff"
-        tools:ignore="RtlCompat">
+        android:textColor="#fff">
     </TextView>
-
-    <TextView
-        android:id="@+id/insert_name"
-        android:layout_below="@id/title_help"
-        android:layout_width="215dp"
-        android:layout_height="50dp"
-        android:layout_marginTop="50dp"
-        android:layout_marginStart="300dp"
-        android:background="#99555555"/>
 
     <Button
         android:id="@+id/button3"
@@ -58,4 +39,36 @@
         android:layout_height="35dp"
         android:layout_marginTop="21dp"
         android:background="@drawable/cinque_euro" />
+
+    <Button
+        android:id="@+id/button13"
+        android:layout_below="@id/title_help"
+        android:layout_width="70dp"
+        android:layout_height="30dp"
+        android:layout_marginStart="315dp"
+        android:layout_marginTop="67dp"
+        android:layout_centerHorizontal="true"
+        android:background="@drawable/euro_2_2" />
+
+    <TextView
+        android:layout_below="@id/title_help"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="72dp"
+        android:text="@string/adauga_un_jupan"
+        android:layout_marginStart="417dp"
+        android:background="#CC000000"
+        android:textColor="#fff" />
+
+    <TextView
+        android:id="@+id/players"
+        android:layout_below="@id/title_help"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:maxWidth="300dp"
+        android:background="#000"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="120dp"
+        android:textColor="#fff"/>
+
 </RelativeLayout>

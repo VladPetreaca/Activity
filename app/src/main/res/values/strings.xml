@@ -102,4 +102,7 @@
     <string name="titlu">Titlu</string>
     <string name="vladpetreaca">VladPetreaca</string>
     <string name="set_ri">Setări</string>
+    <string name="adauga_jupan">Adauga Jupan</string>
+    <string name="add_player">Adaugă Jupan</string>
+    <string name="adauga_un_jupan"><![CDATA[<- Adauga un jupan]]></string>
 </resources>

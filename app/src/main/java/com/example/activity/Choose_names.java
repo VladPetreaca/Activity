@@ -2,17 +2,20 @@ package com.example.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.content.pm.ActivityInfo;
-import android.graphics.drawable.Drawable;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
-public class Joc extends AppCompatActivity {
+import java.util.ArrayList;
 
-	Button back;
+public class Choose_names extends AppCompatActivity {
+
+	Button back, add_player;
 	TextView view;
+	public static TextView players;
+	public static ArrayList<String> players_name;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -21,6 +24,10 @@ public class Joc extends AppCompatActivity {
 		hideNavigationBar();
 
 		view = findViewById(R.id.title_content);
+		players = findViewById(R.id.players);
+
+		//initialize the players_list
+		players_name = new ArrayList<>();
 
 		if(Settings.choice == 1){
 			view.setBackgroundResource(R.drawable.euro_1);
@@ -33,13 +40,22 @@ public class Joc extends AppCompatActivity {
 		}
 
 		back = (Button) findViewById(R.id.button3);
-
 		back.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
 				finish();
 			}
 		});
+
+		add_player = (Button) findViewById(R.id.button13);
+		add_player.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				Intent intent = new Intent(getApplicationContext(), Pop_up_names.class);
+				startActivity(intent);
+			}
+		});
+
 	}
 
 	public void onResume() {

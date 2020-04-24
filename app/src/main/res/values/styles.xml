@@ -35,4 +35,9 @@
         <item name="colorAccent">#000</item>
     </style>
 
+    <style name="AppTheme.Pop_up" >
+        <item name = "android:windowIsTranslucent">true</item>
+    </style>
+
+
 </resources>
