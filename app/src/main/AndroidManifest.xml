@@ -10,9 +10,13 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
+            android:name=".Delete"
+            android:screenOrientation="landscape"
+            android:theme="@style/AppTheme.Pop_up" />
+        <activity
             android:name=".Pop_up_names"
-            android:theme="@style/AppTheme.Pop_up"
-            android:screenOrientation="landscape"/>
+            android:screenOrientation="landscape"
+            android:theme="@style/AppTheme.Pop_up" />
         <activity
             android:name=".Choose_names"
             android:screenOrientation="landscape" />

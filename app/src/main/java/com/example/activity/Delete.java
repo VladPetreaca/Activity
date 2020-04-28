@@ -1,15 +1,14 @@
 package com.example.activity;
 
-import android.app.Activity;
+import androidx.appcompat.app.AppCompatActivity;
+
 import android.os.Bundle;
 import android.util.DisplayMetrics;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
-import java.util.ArrayList;
-
-public class Pop_up_names extends Activity {
+public class Delete extends AppCompatActivity {
 
     Button back;
     EditText editText;
@@ -17,8 +16,10 @@ public class Pop_up_names extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_pop_up);
+        setContentView(R.layout.activity_delete);
         hideNavigationBar();
+
+        back = findViewById(R.id.button16);
 
         DisplayMetrics dm = new DisplayMetrics();
         getWindowManager().getDefaultDisplay().getMetrics(dm);
@@ -28,36 +29,21 @@ public class Pop_up_names extends Activity {
 
         getWindow().setLayout((int)(width*.5), (int)(height*.5));
 
-        editText = (EditText)findViewById(R.id.name_box);
+        editText = (EditText)findViewById(R.id.delete_name);
 
-        back = (Button) findViewById(R.id.button12);
         back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String new_name = editText.getText().toString();
-                Choose_names.players_name.add(new_name);
-                Choose_names.players.setText(show_list_of_players(Choose_names.players_name));
+                for(int i=0;i<Choose_names.players_name.size();i++) {
+                    if(editText.getText().toString().equals(Choose_names.players_name.get(i))) {
+                        Choose_names.players_name.remove(i);
+                        break;
+                    }
+                }
+                Choose_names.players.setText(Pop_up_names.show_list_of_players(Choose_names.players_name));
                 finish();
             }
         });
-    }
-
-    public static String show_list_of_players (ArrayList<String> players) {
-
-        String result = "Jupanii alesi sunt: ";
-
-        if(players.size() == 0) {
-            return "N-avem jupani :(";
-        }
-        else {
-            result += (players.get(0));
-            for(int i=1;i<players.size();i++) {
-                result += ", ";
-                result += players.get(i);
-            }
-        }
-
-        return result;
     }
 
     public void onResume() {

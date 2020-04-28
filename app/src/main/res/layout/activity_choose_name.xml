@@ -38,25 +38,37 @@
         android:layout_width="70dp"
         android:layout_height="35dp"
         android:layout_marginTop="21dp"
-        android:background="@drawable/cinque_euro" />
+        android:background="@drawable/back_button"  />
 
     <Button
         android:id="@+id/button13"
         android:layout_below="@id/title_help"
-        android:layout_width="70dp"
+        android:layout_width="wrap_content"
         android:layout_height="30dp"
         android:layout_marginStart="315dp"
         android:layout_marginTop="67dp"
         android:layout_centerHorizontal="true"
-        android:background="@drawable/euro_2_2" />
+        android:background="@drawable/round_button"
+        android:text="Zii jupanul"
+        android:textColor="#fff"/>
 
     <TextView
         android:layout_below="@id/title_help"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="72dp"
+        android:layout_marginTop="73dp"
         android:text="@string/adauga_un_jupan"
-        android:layout_marginStart="417dp"
+        android:layout_marginStart="430dp"
+        android:background="#CC000000"
+        android:textColor="#fff" />
+
+    <TextView
+        android:layout_below="@id/title_help"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="117dp"
+        android:text="Avem noi grija de el"
+        android:layout_marginStart="430dp"
         android:background="#CC000000"
         android:textColor="#fff" />
 
@@ -68,7 +80,26 @@
         android:maxWidth="300dp"
         android:background="#000"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="120dp"
+        android:layout_marginTop="200dp"
         android:textColor="#fff"/>
 
+    <Button
+        android:id="@+id/button14"
+        android:layout_width="70dp"
+        android:layout_height="35dp"
+        android:layout_marginTop="21dp"
+        android:background="@drawable/next_button"
+        android:layout_marginStart="663dp"/>
+
+    <Button
+        android:id="@+id/button15"
+        android:layout_below="@id/title_help"
+        android:layout_width="wrap_content"
+        android:layout_height="30dp"
+        android:layout_marginStart="315dp"
+        android:layout_marginTop="110dp"
+        android:layout_centerHorizontal="true"
+        android:background="@drawable/round_button"
+        android:text="Scoate jupanul"
+        android:textColor="#fff"/>
 </RelativeLayout>

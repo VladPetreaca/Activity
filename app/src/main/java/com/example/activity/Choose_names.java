@@ -7,12 +7,13 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
 public class Choose_names extends AppCompatActivity {
 
-	Button back, add_player;
+	Button back, add_player, next, remove_player;
 	TextView view;
 	public static TextView players;
 	public static ArrayList<String> players_name;
@@ -20,11 +21,13 @@ public class Choose_names extends AppCompatActivity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_joc);
+		setContentView(R.layout.activity_choose_name);
 		hideNavigationBar();
 
 		view = findViewById(R.id.title_content);
 		players = findViewById(R.id.players);
+		back = (Button) findViewById(R.id.button3);
+		next = findViewById(R.id.button14);
 
 		//initialize the players_list
 		players_name = new ArrayList<>();
@@ -39,7 +42,6 @@ public class Choose_names extends AppCompatActivity {
 			view.setBackgroundResource(R.drawable.euro_4);
 		}
 
-		back = (Button) findViewById(R.id.button3);
 		back.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
@@ -56,6 +58,28 @@ public class Choose_names extends AppCompatActivity {
 			}
 		});
 
+		remove_player = findViewById(R.id.button15);
+		remove_player.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				Intent intent = new Intent(getApplicationContext(), Delete.class);
+				startActivity(intent);
+			}
+		});
+
+		next.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				if(players_name.size() < 4) {
+					Toast.makeText(Choose_names.this, "Nu sunt suficienti jupani!", Toast.LENGTH_SHORT).show();
+				}
+				else {
+					//Toast.makeText(Choose_names.this, "Acum urmeaza sa facem brigazile!", Toast.LENGTH_SHORT).show();
+					Intent intent = new Intent(getApplicationContext(), Delete.class);
+					startActivity(intent);
+				}
+			}
+		});
 	}
 
 	public void onResume() {

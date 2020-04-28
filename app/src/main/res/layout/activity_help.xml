@@ -8,10 +8,10 @@
 
     <Button
         android:id="@+id/imageButton2"
-        android:layout_width="70dp"
+        android:layout_width="60dp"
         android:layout_height="35dp"
-        android:layout_marginTop="21dp"
-        android:background="@drawable/cinque_euro"/>
+        android:layout_marginTop="22dp"
+        android:background="@drawable/back_button"/>
 
     <TextView
         android:id="@+id/title_help"
