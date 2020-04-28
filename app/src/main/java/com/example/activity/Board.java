@@ -3,14 +3,13 @@ package com.example.activity;
 import java.util.ArrayList;
 import java.util.Random;
 
-public class Board {
-    ArrayList<Player> Players;
-    ArrayList<Group> Groups;
-    private Carts Carts;
-    public Board() {
-        this.Carts = new Carts();
-        Players = new ArrayList<Player>();
-        Groups = new  ArrayList<Group>();
+class Board {
+    static ArrayList<Player> Players = new ArrayList<Player>();
+    static ArrayList<Group> Groups = new  ArrayList<Group>();
+    private Carts Carts= new Carts();
+
+    private Board() {
+
     }
     public void AddPlayer(String Name) {
         Player player = new Player(Name);
@@ -45,7 +44,8 @@ public class Board {
 
     }
 
-    public boolean addGroup() {
+    public boolean addGroup(String name, ArrayList<String> Players) {
+
         return true;
     }
 

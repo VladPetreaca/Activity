@@ -2,9 +2,10 @@ package com.example.activity;
 
 import java.util.ArrayList;
 import java.util.List;
-
+import java.util.Random;
 public class Group {
     ArrayList<Player> Players;
+    String name;
     int score;
     int nextPlayer;
     Group(int next){
@@ -12,6 +13,16 @@ public class Group {
         nextPlayer = next;
         Players = new ArrayList<>();
     }
+    Group(String name, ArrayList<String> players ){
+        Random rand = new Random();
+        score = 0;
+        this.name = name;
+        for(int i =0;i < players.size(); i++) {
+            Players.add(new Player(players.get(i)));
+        }
+        nextPlayer = rand.nextInt(players.size());
+    }
+
     public void AddPlayer(Player player) {
         Players.add(player);
     }
