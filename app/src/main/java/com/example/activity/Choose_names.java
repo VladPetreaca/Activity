@@ -62,7 +62,7 @@ public class Choose_names extends AppCompatActivity {
 		remove_player.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				Intent intent = new Intent(getApplicationContext(), Delete.class);
+				Intent intent = new Intent(getApplicationContext(), Delete_pop_up.class);
 				startActivity(intent);
 			}
 		});
@@ -75,7 +75,7 @@ public class Choose_names extends AppCompatActivity {
 				}
 				else {
 					//Toast.makeText(Choose_names.this, "Acum urmeaza sa facem brigazile!", Toast.LENGTH_SHORT).show();
-					Intent intent = new Intent(getApplicationContext(), Delete.class);
+					Intent intent = new Intent(getApplicationContext(), Teams.class);
 					startActivity(intent);
 				}
 			}

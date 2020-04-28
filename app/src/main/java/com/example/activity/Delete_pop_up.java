@@ -8,7 +8,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
-public class Delete extends AppCompatActivity {
+public class Delete_pop_up extends AppCompatActivity {
 
     Button back;
     EditText editText;
@@ -20,7 +20,6 @@ public class Delete extends AppCompatActivity {
         hideNavigationBar();
 
         back = findViewById(R.id.button16);
-
         DisplayMetrics dm = new DisplayMetrics();
         getWindowManager().getDefaultDisplay().getMetrics(dm);
 

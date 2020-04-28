@@ -10,7 +10,13 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".Delete"
+            android:name=".CreateTeam_Pop_up"
+            android:screenOrientation="landscape" />
+        <activity
+            android:name=".Teams"
+            android:screenOrientation="landscape" />
+        <activity
+            android:name=".Delete_pop_up"
             android:screenOrientation="landscape"
             android:theme="@style/AppTheme.Pop_up" />
         <activity

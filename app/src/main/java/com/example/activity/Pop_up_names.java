@@ -6,6 +6,7 @@ import android.util.DisplayMetrics;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -35,8 +36,16 @@ public class Pop_up_names extends Activity {
             @Override
             public void onClick(View v) {
                 String new_name = editText.getText().toString();
-                Choose_names.players_name.add(new_name);
-                Choose_names.players.setText(show_list_of_players(Choose_names.players_name));
+                if(!new_name.equals("")) {
+                    if(!check_name(Choose_names.players_name, new_name)) {
+                        Choose_names.players_name.add(new_name);
+                    }
+                    else {
+                        Toast.makeText(Pop_up_names.this, "Avem un astfel de jupan!", Toast.LENGTH_SHORT).show();
+                    }
+
+                    Choose_names.players.setText(show_list_of_players(Choose_names.players_name));
+                }
                 finish();
             }
         });
@@ -58,6 +67,16 @@ public class Pop_up_names extends Activity {
         }
 
         return result;
+    }
+
+    public boolean check_name(ArrayList<String> players, String name) {
+
+        for(int i=0;i<players.size();i++) {
+            if(name.equals(players.get(i)))
+                return true;
+        }
+
+        return false;
     }
 
     public void onResume() {
