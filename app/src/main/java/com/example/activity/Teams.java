@@ -2,14 +2,17 @@ package com.example.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.Spinner;
 import android.widget.TextView;
 
 public class Teams extends AppCompatActivity {
 
-    Button back;
+    Button back, add_teams;
     TextView view;
 
     @Override
@@ -19,6 +22,7 @@ public class Teams extends AppCompatActivity {
         hideNavigationBar();
 
         view = findViewById(R.id.title_content_2);
+        add_teams = findViewById(R.id.button18);
 
         if(Settings.choice == 1){
             view.setBackgroundResource(R.drawable.euro_1);
@@ -38,6 +42,14 @@ public class Teams extends AppCompatActivity {
         }
     });
 
+
+        add_teams.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), CreateTeam_Pop_up.class);
+                startActivity(intent);
+            }
+        });
     }
 
     public void onResume() {

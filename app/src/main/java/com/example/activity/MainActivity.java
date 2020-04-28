@@ -29,9 +29,9 @@ public class MainActivity extends AppCompatActivity {
 		joc_nou = (Button) findViewById(R.id.button);
 
 		//play music
-		mySong = MediaPlayer.create(MainActivity.this, R.raw.vremea);
-		mySong.setLooping(true);
-		mySong.start();
+//		mySong = MediaPlayer.create(MainActivity.this, R.raw.vremea);
+//		mySong.setLooping(true);
+//		mySong.start();
 
 		//if setting_button is clicked
 		setting_btn.setOnClickListener(new View.OnClickListener() {

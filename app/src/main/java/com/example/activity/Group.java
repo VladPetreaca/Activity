@@ -17,8 +17,11 @@ public class Group {
         Random rand = new Random();
         score = 0;
         this.name = name;
+        Players = new ArrayList<>();
         for(int i =0;i < players.size(); i++) {
-            Players.add(new Player(players.get(i)));
+            System.out.println(players.get(i));
+            Player aux = new Player(players.get(i));
+            Players.add(aux);
         }
         nextPlayer = rand.nextInt(players.size());
     }

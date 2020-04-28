@@ -31,6 +31,10 @@ public class Choose_names extends AppCompatActivity {
 
 		//initialize the players_list
 		players_name = new ArrayList<>();
+		players_name.add("vlad");
+		players_name.add("petreaca");
+		players_name.add("negru");
+		players_name.add("Ser");
 
 		if(Settings.choice == 1){
 			view.setBackgroundResource(R.drawable.euro_1);
