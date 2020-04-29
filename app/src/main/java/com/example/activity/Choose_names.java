@@ -31,6 +31,7 @@ public class Choose_names extends AppCompatActivity {
 
 		//initialize the players_list
 		players_name = new ArrayList<>();
+		players_name.add("Alege jucator");
 		players_name.add("vlad");
 		players_name.add("petreaca");
 		players_name.add("negru");

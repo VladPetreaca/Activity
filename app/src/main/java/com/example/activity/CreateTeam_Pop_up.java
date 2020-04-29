@@ -39,9 +39,7 @@ public class CreateTeam_Pop_up extends AppCompatActivity {
         add = findViewById(R.id.button20);
         done = findViewById(R.id.button21);
 
-        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, Choose_names.players_name);
-        System.out.println(adapter);
-        System.out.println(Choose_names.players_name);
+        ArrayAdapter adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, Choose_names.players_name);
         dropdown.setAdapter(adapter);
 
         editText = (EditText)findViewById(R.id.team_name);
