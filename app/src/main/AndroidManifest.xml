@@ -10,8 +10,17 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
+            android:name=".Delete_PlayerFromTeam_PopUp"
+            android:screenOrientation="landscape"
+            android:theme="@style/AppTheme.Pop_up" />
+        <activity
+            android:name=".Delete_team_PopUp"
+            android:screenOrientation="landscape"
+            android:theme="@style/AppTheme.Pop_up" />
+        <activity
             android:name=".CreateTeam_Pop_up"
-            android:screenOrientation="landscape" />
+            android:screenOrientation="landscape"
+            android:theme="@style/AppTheme.Pop_up" />
         <activity
             android:name=".Teams"
             android:screenOrientation="landscape" />

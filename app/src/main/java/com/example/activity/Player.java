@@ -5,4 +5,5 @@ public class Player {
     Player(String Name) {
         this.Name = Name;
     }
+    public String getName() { return this.Name ;}
 }

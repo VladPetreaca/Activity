@@ -49,4 +49,30 @@ class Board {
         return true;
     }
 
+    public static String show_group() {
+
+        if(Groups.isEmpty()) {
+            return "Nu avem nici o brigada!\n";
+        }
+        else {
+            String result = "";
+
+            for(int i=0;i<Groups.size();i++) {
+                result += "Brigada " + Groups.get(i).name + " are jucatorii: ";
+
+                for(int j=0;j<Groups.get(i).GetPlayers().size();j++) {
+                    if(j != Groups.get(i).GetPlayers().size() - 1) {
+                        result += ((Player)(Groups.get(i).GetPlayers().get(j))).getName();
+                        result += ", ";
+                    }
+                    else {
+                        result += ((Player)(Groups.get(i).GetPlayers().get(j))).getName();
+                        result += "\n";
+                    }
+                }
+            }
+
+            return result;
+        }
+    }
 }

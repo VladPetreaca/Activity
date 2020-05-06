@@ -21,6 +21,7 @@ public class Settings extends AppCompatActivity {
 	Button btn, up, down, back_50, back_100, back_200, back_500;
 	SeekBar seekBar;
 	AudioManager audioM;
+	SharedPreferences shar;
 	public static int choice = 1;
 
 	@Override
@@ -30,6 +31,8 @@ public class Settings extends AppCompatActivity {
 
 		// hide the navigation and the title bar from the phone
 		hideNavigationBar();
+
+		// identify the buttons from xml files
 		btn = (Button) findViewById(R.id.button4);
 		sw = (SwitchCompat) findViewById(R.id.switch1);
 		up = (Button) findViewById(R.id.button7);
@@ -38,16 +41,18 @@ public class Settings extends AppCompatActivity {
 		back_100 = (Button) findViewById(R.id.button9);
 		back_200 = (Button) findViewById(R.id.button10);
 		back_500 = (Button) findViewById(R.id.button11);
-
 		seekBar = (SeekBar) findViewById(R.id.seekBar);
+
+		// initialize audio and set the max Volum for seekBar
 		audioM = (AudioManager) getApplicationContext().getSystemService(Context.AUDIO_SERVICE);
 		seekBar.setMax(audioM.getStreamMaxVolume(AudioManager.STREAM_MUSIC));
 		seekBar.setProgress(audioM.getStreamVolume(AudioManager.STREAM_MUSIC));
 
-
-		SharedPreferences shar = getSharedPreferences("save", MODE_PRIVATE);
+		// save the state of the switch button
+		shar = getSharedPreferences("save", MODE_PRIVATE);
 		sw.setChecked(shar.getBoolean("value", true));
 
+		// turn off / turn on the music
 		sw.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
 			@Override
 			public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
@@ -68,6 +73,7 @@ public class Settings extends AppCompatActivity {
 			}
 		});
 
+		// Volume up
 		up.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
@@ -77,6 +83,7 @@ public class Settings extends AppCompatActivity {
 			}
 		});
 
+		// Volume down
 		down.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
@@ -86,6 +93,7 @@ public class Settings extends AppCompatActivity {
 			}
 		});
 
+		// set the volume from seekBar
 		seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
 			@Override
 			public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
@@ -103,6 +111,7 @@ public class Settings extends AppCompatActivity {
 			}
 		});
 
+		// set the background of some pages with images
 		back_50.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
@@ -135,6 +144,7 @@ public class Settings extends AppCompatActivity {
 			}
 		});
 
+		// go back by press this button
 		btn.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
@@ -143,11 +153,13 @@ public class Settings extends AppCompatActivity {
 		});
 	}
 
+	// hide bar function after re-enter in it
 	public void onResume() {
 		super.onResume();
 		hideNavigationBar();
 	}
 
+	//hide bar function
 	public void hideNavigationBar() {
 		this.getWindow().getDecorView()
 				.setSystemUiVisibility(

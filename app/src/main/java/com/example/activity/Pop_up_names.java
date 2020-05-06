@@ -14,14 +14,22 @@ public class Pop_up_names extends Activity {
 
     Button back;
     EditText editText;
+    DisplayMetrics dm;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pop_up);
+
+        // hide the navigation and the title bar from the phone
         hideNavigationBar();
 
-        DisplayMetrics dm = new DisplayMetrics();
+        // identify the buttons from xml files
+        editText = (EditText)findViewById(R.id.name_box);
+        back = (Button) findViewById(R.id.button12);
+
+        // initialize and set the DisplayMatrics
+        dm = new DisplayMetrics();
         getWindowManager().getDefaultDisplay().getMetrics(dm);
 
         int width = dm.widthPixels;
@@ -29,38 +37,37 @@ public class Pop_up_names extends Activity {
 
         getWindow().setLayout((int)(width*.5), (int)(height*.5));
 
-        editText = (EditText)findViewById(R.id.name_box);
-
-        back = (Button) findViewById(R.id.button12);
+        //set the favorite name and bo back by press this button
         back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 String new_name = editText.getText().toString();
                 if(!new_name.equals("")) {
-                    if(!check_name(Choose_names.players_name, new_name)) {
-                        Choose_names.players_name.add(new_name);
+                    if(!check_name(MainActivity.players_name, new_name)) {
+                        MainActivity.players_name.add(new_name);
                     }
                     else {
                         Toast.makeText(Pop_up_names.this, "Avem un astfel de jupan!", Toast.LENGTH_SHORT).show();
                     }
 
-                    Choose_names.players.setText(show_list_of_players(Choose_names.players_name));
+                    Choose_names.players.setText(show_list_of_players(MainActivity.players_name));
                 }
                 finish();
             }
         });
     }
 
+    // show the list_of_players
     public static String show_list_of_players (ArrayList<String> players) {
 
         String result = "Jupanii alesi sunt: ";
 
-        if(players.size() == 0) {
+        if(players.size() == 1) {
             return "N-avem jupani :(";
         }
         else {
-            result += (players.get(0));
-            for(int i=1;i<players.size();i++) {
+            result += (players.get(1));
+            for(int i=2;i<players.size();i++) {
                 result += ", ";
                 result += players.get(i);
             }
@@ -69,6 +76,7 @@ public class Pop_up_names extends Activity {
         return result;
     }
 
+    // check if the introduced name already exists
     public boolean check_name(ArrayList<String> players, String name) {
 
         for(int i=0;i<players.size();i++) {
@@ -79,6 +87,7 @@ public class Pop_up_names extends Activity {
         return false;
     }
 
+    // hide bar function after re-enter in it
     public void onResume() {
         super.onResume();
         hideNavigationBar();

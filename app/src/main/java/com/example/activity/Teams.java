@@ -2,6 +2,7 @@ package com.example.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -9,21 +10,37 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class Teams extends AppCompatActivity {
 
-    Button back, add_teams;
+    Button back, add_teams, add_random_teams, next, remove_teams, remove_player;
     TextView view;
+    @SuppressLint("StaticFieldLeak")
+    static TextView show_teams;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_teams);
+
+        // hide the navigation and the title bar from the phone
         hideNavigationBar();
 
+        // identify the buttons from xml files
         view = findViewById(R.id.title_content_2);
         add_teams = findViewById(R.id.button18);
+        show_teams = findViewById(R.id.show_teams);
+        back = findViewById(R.id.button17);
+        add_random_teams = findViewById(R.id.button19);
+        next = findViewById(R.id.button22);
+        remove_teams = findViewById(R.id.button23);
+        remove_player = findViewById(R.id.button25);
 
+        // show the list of players from the beginning
+        show_teams.setText(Board.show_group());
+
+        // set the background by the case
         if(Settings.choice == 1){
             view.setBackgroundResource(R.drawable.euro_1);
         } else if(Settings.choice == 2) {
@@ -34,15 +51,17 @@ public class Teams extends AppCompatActivity {
             view.setBackgroundResource(R.drawable.euro_4);
         }
 
-        back = findViewById(R.id.button17);
+        //do an action and go back by press this button
         back.setOnClickListener(new View.OnClickListener() {
-        @Override
-        public void onClick(View v) {
-            finish();
-        }
-    });
+            @Override
+            public void onClick(View v) {
+                // show the list of players by going back
+                Choose_names.players.setText(Pop_up_names.show_list_of_players(MainActivity.players_name));
+                finish();
+            }
+        });
 
-
+        // press this button to create a team
         add_teams.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -50,13 +69,48 @@ public class Teams extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+        // press this button to create random teams
+        add_random_teams.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(Teams.this, "Create random teams (To be continued...)", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        // press this button to begin the game
+        next.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(Teams.this, "Start the game (To be continued...)", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        remove_teams.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), Delete_team_PopUp.class);
+                startActivity(intent);
+            }
+        });
+
+        remove_player.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), Delete_PlayerFromTeam_PopUp.class);
+                startActivity(intent);
+            }
+        });
+
     }
 
+    // hide bar function after re-enter in it
     public void onResume() {
         super.onResume();
         hideNavigationBar();
     }
 
+    //hide bar function
     public void hideNavigationBar() {
         this.getWindow().getDecorView()
                 .setSystemUiVisibility(

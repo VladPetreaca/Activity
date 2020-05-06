@@ -21,10 +21,10 @@
 
     <Button
         android:id="@+id/button17"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="15dp"
-        android:text="Back" />
+        android:layout_width="70dp"
+        android:layout_height="35dp"
+        android:layout_marginTop="21dp"
+        android:background="@drawable/back_button" />
 
     <Button
         android:id="@+id/button18"
@@ -35,7 +35,7 @@
         android:layout_height="wrap_content"
         android:text="Creare Brigada"
         android:background="@drawable/round_button"
-        android:textColor="#fff"/>
+        android:textColor="#000"/>
 
     <Button
         android:id="@+id/button19"
@@ -46,6 +46,46 @@
         android:layout_height="wrap_content"
         android:text="Brigada random"
         android:background="@drawable/round_button"
-        android:textColor="#fff"/>
+        android:textColor="#000"/>
 
+    <TextView
+        android:id="@+id/show_teams"
+        android:layout_below="@id/title_help"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:maxWidth="200dp"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="20dp"
+        android:background="#CC000000"
+        android:textColor="#fff" />
+
+    <Button
+        android:id="@+id/button22"
+        android:layout_width="70dp"
+        android:layout_height="35dp"
+        android:layout_marginTop="21dp"
+        android:background="@drawable/next_button"
+        android:layout_marginStart="663dp" />
+
+    <Button
+        android:id="@+id/button23"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/title_help"
+        android:layout_marginTop="140dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Sterge brigada"
+        android:background="@drawable/round_button"
+        android:textColor="#000"  />
+
+    <Button
+        android:id="@+id/button25"
+        android:layout_below="@id/title_help"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="200dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Scoate jucator"
+        android:background="@drawable/round_button"
+        android:textColor="#000" />
 </RelativeLayout>

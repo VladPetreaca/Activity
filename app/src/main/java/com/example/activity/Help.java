@@ -17,6 +17,9 @@ import java.util.TimerTask;
 public class Help extends AppCompatActivity {
 
 	Button btn;
+	TextView MessageWindow;
+	StringBuilder strBuilder;
+	String text;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -26,10 +29,15 @@ public class Help extends AppCompatActivity {
 		// hide the navigation and the title bar from the phone
 		hideNavigationBar();
 
-		TextView MessageWindow = (TextView) findViewById(R.id.messageWindow);
-		StringBuilder strBuilder = new StringBuilder();
-		String text = "";
+		// initialize the variables
+		strBuilder = new StringBuilder();
+		text = "";
 
+		//// identify the buttons from xml files
+		btn = (Button) findViewById(R.id.imageButton2);
+		MessageWindow = (TextView) findViewById(R.id.messageWindow);
+
+		// try to read the rules from "rules.txt"
 		try {
 			InputStream in = getAssets().open("rules.txt");
 			int size = in.available();
@@ -43,10 +51,10 @@ public class Help extends AppCompatActivity {
 			ex.printStackTrace();
 		}
 
+		// set the text in specified TextView
 		MessageWindow.setText(strBuilder.toString());
 
-		// take the back_button and click it
-		btn = (Button) findViewById(R.id.imageButton2);
+		// go back by press this button
 		btn.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
@@ -55,12 +63,13 @@ public class Help extends AppCompatActivity {
 		});
 	}
 
+	// hide bar function after re-enter in it
 	public void onResume() {
 		super.onResume();
-
 		hideNavigationBar();
 	}
 
+	//hide bar function
 	public void hideNavigationBar() {
 		this.getWindow().getDecorView()
 				.setSystemUiVisibility(

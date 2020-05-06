@@ -4,6 +4,6 @@
     <size
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
-    <solid android:color="#801818"/>
+    <solid android:color="#CC2626"/>
     <corners android:radius="100dp"/>
 </shape>

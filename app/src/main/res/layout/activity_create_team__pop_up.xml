@@ -11,7 +11,7 @@
         android:id="@+id/team_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="111dp"
+        android:layout_marginTop="30dp"
         android:layout_centerHorizontal="true"
         android:background="#000"
         android:hint="Numele Brigazii"
@@ -20,30 +20,32 @@
 
     <Spinner
         android:id="@+id/spinner"
-        android:layout_width="90dp"
+        android:layout_width="120dp"
         android:layout_height="30dp"
-        android:layout_marginTop="160dp"
+        android:layout_marginTop="70dp"
         android:gravity="center"
         android:spinnerMode="dropdown"
         android:layout_centerHorizontal="true"
         android:tooltipText="#000"
-        android:background="#fff"/>
+        android:background="#F19CBB" />
 
     <Button
         android:id="@+id/button20"
         android:layout_width="70dp"
         android:layout_height="35dp"
+        android:layout_marginStart="250dp"
+        android:layout_marginTop="68dp"
+        android:background="@drawable/round_button"
+        android:gravity="center"
         android:text="Add"
-        android:textSize="14sp"
-        android:layout_marginStart="350dp"
-        android:layout_marginTop="158dp"
-        android:gravity="center"/>
+        android:textSize="14sp" />
 
     <Button
         android:id="@+id/button21"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="200dp"
+        android:layout_marginTop="115dp"
         android:layout_centerHorizontal="true"
-        android:text="Terminat" />
+        android:text="Terminat"
+        android:background="@drawable/round_button"/>
 </RelativeLayout>

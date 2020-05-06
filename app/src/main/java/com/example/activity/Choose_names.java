@@ -16,27 +16,24 @@ public class Choose_names extends AppCompatActivity {
 	Button back, add_player, next, remove_player;
 	TextView view;
 	public static TextView players;
-	public static ArrayList<String> players_name;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_choose_name);
+
+		// hide the navigation and the title bar from the phone
 		hideNavigationBar();
 
+		// identify the buttons from xml files
 		view = findViewById(R.id.title_content);
 		players = findViewById(R.id.players);
 		back = (Button) findViewById(R.id.button3);
 		next = findViewById(R.id.button14);
+		add_player = (Button) findViewById(R.id.button13);
+		remove_player = findViewById(R.id.button15);
 
-		//initialize the players_list
-		players_name = new ArrayList<>();
-		players_name.add("Alege jucator");
-		players_name.add("vlad");
-		players_name.add("petreaca");
-		players_name.add("negru");
-		players_name.add("Ser");
-
+		// set the background by the case
 		if(Settings.choice == 1){
 			view.setBackgroundResource(R.drawable.euro_1);
 		} else if(Settings.choice == 2) {
@@ -47,6 +44,10 @@ public class Choose_names extends AppCompatActivity {
 			view.setBackgroundResource(R.drawable.euro_4);
 		}
 
+		// show the list of players at the beginning
+		players.setText(Pop_up_names.show_list_of_players(MainActivity.players_name));
+
+		// go back by press this button
 		back.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
@@ -54,7 +55,7 @@ public class Choose_names extends AppCompatActivity {
 			}
 		});
 
-		add_player = (Button) findViewById(R.id.button13);
+		// press this button to add a player
 		add_player.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
@@ -63,7 +64,7 @@ public class Choose_names extends AppCompatActivity {
 			}
 		});
 
-		remove_player = findViewById(R.id.button15);
+		// pres this button to remove a player
 		remove_player.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
@@ -72,14 +73,14 @@ public class Choose_names extends AppCompatActivity {
 			}
 		});
 
+		// go to the next step for the game
 		next.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				if(players_name.size() < 4) {
+				if(MainActivity.players_name.size() < 5) {
 					Toast.makeText(Choose_names.this, "Nu sunt suficienti jupani!", Toast.LENGTH_SHORT).show();
 				}
 				else {
-					//Toast.makeText(Choose_names.this, "Acum urmeaza sa facem brigazile!", Toast.LENGTH_SHORT).show();
 					Intent intent = new Intent(getApplicationContext(), Teams.class);
 					startActivity(intent);
 				}
@@ -87,11 +88,13 @@ public class Choose_names extends AppCompatActivity {
 		});
 	}
 
+	// hide bar function after re-enter in it
 	public void onResume() {
 		super.onResume();
 		hideNavigationBar();
 	}
 
+	//hide bar function
 	public void hideNavigationBar() {
 		this.getWindow().getDecorView()
 				.setSystemUiVisibility(
