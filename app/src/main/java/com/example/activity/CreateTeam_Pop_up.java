@@ -2,9 +2,11 @@ package com.example.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.Activity;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -14,29 +16,28 @@ import android.widget.Toast;
 
 import java.util.ArrayList;
 
-public class CreateTeam_Pop_up extends AppCompatActivity {
+public class CreateTeam_Pop_up extends Activity {
 
     EditText editText;
     Spinner dropdown;
-    ArrayList<String> players_in_timp;
     Button add, done;
     DisplayMetrics dm;
     static String name;
     static ArrayAdapter<String> adapter;
     boolean check;
-
+    
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_create_team__pop_up);
 
         // hide the navigation and the title bar from the phone
         hideNavigationBar();
+        
+        setContentView(R.layout.activity_create_team__pop_up);
 
         // initialize the variables
-        players_in_timp = new ArrayList<>();
         check = false;
-        adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, MainActivity.players_name);
+        adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, Teams.players_in_timp);
 
         // identify the buttons from xml files
         dropdown = findViewById(R.id.spinner);
@@ -74,7 +75,7 @@ public class CreateTeam_Pop_up extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if(!name.equals("Alege jucator")) {
-                    players_in_timp.add(name);
+                    //Teams.players_in_timp.add(name);
                     adapter.remove(name);
                     dropdown.setAdapter(adapter);
                 }
@@ -85,19 +86,19 @@ public class CreateTeam_Pop_up extends AppCompatActivity {
         done.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(!players_in_timp.isEmpty()) {
+                if(!Teams.players_in_timp.isEmpty()) {
                     for(int i=0;i<Board.Groups.size();i++) {
                         if(editText.getText().toString().equals(Board.Groups.get(i).name)) {
-                            System.out.println(editText.getText().toString());
+                            //System.out.println(editText.getText().toString());
                             check = true;
                             break;
                         }
                     }
 
                     if(!check) {
-                        Board.Groups.add(new Group(editText.getText().toString(), players_in_timp));
-                        System.out.println(players_in_timp);
-                        players_in_timp.clear();
+                        Board.Groups.add(new Group(editText.getText().toString(), Teams.players_in_timp));
+                        //System.out.println(Teams.players_in_timp);
+                        //Teams.players_in_timp.clear();
                         Teams.show_teams.setText(Board.show_group());
                         finish();
                     }

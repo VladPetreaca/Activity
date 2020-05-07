@@ -11,7 +11,7 @@ class Board {
     private Board() {
 
     }
-    public void AddPlayer(String Name) {
+    public static void AddPlayer(String Name) {
         Player player = new Player(Name);
         Players.add(player);
     }
@@ -74,5 +74,16 @@ class Board {
 
             return result;
         }
+    }
+
+    public static ArrayList<String> getPlayers() {
+
+        ArrayList<String> res = new ArrayList<>();
+
+        for(int i=0;i<Players.size();i++) {
+            res.add(Players.get(i).Name);
+        }
+
+        return res;
     }
 }

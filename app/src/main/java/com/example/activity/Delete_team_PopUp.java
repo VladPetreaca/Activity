@@ -43,7 +43,8 @@ public class Delete_team_PopUp extends AppCompatActivity {
                 for(int i=0;i<Board.Groups.size();i++) {
                     if(editText.getText().toString().equals(Board.Groups.get(i).name)) {
                         for(int j=0;j<Board.Groups.get(i).Players.size();j++) {
-                            MainActivity.players_name.add(Board.Groups.get(i).Players.get(j).Name);
+                            //Board.Players.add(Board.Groups.get(i).Players.get(j).Name);
+                            Board.AddPlayer(Board.Groups.get(i).Players.get(j).Name);
                         }
                         Board.Groups.get(i).Players.clear();
                         Board.Groups.remove(Board.Groups.get(i));

@@ -2,13 +2,14 @@ package com.example.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.Activity;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
-public class Delete_pop_up extends AppCompatActivity {
+public class Delete_pop_up extends Activity {
 
     Button back;
     EditText editText;
@@ -39,13 +40,13 @@ public class Delete_pop_up extends AppCompatActivity {
         back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                for(int i=0;i<MainActivity.players_name.size();i++) {
-                    if(editText.getText().toString().equals(MainActivity.players_name.get(i))) {
-                        MainActivity.players_name.remove(i);
+                for(int i=0;i<Board.Players.size();i++) {
+                    if(editText.getText().toString().equals(Board.Players.get(i))) {
+                        Board.Players.remove(i);
                         break;
                     }
                 }
-                Choose_names.players.setText(Pop_up_names.show_list_of_players(MainActivity.players_name));
+                Choose_names.players.setText(Pop_up_names.show_list_of_players(Board.Players));
                 finish();
             }
         });

@@ -43,14 +43,15 @@ public class Pop_up_names extends Activity {
             public void onClick(View v) {
                 String new_name = editText.getText().toString();
                 if(!new_name.equals("")) {
-                    if(!check_name(MainActivity.players_name, new_name)) {
-                        MainActivity.players_name.add(new_name);
+                    if(!check_name(Board.Players, new_name)) {
+                        //Board.Players.add(new_name);
+                        Board.AddPlayer(new_name);
                     }
                     else {
                         Toast.makeText(Pop_up_names.this, "Avem un astfel de jupan!", Toast.LENGTH_SHORT).show();
                     }
 
-                    Choose_names.players.setText(show_list_of_players(MainActivity.players_name));
+                    Choose_names.players.setText(show_list_of_players(Board.Players));
                 }
                 finish();
             }
@@ -58,7 +59,7 @@ public class Pop_up_names extends Activity {
     }
 
     // show the list_of_players
-    public static String show_list_of_players (ArrayList<String> players) {
+    public static String show_list_of_players (ArrayList<Player> players) {
 
         String result = "Jupanii alesi sunt: ";
 
@@ -66,10 +67,10 @@ public class Pop_up_names extends Activity {
             return "N-avem jupani :(";
         }
         else {
-            result += (players.get(1));
+            result += (players.get(1).Name);
             for(int i=2;i<players.size();i++) {
                 result += ", ";
-                result += players.get(i);
+                result += players.get(i).Name;
             }
         }
 
@@ -77,10 +78,10 @@ public class Pop_up_names extends Activity {
     }
 
     // check if the introduced name already exists
-    public boolean check_name(ArrayList<String> players, String name) {
+    public boolean check_name(ArrayList<Player> players, String name) {
 
         for(int i=0;i<players.size();i++) {
-            if(name.equals(players.get(i)))
+            if(name.equals(players.get(i).Name))
                 return true;
         }
 

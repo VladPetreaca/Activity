@@ -48,7 +48,8 @@ public class Delete_PlayerFromTeam_PopUp extends AppCompatActivity {
                     if(editText_team.getText().toString().equals(Board.Groups.get(i).name)) {
                         for(int j=0;j<Board.Groups.get(i).Players.size();j++) {
                             if(editText_player.getText().toString().equals(Board.Groups.get(i).Players.get(j).Name)) {
-                                MainActivity.players_name.add(editText_player.getText().toString());
+                                //Board.Players.add(editText_player.getText().toString());
+                                Board.AddPlayer(editText_player.getText().toString());
                                 Board.Groups.get(i).Players.remove(Board.Groups.get(i).Players.get(j));
 
                                 // get the size of the teams

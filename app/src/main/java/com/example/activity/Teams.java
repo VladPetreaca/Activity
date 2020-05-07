@@ -12,12 +12,15 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.util.ArrayList;
+
 public class Teams extends AppCompatActivity {
 
     Button back, add_teams, add_random_teams, next, remove_teams, remove_player;
     TextView view;
     @SuppressLint("StaticFieldLeak")
     static TextView show_teams;
+    static ArrayList<String> players_in_timp = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,6 +29,10 @@ public class Teams extends AppCompatActivity {
 
         // hide the navigation and the title bar from the phone
         hideNavigationBar();
+
+        if(players_in_timp == null) {
+            players_in_timp = Board.getPlayers();
+        }
 
         // identify the buttons from xml files
         view = findViewById(R.id.title_content_2);
@@ -56,7 +63,7 @@ public class Teams extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 // show the list of players by going back
-                Choose_names.players.setText(Pop_up_names.show_list_of_players(MainActivity.players_name));
+                Choose_names.players.setText(Pop_up_names.show_list_of_players(Board.Players));
                 finish();
             }
         });

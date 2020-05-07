@@ -45,7 +45,7 @@ public class Choose_names extends AppCompatActivity {
 		}
 
 		// show the list of players at the beginning
-		players.setText(Pop_up_names.show_list_of_players(MainActivity.players_name));
+		players.setText(Pop_up_names.show_list_of_players(Board.Players));
 
 		// go back by press this button
 		back.setOnClickListener(new View.OnClickListener() {
@@ -77,13 +77,14 @@ public class Choose_names extends AppCompatActivity {
 		next.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				if(MainActivity.players_name.size() < 5) {
+				if(Board.Players.size() < 5) {
 					Toast.makeText(Choose_names.this, "Nu sunt suficienti jupani!", Toast.LENGTH_SHORT).show();
 				}
 				else {
 					Intent intent = new Intent(getApplicationContext(), Teams.class);
 					startActivity(intent);
 				}
+				
 			}
 		});
 	}
