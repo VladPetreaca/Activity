@@ -10,6 +10,12 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
+            android:name=".Random_Teams"
+            android:screenOrientation="landscape" />
+        <activity
+            android:name=".Choose_your_destiny"
+            android:screenOrientation="landscape" />
+        <activity
             android:name=".Delete_PlayerFromTeam_PopUp"
             android:screenOrientation="landscape"
             android:theme="@style/AppTheme.Pop_up" />
@@ -22,7 +28,7 @@
             android:screenOrientation="landscape"
             android:theme="@style/AppTheme.Pop_up" />
         <activity
-            android:name=".Teams"
+            android:name=".Preferences_Team"
             android:screenOrientation="landscape" />
         <activity
             android:name=".Delete_pop_up"

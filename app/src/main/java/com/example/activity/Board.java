@@ -16,15 +16,18 @@ class Board {
         Players.add(player);
     }
 
-    public boolean CreateRandomGroups(int nrGroups) {
-        int size = Players.size(), index;
+    public static boolean CreateRandomGroups(int nrGroups) {
+        int size = Players.size() - 1, index;
         int nrPlayers = size/nrGroups;
         if(nrPlayers < 2)
             return false;
         Random rand = new Random();
         Player player;
-        ArrayList<Player> aux = new ArrayList<>(Players);
 
+        Groups = new ArrayList<Group>();
+
+        ArrayList<Player> aux = new ArrayList<>(Players);
+        aux.remove(0);
         for (int i = 0; i < nrGroups; i++) {
             index = rand.nextInt(nrPlayers);
             Group naux = new Group(index);
@@ -35,7 +38,8 @@ class Board {
                 size--;
                 naux.AddPlayer(player);
             }
-            this.Groups.add(naux);
+
+            Groups.add(naux);
         }
         return true;
     }

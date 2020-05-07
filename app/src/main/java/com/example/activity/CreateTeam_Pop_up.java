@@ -1,12 +1,9 @@
 package com.example.activity;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.app.Activity;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
 import android.view.View;
-import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -24,20 +21,21 @@ public class CreateTeam_Pop_up extends Activity {
     DisplayMetrics dm;
     static String name;
     static ArrayAdapter<String> adapter;
+    ArrayList<String> aux_list;
     boolean check;
     
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_create_team__pop_up);
 
         // hide the navigation and the title bar from the phone
         hideNavigationBar();
-        
-        setContentView(R.layout.activity_create_team__pop_up);
 
         // initialize the variables
+        aux_list = new ArrayList<>();
         check = false;
-        adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, Teams.players_in_timp);
+        adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, Preferences_Team.players_in_timp);
 
         // identify the buttons from xml files
         dropdown = findViewById(R.id.spinner);
@@ -75,7 +73,7 @@ public class CreateTeam_Pop_up extends Activity {
             @Override
             public void onClick(View v) {
                 if(!name.equals("Alege jucator")) {
-                    //Teams.players_in_timp.add(name);
+                    aux_list.add(name);
                     adapter.remove(name);
                     dropdown.setAdapter(adapter);
                 }
@@ -86,7 +84,7 @@ public class CreateTeam_Pop_up extends Activity {
         done.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(!Teams.players_in_timp.isEmpty()) {
+                if(!aux_list.isEmpty()) {
                     for(int i=0;i<Board.Groups.size();i++) {
                         if(editText.getText().toString().equals(Board.Groups.get(i).name)) {
                             //System.out.println(editText.getText().toString());
@@ -96,10 +94,9 @@ public class CreateTeam_Pop_up extends Activity {
                     }
 
                     if(!check) {
-                        Board.Groups.add(new Group(editText.getText().toString(), Teams.players_in_timp));
+                        Board.Groups.add(new Group(editText.getText().toString(),aux_list));
                         //System.out.println(Teams.players_in_timp);
-                        //Teams.players_in_timp.clear();
-                        Teams.show_teams.setText(Board.show_group());
+                        Preferences_Team.show_teams.setText(Board.show_group());
                         finish();
                     }
                     else {
@@ -108,6 +105,7 @@ public class CreateTeam_Pop_up extends Activity {
                     }
                 }
                 else {
+
                     finish();
                 }
             }

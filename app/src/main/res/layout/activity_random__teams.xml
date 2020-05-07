@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Teams">
+    tools:context=".Random_Teams">
 
     <TextView
         android:id="@+id/title_help"
@@ -20,36 +20,18 @@
     </TextView>
 
     <Button
-        android:id="@+id/button17"
-        android:layout_width="70dp"
-        android:layout_height="35dp"
-        android:layout_marginTop="21dp"
-        android:background="@drawable/back_button" />
-
-    <Button
-        android:id="@+id/button18"
-        android:layout_below="@id/title_help"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="20dp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Creare Brigada"
-        android:background="@drawable/round_button"
-        android:textColor="#000"/>
-
-    <Button
         android:id="@+id/button19"
         android:layout_below="@id/title_help"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="80dp"
+        android:layout_marginTop="110dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Brigada random"
+        android:text="Schimbare nume brigada"
         android:background="@drawable/round_button"
-        android:textColor="#000"/>
+        android:textColor="#000" />
 
     <TextView
-        android:id="@+id/show_teams"
+        android:id="@+id/show_random_teams"
         android:layout_below="@id/title_help"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -60,7 +42,14 @@
         android:textColor="#fff" />
 
     <Button
-        android:id="@+id/button22"
+        android:id="@+id/button30"
+        android:layout_width="70dp"
+        android:layout_height="35dp"
+        android:layout_marginTop="21dp"
+        android:background="@drawable/back_button" />
+
+    <Button
+        android:id="@+id/button31"
         android:layout_width="70dp"
         android:layout_height="35dp"
         android:layout_marginTop="21dp"
@@ -68,24 +57,27 @@
         android:layout_marginStart="663dp" />
 
     <Button
-        android:id="@+id/button23"
-        android:layout_centerHorizontal="true"
+        android:id="@+id/button32"
         android:layout_below="@id/title_help"
-        android:layout_marginTop="140dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="55dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Sterge brigada"
+        android:text="Creare echipe random"
         android:background="@drawable/round_button"
-        android:textColor="#000"  />
+        android:textColor="#000"/>
 
-    <Button
-        android:id="@+id/button25"
+    <EditText
+        android:id="@+id/nr_groups"
         android:layout_below="@id/title_help"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="200dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Scoate jucator"
-        android:background="@drawable/round_button"
-        android:textColor="#000" />
+        android:layout_centerHorizontal="true"
+        android:background="#000"
+        android:layout_marginTop="15dp"
+        android:hint="Numar echipe"
+        android:inputType="number"
+        android:textColor="#FFD700"
+        android:textColorHint="#FFD700" />
+
 </RelativeLayout>

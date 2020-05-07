@@ -16,8 +16,6 @@ public class MainActivity extends AppCompatActivity {
 	ImageButton setting_btn, info_btn;
 	Button joc_nou;
 	public static MediaPlayer mySong;
-	public static ArrayList<String> players_name;
-
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -37,13 +35,12 @@ public class MainActivity extends AppCompatActivity {
 //		mySong.start();
 
 		//initialize the players_list
-//		players_name = new ArrayList<>();
-//		players_name.add("Alege jucator");
-//		players_name.add("vlad");
-//		players_name.add("petreaca");
-//		players_name.add("negru");
-//		players_name.add("Ser");
 		Board.AddPlayer("Alege jucator");
+		Board.AddPlayer("vlad");
+		Board.AddPlayer("ser");
+		Board.AddPlayer("vladau");
+		Board.AddPlayer("villy");
+
 
 		//if setting_button is clicked
 		setting_btn.setOnClickListener(new View.OnClickListener() {

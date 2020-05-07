@@ -81,7 +81,7 @@ public class Choose_names extends AppCompatActivity {
 					Toast.makeText(Choose_names.this, "Nu sunt suficienti jupani!", Toast.LENGTH_SHORT).show();
 				}
 				else {
-					Intent intent = new Intent(getApplicationContext(), Teams.class);
+					Intent intent = new Intent(getApplicationContext(), Choose_your_destiny.class);
 					startActivity(intent);
 				}
 				

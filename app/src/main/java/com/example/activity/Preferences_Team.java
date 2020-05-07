@@ -6,17 +6,15 @@ import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
 
-public class Teams extends AppCompatActivity {
+public class Preferences_Team extends AppCompatActivity {
 
-    Button back, add_teams, add_random_teams, next, remove_teams, remove_player;
+    Button back, add_teams, next, remove_teams, remove_player;
     TextView view;
     @SuppressLint("StaticFieldLeak")
     static TextView show_teams;
@@ -25,7 +23,7 @@ public class Teams extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_teams);
+        setContentView(R.layout.activity_preferences_teams);
 
         // hide the navigation and the title bar from the phone
         hideNavigationBar();
@@ -39,7 +37,6 @@ public class Teams extends AppCompatActivity {
         add_teams = findViewById(R.id.button18);
         show_teams = findViewById(R.id.show_teams);
         back = findViewById(R.id.button17);
-        add_random_teams = findViewById(R.id.button19);
         next = findViewById(R.id.button22);
         remove_teams = findViewById(R.id.button23);
         remove_player = findViewById(R.id.button25);
@@ -77,19 +74,11 @@ public class Teams extends AppCompatActivity {
             }
         });
 
-        // press this button to create random teams
-        add_random_teams.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Toast.makeText(Teams.this, "Create random teams (To be continued...)", Toast.LENGTH_SHORT).show();
-            }
-        });
-
         // press this button to begin the game
         next.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(Teams.this, "Start the game (To be continued...)", Toast.LENGTH_SHORT).show();
+                Toast.makeText(Preferences_Team.this, "Start the game (To be continued...)", Toast.LENGTH_SHORT).show();
             }
         });
 

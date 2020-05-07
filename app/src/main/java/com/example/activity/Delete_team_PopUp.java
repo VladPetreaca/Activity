@@ -43,17 +43,17 @@ public class Delete_team_PopUp extends AppCompatActivity {
                 for(int i=0;i<Board.Groups.size();i++) {
                     if(editText.getText().toString().equals(Board.Groups.get(i).name)) {
                         for(int j=0;j<Board.Groups.get(i).Players.size();j++) {
-                            //Board.Players.add(Board.Groups.get(i).Players.get(j).Name);
-                            Board.AddPlayer(Board.Groups.get(i).Players.get(j).Name);
+                            Preferences_Team.players_in_timp.add(Board.Groups.get(i).Players.get(j).Name);
                         }
-                        Board.Groups.get(i).Players.clear();
+                        //Board.Groups.get(i).Players.clear();
                         Board.Groups.remove(Board.Groups.get(i));
+                        break;
                     }
                     else if(i == Board.Groups.size() - 1) {
                         Toast.makeText(Delete_team_PopUp.this, "Aceasta brigada nu exista!", Toast.LENGTH_SHORT).show();
                     }
                 }
-                Teams.show_teams.setText(Board.show_group());
+                Preferences_Team.show_teams.setText(Board.show_group());
                 finish();
             }
         });

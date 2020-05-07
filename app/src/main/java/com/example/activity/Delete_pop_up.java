@@ -41,7 +41,7 @@ public class Delete_pop_up extends Activity {
             @Override
             public void onClick(View v) {
                 for(int i=0;i<Board.Players.size();i++) {
-                    if(editText.getText().toString().equals(Board.Players.get(i))) {
+                    if(editText.getText().toString().equals(Board.Players.get(i).Name)) {
                         Board.Players.remove(i);
                         break;
                     }
