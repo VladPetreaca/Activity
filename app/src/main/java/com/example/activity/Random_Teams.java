@@ -2,6 +2,7 @@ package com.example.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -12,8 +13,9 @@ import android.widget.Toast;
 public class Random_Teams extends AppCompatActivity {
 
     Button next, back, change_name, create_teams;
-    TextView textView, view;
+    TextView view;
     EditText editText;
+    static TextView textView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,19 +65,16 @@ public class Random_Teams extends AppCompatActivity {
         change_name.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                Intent intent = new Intent(getApplicationContext(), Change_Team_Name.class);
+                startActivity(intent);
             }
         });
 
         create_teams.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //System.out.println(editText.getInputType());
-                //Toast.makeText(Random_Teams.this, "Groups = " + editText.getText().toString() , Toast.LENGTH_SHORT).show();
-                System.out.println(Board.getPlayers());
                 if((Board.Players.size() - 1) % Integer.parseInt(editText.getText().toString()) == 0) {
                     if(Board.CreateRandomGroups(Integer.parseInt(editText.getText().toString()))) {
-                        Toast.makeText(Random_Teams.this,Board.Players.toString() , Toast.LENGTH_SHORT).show();
                         textView.setText(Board.show_group());
                     }
                     else {

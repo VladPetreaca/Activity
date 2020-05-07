@@ -10,6 +10,10 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
+            android:name=".Change_Team_Name"
+            android:screenOrientation="landscape"
+            android:theme="@style/AppTheme.Pop_up" />
+        <activity
             android:name=".Random_Teams"
             android:screenOrientation="landscape" />
         <activity

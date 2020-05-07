@@ -39,6 +39,7 @@ class Board {
                 naux.AddPlayer(player);
             }
 
+            naux.name = String.valueOf(i);
             Groups.add(naux);
         }
         return true;

@@ -48,8 +48,6 @@ public class Delete_PlayerFromTeam_PopUp extends AppCompatActivity {
                     if(editText_team.getText().toString().equals(Board.Groups.get(i).name)) {
                         for(int j=0;j<Board.Groups.get(i).Players.size();j++) {
                             if(editText_player.getText().toString().equals(Board.Groups.get(i).Players.get(j).Name)) {
-                                //Board.Players.add(editText_player.getText().toString());
-                                //Board.AddPlayer(editText_player.getText().toString());
                                 Preferences_Team.players_in_timp.add(Board.Groups.get(i).Players.get(j).Name);
                                 Board.Groups.get(i).Players.remove(Board.Groups.get(i).Players.get(j));
 
