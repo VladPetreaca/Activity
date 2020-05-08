@@ -78,7 +78,9 @@ public class Preferences_Team extends AppCompatActivity {
         next.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(Preferences_Team.this, "Start the game (To be continued...)", Toast.LENGTH_SHORT).show();
+                //Toast.makeText(Preferences_Team.this, "Start the game (To be continued...)", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(getApplicationContext(), Game.class);
+                startActivity(intent);
             }
         });
 

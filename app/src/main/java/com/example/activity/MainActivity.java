@@ -14,7 +14,7 @@ import java.util.ArrayList;
 public class MainActivity extends AppCompatActivity {
 
 	ImageButton setting_btn, info_btn;
-	Button joc_nou;
+	Button joc_nou, exit;
 	public static MediaPlayer mySong;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -28,6 +28,7 @@ public class MainActivity extends AppCompatActivity {
 		setting_btn = (ImageButton) findViewById(R.id.button2);
 		info_btn = (ImageButton) findViewById(R.id.imageButton2);
 		joc_nou = (Button) findViewById(R.id.button);
+		exit = findViewById(R.id.button8);
 
 		// play music
 //		mySong = MediaPlayer.create(MainActivity.this, R.raw.vremea);
@@ -63,6 +64,15 @@ public class MainActivity extends AppCompatActivity {
 			@Override
 			public void onClick(View v) {
 				openJocNou();
+			}
+		});
+
+		//exit from the application
+		exit.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				finish();
+				System.exit(0);
 			}
 		});
 	}
