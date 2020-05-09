@@ -3,19 +3,24 @@ package com.example.activity;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
 
-	ImageButton setting_btn, info_btn;
-	Button joc_nou, exit;
+	Button joc_nou, exit, info_btn, setting_btn;
+	public static Button continue_game;
 	public static MediaPlayer mySong;
+	public static boolean stop_song = false;
+	public static boolean save_state = false;
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -25,15 +30,18 @@ public class MainActivity extends AppCompatActivity {
 		hideNavigationBar();
 
 		// identify the buttons from xml files
-		setting_btn = (ImageButton) findViewById(R.id.button2);
-		info_btn = (ImageButton) findViewById(R.id.imageButton2);
+		setting_btn = (Button) findViewById(R.id.button2);
+		info_btn = (Button) findViewById(R.id.imageButton2);
 		joc_nou = (Button) findViewById(R.id.button);
 		exit = findViewById(R.id.button8);
+		continue_game = findViewById(R.id.button5);
 
 		// play music
-//		mySong = MediaPlayer.create(MainActivity.this, R.raw.vremea);
-//		mySong.setLooping(true);
-//		mySong.start();
+//		if(!stop_song) {
+//			mySong = MediaPlayer.create(MainActivity.this, R.raw.vremea);
+//			mySong.setLooping(true);
+//			mySong.start();
+//		}
 
 		//initialize the players_list
 		Board.AddPlayer("Alege jucator");
@@ -73,6 +81,24 @@ public class MainActivity extends AppCompatActivity {
 			public void onClick(View v) {
 				finish();
 				System.exit(0);
+			}
+		});
+
+		if(save_state) {
+			//Toast.makeText(MainActivity.this, "Click pe button!", Toast.LENGTH_SHORT).show();
+			continue_game.setBackgroundColor(Color.parseColor("#ffff8800"));
+		}
+		else {
+			continue_game.setBackgroundColor(Color.parseColor("#8B0000"));
+		}
+
+		// continue the last game
+		continue_game.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				if(stop_song) {
+					Toast.makeText(MainActivity.this, "Click pe button!", Toast.LENGTH_SHORT).show();
+				}
 			}
 		});
 	}

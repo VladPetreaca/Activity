@@ -48,7 +48,6 @@
         android:layout_marginEnd="300dp"
         android:layout_marginRight="300dp"
         android:layout_marginBottom="32dp"
-        android:background="@android:color/holo_orange_dark"
         android:text="Continuare"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -76,24 +75,24 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.794" />
 
-    <ImageButton
+    <Button
         android:id="@+id/button2"
         android:layout_width="40dp"
         android:layout_height="40dp"
         android:layout_marginStart="440dp"
         android:layout_marginTop="20.2dp"
-        android:src="@drawable/images"
+        android:background="@drawable/settings_icon"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <ImageButton
+    <Button
         android:id="@+id/imageButton2"
-        android:layout_width="40dp"
+        android:layout_width="70dp"
         android:layout_height="40dp"
         android:layout_marginTop="20.2dp"
         android:layout_marginEnd="32dp"
-        android:layout_marginStart="235dp"
-        android:src="@drawable/unnamed"
+        android:layout_marginStart="217dp"
+        android:background="@drawable/info_icon_2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 

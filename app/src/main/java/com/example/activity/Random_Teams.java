@@ -59,7 +59,7 @@ public class Random_Teams extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 //Toast.makeText(Random_Teams.this, "Start the game (To be continued...)", Toast.LENGTH_SHORT).show();
-                Intent intent = new Intent(getApplicationContext(), Game.class);
+                Intent intent = new Intent(Random_Teams.this, Game.class);
                 startActivity(intent);
             }
         });
