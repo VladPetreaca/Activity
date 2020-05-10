@@ -1,13 +1,18 @@
 package com.example.activity;
 
+import android.animation.ObjectAnimator;
+import android.widget.ImageView;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 public class Group {
     ArrayList<Player> Players;
     String name;
+    Pawn pawn;
     int score;
     int nextPlayer;
+
     Group(int next){
         score = 0;
         nextPlayer = next;

@@ -62,4 +62,98 @@
         android:layout_marginStart="670dp"
         android:layout_marginTop="190dp"
         android:background="@drawable/settings_icon"/>
+
+    <FrameLayout
+        android:id="@+id/board"
+        android:layout_width="472.5dp"
+        android:layout_height="368dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginStart="150dp">
+
+        <FrameLayout
+            android:id="@+id/pion1_xy"
+            android:layout_width="16dp"
+            android:layout_height="16dp"
+            android:layout_marginTop="7.33dp"
+            android:layout_marginStart="386dp">
+
+            <ImageView
+                android:id="@+id/pion1"
+                android:layout_width="16dp"
+                android:layout_height="16dp" />
+        </FrameLayout>
+
+        <FrameLayout
+            android:id="@+id/pion2_xy"
+            android:layout_width="16dp"
+            android:layout_height="16dp"
+            android:layout_marginTop="7.33dp"
+            android:layout_marginStart="402dp">
+
+            <ImageView
+                android:id="@+id/pion2"
+                android:layout_width="16dp"
+                android:layout_height="16dp" />
+        </FrameLayout>
+
+        <FrameLayout
+            android:id="@+id/pion3_xy"
+            android:layout_width="16dp"
+            android:layout_height="16dp"
+            android:layout_marginTop="7.33dp"
+            android:layout_marginStart="418dp">
+
+            <ImageView
+                android:id="@+id/pion3"
+                android:layout_width="16dp"
+                android:layout_height="16dp" />
+        </FrameLayout>
+
+        <FrameLayout
+            android:id="@+id/pion4_xy"
+            android:layout_width="16dp"
+            android:layout_height="16dp"
+            android:layout_marginTop="7.33dp"
+            android:layout_marginStart="434dp">
+
+            <ImageView
+                android:id="@+id/pion4"
+                android:layout_width="16dp"
+                android:layout_height="16dp" />
+        </FrameLayout>
+    </FrameLayout>
+<!--    <ImageView-->
+<!--        android:id="@+id/pion1"-->
+<!--        android:layout_width="16dp"-->
+<!--        android:layout_height="16dp"-->
+<!--        android:layout_marginTop="28dp"-->
+<!--        android:layout_marginStart="584dp" />-->
+
+<!--    <ImageView-->
+<!--        android:id="@+id/pion2"-->
+<!--        android:layout_width="16dp"-->
+<!--        android:layout_height="16dp"-->
+<!--        android:layout_marginTop="28dp"-->
+<!--        android:layout_marginStart="568dp" />-->
+
+<!--    <ImageView-->
+<!--        android:id="@+id/pion3"-->
+<!--        android:layout_width="16dp"-->
+<!--        android:layout_height="16dp"-->
+<!--        android:layout_marginTop="28dp"-->
+<!--        android:layout_marginStart="552dp" />-->
+
+<!--    <ImageView-->
+<!--        android:id="@+id/pion4"-->
+<!--        android:layout_width="16dp"-->
+<!--        android:layout_height="16dp"-->
+<!--        android:layout_marginTop="28dp"-->
+<!--        android:layout_marginStart="535dp" />-->
+
+    <Button
+        android:id="@+id/button40"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:text="Button" />
 </RelativeLayout>
