@@ -13,6 +13,7 @@ public class Pawn {
     int count_lines;
     int count_columns;
     boolean start;
+    int nr_box;
     FrameLayout pawn_xy;
     ImageView img_pawn;
 
@@ -24,6 +25,7 @@ public class Pawn {
         count_columns = 0;
         count_lines = 0;
         start = false;
+        nr_box = 0;
         this.over_start = over_start;
         this.img_pawn = img_pawn;
         this.pawn_xy = pawn_xy;

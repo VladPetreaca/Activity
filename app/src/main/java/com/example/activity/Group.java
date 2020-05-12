@@ -12,6 +12,7 @@ public class Group {
     Pawn pawn;
     int score;
     int nextPlayer;
+    int order;
 
     Group(int next){
         score = 0;
@@ -22,6 +23,7 @@ public class Group {
         Random rand = new Random();
         score = 0;
         this.name = name;
+        order = -1;
         Players = new ArrayList<>();
         for(int i =0;i < players.size(); i++) {
             System.out.println(players.get(i));

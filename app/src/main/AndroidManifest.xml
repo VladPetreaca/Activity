@@ -10,6 +10,9 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
+            android:name=".Cart_PopUp"
+            android:screenOrientation="landscape"  />
+        <activity
             android:name=".Exit_PopUp"
             android:screenOrientation="landscape"
             android:theme="@style/AppTheme.Pop_up" />
