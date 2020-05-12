@@ -74,7 +74,6 @@
             android:id="@+id/history_view"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="asd"
             android:textSize="12sp"
             android:textColor="#fff"/>
     </ScrollView>
@@ -137,7 +136,14 @@
                 android:layout_width="16dp"
                 android:layout_height="16dp" />
         </FrameLayout>
+
     </FrameLayout>
+    <Button
+        android:id="@+id/button40"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Button"
+        android:layout_centerInParent="true"/>
     <!--    <ImageView-->
 <!--        android:id="@+id/pion1"-->
 <!--        android:layout_width="16dp"-->

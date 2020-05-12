@@ -30,7 +30,6 @@ public class Cart_PopUp extends Activity {
     boolean running;
     long pauseOffset;
     int mode;
-    static int total;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,32 +49,48 @@ public class Cart_PopUp extends Activity {
             @Override
             public void onClick(View v) {
                 if(mode == 1) {
-                    total = 0;
 
                     Handler hand = new Handler();
                     hand.postDelayed(new Runnable() {
                         @Override
                         public void run() {
-                            total += 1000;
-                            for(int i=0;i<Game.pressed_button;i++) {
-                                total += i * 2000;
-                                Handler h = new Handler();
-                                h.postDelayed(new Runnable() {
-                                    @Override
-                                    public void run() {
-                                        move_pawn(Board.Groups.get(Game.index_teams).name);
-                                    }
-                                }, i * 2000);
+                            for(int i=0;i<=Game.pressed_button;i++) {
 
-                                if(i == Game.pressed_button - 1) {
-                                    Game.player_over();
-                                    Game.player_turn();
+                                if(i <= Game.pressed_button - 1) {
+                                    Handler h = new Handler();
+                                    h.postDelayed(new Runnable() {
+                                        @Override
+                                        public void run() {
+                                            move_pawn(Board.Groups.get(Game.index_teams).name);
+                                        }
+                                    }, i * 1000);
+
+                                }
+                                else if(i == Game.pressed_button){
+                                    Handler h = new Handler();
+                                    h.postDelayed(new Runnable() {
+                                        @Override
+                                        public void run() {
+                                            Game.player_over();
+                                            Game.player_turn();
+
+                                        }
+                                    }, i * 1000);
+
+                                    Handler hand = new Handler();
+                                    hand.postDelayed(new Runnable() {
+                                        @Override
+                                        public void run() {
+                                            Game.scrollView.fullScroll(ScrollView.FOCUS_DOWN);
+                                            Game.scrollView.scrollTo(0, Game.scrollView.getBottom());
+                                        }
+                                    },i * 1000 + 500);
+
                                 }
 
                             }
                         }
                     }, 1000);
-                    //total += 1000;
                 }
                 else {
                     Game.player_over();
@@ -142,7 +157,7 @@ public class Cart_PopUp extends Activity {
                             Animation.ABSOLUTE,
                             Animation.ABSOLUTE);
 
-                    anim.setDuration(2000);
+                    anim.setDuration(1000);
                     anim.setFillAfter(true);
 
                     Board.Groups.get(i).pawn.pawn_xy.startAnimation(anim);
@@ -161,7 +176,7 @@ public class Cart_PopUp extends Activity {
                             TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP,Board.Groups.get(i).pawn.y_max , getResources().getDisplayMetrics()),
                             TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP,Board.Groups.get(i).pawn.y_max , getResources().getDisplayMetrics()));
 
-                    anim.setDuration(2000);
+                    anim.setDuration(1000);
                     anim.setFillAfter(true);
 
                     Board.Groups.get(i).pawn.pawn_xy.startAnimation(anim);
@@ -201,7 +216,7 @@ public class Cart_PopUp extends Activity {
                             TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP,Board.Groups.get(i).pawn.y_max , getResources().getDisplayMetrics()),
                             TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP,Board.Groups.get(i).pawn.y_max , getResources().getDisplayMetrics()));
 
-                    anim.setDuration(2000);
+                    anim.setDuration(1000);
                     anim.setFillAfter(true);
 
                     Board.Groups.get(i).pawn.pawn_xy.startAnimation(anim);
@@ -223,7 +238,7 @@ public class Cart_PopUp extends Activity {
                             TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP,Board.Groups.get(i).pawn.y_min , getResources().getDisplayMetrics()),
                             TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP,Board.Groups.get(i).pawn.y_max , getResources().getDisplayMetrics()));
 
-                    anim.setDuration(2000);
+                    anim.setDuration(1000);
                     anim.setFillAfter(true);
 
                     Board.Groups.get(i).pawn.pawn_xy.startAnimation(anim);
@@ -241,7 +256,7 @@ public class Cart_PopUp extends Activity {
                             TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP,Board.Groups.get(i).pawn.y_max , getResources().getDisplayMetrics()),
                             TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP,Board.Groups.get(i).pawn.y_max , getResources().getDisplayMetrics()));
 
-                    anim.setDuration(2000);
+                    anim.setDuration(1000);
                     anim.setFillAfter(true);
 
                     Board.Groups.get(i).pawn.pawn_xy.startAnimation(anim);

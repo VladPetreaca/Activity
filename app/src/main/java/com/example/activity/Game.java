@@ -9,6 +9,8 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
 import android.text.Layout;
+import android.text.SpannableString;
+import android.text.style.ForegroundColorSpan;
 import android.util.TypedValue;
 import android.view.View;
 import android.view.ViewGroup;
@@ -26,7 +28,7 @@ import java.util.Collections;
 
 public class Game extends Activity {
 
-    Button back, button_3, button_4, button_5, settings, info;
+    Button back, button_3, button_4, button_5, settings, info, test;
     ImageView pion1, pion2, pion3, pion4;
     ArrayList<Integer> resids;
     FrameLayout pion1_xy ,pion2_xy, pion3_xy, pion4_xy;
@@ -67,8 +69,13 @@ public class Game extends Activity {
             Board.Groups.get(i).pawn = pawns.get(i);
         }
 
-        // add to history the player who must draw a cart
-
+        test.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                scrollView.fullScroll(ScrollView.FOCUS_DOWN);
+                scrollView.scrollTo(0, scrollView.getBottom());
+            }
+        });
 
         hr.postDelayed(new Runnable() {
             @Override
@@ -135,22 +142,32 @@ public class Game extends Activity {
 
     public void create_order() {
         String res = "Ordinea echipelor este: ";
+        ArrayList<Integer> lengths = new ArrayList<>();
 
         for(int i=0;i<Board.Groups.size();i++) {
+            int n;
+
             res += Board.Groups.get(i).name;
+            n = Board.Groups.get(i).name.length();
 
             if(i != Board.Groups.size() - 1) {
                 res += ", ";
+                n += 2;
             }
+
+            lengths.add(n);
         }
 
+        // https://www.youtube.com/watch?v=tTLmz-JKxsI
+        SpannableString ss = new SpannableString(res);
+
         history = res;
-        history += "\n";
+        history += "\n\n";
     }
 
     public static void player_over() {
 
-        history += Board.Groups.get(index_teams).Players.get(index_players).Name + " si-a terminat randul...\n";
+        history += Board.Groups.get(index_teams).Players.get(index_players).Name + " si-a terminat randul...\n\n";
 
         index_teams++;
 
@@ -164,17 +181,15 @@ public class Game extends Activity {
         }
 
         history_view.setText(history);
-        scrollView.fullScroll(ScrollView.FOCUS_DOWN);
     }
 
     public static void player_turn() {
 
-        scrollView.fullScroll(ScrollView.FOCUS_DOWN);
+        ///scrollView.fullScroll(ScrollView.FOCUS_DOWN);
 
         history += "Este randul lui " + Board.Groups.get(index_teams).Players.get(index_players).Name + "...\n";
 
         history_view.setText(history);
-        scrollView.fullScroll(ScrollView.FOCUS_DOWN);
     }
 
     public void initialize() {
@@ -194,6 +209,7 @@ public class Game extends Activity {
         pion4_xy = findViewById(R.id.pion4_xy);
         history_view = findViewById(R.id.history_view);
         scrollView = findViewById(R.id.scroll_view);
+        test = findViewById(R.id.button40);
 
         resids = new ArrayList<>();
         resids.add(R.drawable.pion_1);
