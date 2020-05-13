@@ -15,7 +15,7 @@
         android:layout_marginTop="242dp"
         android:layout_marginEnd="322dp"
         android:layout_marginBottom="121dp"
-        android:text="Welcome B0$$"
+        android:text="Adauga"
         android:textColor="#000"
         android:background="@drawable/round_button"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -36,7 +36,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         android:background="#000"
-        android:hint="Numele Jupanului"
+        android:hint="Numele Jucatorului"
         android:textColor="#FFD700"
         android:textColorHint="#FFD700"/>
 </androidx.constraintlayout.widget.ConstraintLayout>

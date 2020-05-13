@@ -28,7 +28,7 @@
         android:layout_marginStart="280dp"
         android:layout_centerHorizontal="true"
         android:background="#CC000000"
-        android:text="Care sunt jupanii?"
+        android:text="Care sunt jucatorii?"
         android:gravity="center"
         android:textColor="#fff">
     </TextView>
@@ -49,28 +49,28 @@
         android:layout_marginTop="67dp"
         android:layout_centerHorizontal="true"
         android:background="@drawable/round_button"
-        android:text="Zii jupanul"
+        android:text="Adauga jucator"
         android:textColor="#000"/>
 
-    <TextView
-        android:layout_below="@id/title_help"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="73dp"
-        android:text="@string/adauga_un_jupan"
-        android:layout_marginStart="430dp"
-        android:background="#CC000000"
-        android:textColor="#fff" />
+<!--    <TextView-->
+<!--        android:layout_below="@id/title_help"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_marginTop="73dp"-->
+<!--        android:text="@string/adauga_un_jupan"-->
+<!--        android:layout_marginStart="430dp"-->
+<!--        android:background="#CC000000"-->
+<!--        android:textColor="#fff" />-->
 
-    <TextView
-        android:layout_below="@id/title_help"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="117dp"
-        android:text="Avem noi grija de el"
-        android:layout_marginStart="430dp"
-        android:background="#CC000000"
-        android:textColor="#fff" />
+<!--    <TextView-->
+<!--        android:layout_below="@id/title_help"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_marginTop="117dp"-->
+<!--        android:text="Avem noi grija de el"-->
+<!--        android:layout_marginStart="430dp"-->
+<!--        android:background="#CC000000"-->
+<!--        android:textColor="#fff" />-->
 
     <TextView
         android:id="@+id/players"
@@ -100,6 +100,6 @@
         android:layout_marginTop="110dp"
         android:layout_centerHorizontal="true"
         android:background="@drawable/round_button"
-        android:text="Scoate jupanul"
+        android:text="Sterge jucator"
         android:textColor="#000"/>
 </RelativeLayout>

@@ -40,6 +40,8 @@ public class Delete_pop_up extends Activity {
         back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                back.setEnabled(false);
+
                 for(int i=0;i<Board.Players.size();i++) {
                     if(editText.getText().toString().equals(Board.Players.get(i).Name)) {
                         Board.Players.remove(i);

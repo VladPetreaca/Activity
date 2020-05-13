@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".Cart_PopUp"
-    android:theme="@style/AppTheme.Pop_up">
+    android:theme="@style/Theme.Transparent">
 
     <TextView
         android:layout_width="match_parent"
@@ -22,11 +22,11 @@
 
     <Button
         android:id="@+id/button41"
-        android:layout_width="wrap_content"
+        android:layout_width="80dp"
         android:layout_height="wrap_content"
-        android:layout_centerVertical="true"
-        android:layout_marginStart="20dp"
-        android:text="Button" />
+        android:layout_marginTop="230dp"
+        android:layout_marginStart="590dp"
+        android:text="Gata" />
     
     <Chronometer
         android:id="@+id/chronometer"

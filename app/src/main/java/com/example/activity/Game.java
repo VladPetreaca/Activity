@@ -8,6 +8,7 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
+import android.os.SystemClock;
 import android.text.Layout;
 import android.text.SpannableString;
 import android.text.style.ForegroundColorSpan;
@@ -28,16 +29,16 @@ import java.util.Collections;
 
 public class Game extends Activity {
 
-    Button back, button_3, button_4, button_5, settings, info, test;
+    Button back, button_3, button_4, button_5, settings, info;
     ImageView pion1, pion2, pion3, pion4;
     ArrayList<Integer> resids;
     FrameLayout pion1_xy ,pion2_xy, pion3_xy, pion4_xy;
     ArrayList<Pawn> pawns;
-    ArrayList<Integer> team_order;
     static ScrollView scrollView;
     static TextView history_view;
     static int pressed_button, index_teams, index_players;
     static String history;
+    private long lastClickTime;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -69,14 +70,6 @@ public class Game extends Activity {
             Board.Groups.get(i).pawn = pawns.get(i);
         }
 
-        test.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                scrollView.fullScroll(ScrollView.FOCUS_DOWN);
-                scrollView.scrollTo(0, scrollView.getBottom());
-            }
-        });
-
         hr.postDelayed(new Runnable() {
             @Override
             public void run() {
@@ -87,6 +80,12 @@ public class Game extends Activity {
         button_3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                if(SystemClock.elapsedRealtime() - lastClickTime < 1000) {
+                    return;
+                }
+
+                lastClickTime = SystemClock.elapsedRealtime();
+
                 pressed_button = 3;
                 Intent intent = new Intent(getApplicationContext(), Cart_PopUp.class);
                 startActivity(intent);
@@ -96,6 +95,12 @@ public class Game extends Activity {
         button_4.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                if(SystemClock.elapsedRealtime() - lastClickTime < 1000) {
+                    return;
+                }
+
+                lastClickTime = SystemClock.elapsedRealtime();
+
                 pressed_button = 4;
                 Intent intent = new Intent(getApplicationContext(), Cart_PopUp.class);
                 startActivity(intent);
@@ -105,6 +110,12 @@ public class Game extends Activity {
         button_5.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                if(SystemClock.elapsedRealtime() - lastClickTime < 1000) {
+                    return;
+                }
+
+                lastClickTime = SystemClock.elapsedRealtime();
+
                 pressed_button = 5;
                 Intent intent = new Intent(getApplicationContext(), Cart_PopUp.class);
                 startActivity(intent);
@@ -117,6 +128,11 @@ public class Game extends Activity {
 
                 // aici se vor scrie in fisier datele despre jocul curent
                 // inainte de a se inchide, cum ar fi: jucatorii, echipele, pozitii, etc
+                if(SystemClock.elapsedRealtime() - lastClickTime < 1000) {
+                    return;
+                }
+
+                lastClickTime = SystemClock.elapsedRealtime();
 
                 Intent intent = new Intent(getApplicationContext(), Exit_PopUp.class);
                 startActivity(intent);
@@ -126,6 +142,12 @@ public class Game extends Activity {
         settings.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                if(SystemClock.elapsedRealtime() - lastClickTime < 1000) {
+                    return;
+                }
+
+                lastClickTime = SystemClock.elapsedRealtime();
+
                 Intent intent = new Intent(getApplicationContext(), Settings.class);
                 startActivity(intent);
             }
@@ -134,6 +156,12 @@ public class Game extends Activity {
         info.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                if(SystemClock.elapsedRealtime() - lastClickTime < 1000) {
+                    return;
+                }
+
+                lastClickTime = SystemClock.elapsedRealtime();
+
                 Intent intent = new Intent(getApplicationContext(), Help.class);
                 startActivity(intent);
             }
@@ -142,24 +170,25 @@ public class Game extends Activity {
 
     public void create_order() {
         String res = "Ordinea echipelor este: ";
-        ArrayList<Integer> lengths = new ArrayList<>();
 
         for(int i=0;i<Board.Groups.size();i++) {
-            int n;
-
             res += Board.Groups.get(i).name;
-            n = Board.Groups.get(i).name.length();
+            res += "(";
+
+            for(int j=0;j<Board.Groups.get(i).Players.size();j++) {
+                res += Board.Groups.get(i).Players.get(j).Name;
+
+                if(j != Board.Groups.get(i).Players.size() - 1) {
+                    res += ", ";
+                };
+            }
+
+            res += ")";
 
             if(i != Board.Groups.size() - 1) {
                 res += ", ";
-                n += 2;
-            }
-
-            lengths.add(n);
+            };
         }
-
-        // https://www.youtube.com/watch?v=tTLmz-JKxsI
-        SpannableString ss = new SpannableString(res);
 
         history = res;
         history += "\n\n";
@@ -167,7 +196,7 @@ public class Game extends Activity {
 
     public static void player_over() {
 
-        history += Board.Groups.get(index_teams).Players.get(index_players).Name + " si-a terminat randul...\n\n";
+        history += Board.Groups.get(index_teams).Players.get(index_players).Name + "(" + Board.Groups.get(index_teams).name + ")" + " si-a terminat randul...\n\n";
 
         index_teams++;
 
@@ -185,9 +214,7 @@ public class Game extends Activity {
 
     public static void player_turn() {
 
-        ///scrollView.fullScroll(ScrollView.FOCUS_DOWN);
-
-        history += "Este randul lui " + Board.Groups.get(index_teams).Players.get(index_players).Name + "...\n";
+        history += "Este randul lui " + Board.Groups.get(index_teams).Players.get(index_players).Name + "(" + Board.Groups.get(index_teams).name + ")" +"...\n";
 
         history_view.setText(history);
     }
@@ -209,7 +236,6 @@ public class Game extends Activity {
         pion4_xy = findViewById(R.id.pion4_xy);
         history_view = findViewById(R.id.history_view);
         scrollView = findViewById(R.id.scroll_view);
-        test = findViewById(R.id.button40);
 
         resids = new ArrayList<>();
         resids.add(R.drawable.pion_1);
@@ -223,18 +249,9 @@ public class Game extends Activity {
         pawns.add(new Pawn(pion3_xy, pion3, 95.25f));
         pawns.add(new Pawn(pion4_xy, pion4, 111.25f));
 
-        team_order = new ArrayList<>();
-        team_order.add(0);
-        team_order.add(1);
-        team_order.add(2);
-        team_order.add(3);
-
         index_teams = 0;
         index_players = 0;
-
-        for(int i=0;i<Board.Groups.size();i++) {
-            Board.Groups.get(i).order = i;
-        }
+        lastClickTime = 0;
 
         // shuffle the order teams
         Collections.shuffle(Board.Groups);

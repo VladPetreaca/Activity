@@ -30,6 +30,7 @@ public class Cart_PopUp extends Activity {
     boolean running;
     long pauseOffset;
     int mode;
+    int finish_game;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,36 +45,58 @@ public class Cart_PopUp extends Activity {
         start = findViewById(R.id.button42);
         chrom = findViewById(R.id.chronometer);
         mode = 0;
+        finish_game = 0;
 
         back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                back.setEnabled(false);
                 if(mode == 1) {
 
                     Handler hand = new Handler();
                     hand.postDelayed(new Runnable() {
                         @Override
                         public void run() {
-                            for(int i=0;i<=Game.pressed_button;i++) {
+                            if(Board.Groups.get(Game.index_teams).pawn.nr_box + Game.pressed_button > 48) {
+                                Game.pressed_button = 49 - Board.Groups.get(Game.index_teams).pawn.nr_box;
+                            }
+
+                            for(int i=0;i<=Game.pressed_button + 1;i++) {
 
                                 if(i <= Game.pressed_button - 1) {
                                     Handler h = new Handler();
                                     h.postDelayed(new Runnable() {
                                         @Override
                                         public void run() {
-                                            move_pawn(Board.Groups.get(Game.index_teams).name);
+                                            move_pawn_forward(Board.Groups.get(Game.index_teams).name);
                                         }
                                     }, i * 1000);
 
                                 }
-                                else if(i == Game.pressed_button){
+                                else if(i == Game.pressed_button) {
+                                    Handler h = new Handler();
+                                    h.postDelayed(new Runnable() {
+                                        @Override
+                                        public void run() {
+                                            //move_pawn_forward(Board.Groups.get(Game.index_teams).name);
+                                            move_pawn_back(Board.Groups.get(Game.index_teams));
+                                        }
+                                    }, i * 1000);
+                                }
+                                else if(i == Game.pressed_button + 1){
                                     Handler h = new Handler();
                                     h.postDelayed(new Runnable() {
                                         @Override
                                         public void run() {
                                             Game.player_over();
-                                            Game.player_turn();
 
+                                            if(finish_game == 1) {
+                                                Game.history += "Jocul s-a terminat!";
+                                                Game.history_view.setText(Game.history);
+                                            }
+                                            else {
+                                                Game.player_turn();
+                                            }
                                         }
                                     }, i * 1000);
 
@@ -84,7 +107,7 @@ public class Cart_PopUp extends Activity {
                                             Game.scrollView.fullScroll(ScrollView.FOCUS_DOWN);
                                             Game.scrollView.scrollTo(0, Game.scrollView.getBottom());
                                         }
-                                    },i * 1000 + 500);
+                                    },i * 1000 + 200);
 
                                 }
 
@@ -138,8 +161,78 @@ public class Cart_PopUp extends Activity {
         });
     }
 
-    // move a specified pawn on the table
-    public void move_pawn(String team_name) {
+    // move back a pawn
+    public void move_pawn_back(Group team) {
+
+        for(int i=0;i<Board.Groups.size();i++) {
+            if(!team.name.equals(Board.Groups.get(i).name)) {
+                if(team.pawn.nr_box == Board.Groups.get(i).pawn.nr_box) {
+
+                    if(Board.Groups.get(i).pawn.count_columns == 0) {
+                        Board.Groups.get(i).pawn.y_min = Board.Groups.get(i).pawn.y_max;
+                        Board.Groups.get(i).pawn.y_max -= 31f;
+
+                        TranslateAnimation anim = new TranslateAnimation(
+                                TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP,Board.Groups.get(i).pawn.x_max , getResources().getDisplayMetrics()),
+                                TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP,Board.Groups.get(i).pawn.x_max , getResources().getDisplayMetrics()),
+                                TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP,Board.Groups.get(i).pawn.y_min , getResources().getDisplayMetrics()),
+                                TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP,Board.Groups.get(i).pawn.y_max , getResources().getDisplayMetrics()));
+
+                        anim.setDuration(1000);
+                        anim.setFillAfter(true);
+
+                        Board.Groups.get(i).pawn.pawn_xy.startAnimation(anim);
+                        Board.Groups.get(i).pawn.count_columns = 3;
+                        Board.Groups.get(i).pawn.count_lines--;
+                        Board.Groups.get(i).pawn.nr_box = 4 * Board.Groups.get(i).pawn.count_lines + (Board.Groups.get(i).pawn.count_columns + 1);
+                    }
+
+                    // the pawn remaining on the same line (odd line)
+                    else if(Board.Groups.get(i).pawn.count_columns <= 3 && Board.Groups.get(i).pawn.count_lines % 2 == 1) {
+                        Board.Groups.get(i).pawn.x_min = Board.Groups.get(i).pawn.x_max;
+                        Board.Groups.get(i).pawn.x_max -= 94.5f;
+
+                        TranslateAnimation anim = new TranslateAnimation(
+                                TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP,Board.Groups.get(i).pawn.x_min , getResources().getDisplayMetrics()),
+                                TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP,Board.Groups.get(i).pawn.x_max , getResources().getDisplayMetrics()),
+                                TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP,Board.Groups.get(i).pawn.y_max , getResources().getDisplayMetrics()),
+                                TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP,Board.Groups.get(i).pawn.y_max , getResources().getDisplayMetrics()));
+
+                        anim.setDuration(1000);
+                        anim.setFillAfter(true);
+
+                        Board.Groups.get(i).pawn.pawn_xy.startAnimation(anim);
+                        Board.Groups.get(i).pawn.count_columns--;
+                        Board.Groups.get(i).pawn.nr_box = 4 * Board.Groups.get(i).pawn.count_lines + (Board.Groups.get(i).pawn.count_columns + 1);
+                    }
+
+                    // the pawn remaining on the same line (even line)
+                    else if(Board.Groups.get(i).pawn.count_columns <= 3 && Board.Groups.get(i).pawn.count_lines % 2 == 0) {
+                        Board.Groups.get(i).pawn.x_min = Board.Groups.get(i).pawn.x_max;
+                        Board.Groups.get(i).pawn.x_max += 94.5f;
+
+                        TranslateAnimation anim = new TranslateAnimation(
+                                TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP,Board.Groups.get(i).pawn.x_min , getResources().getDisplayMetrics()),
+                                TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP,Board.Groups.get(i).pawn.x_max , getResources().getDisplayMetrics()),
+                                TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP,Board.Groups.get(i).pawn.y_max , getResources().getDisplayMetrics()),
+                                TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP,Board.Groups.get(i).pawn.y_max , getResources().getDisplayMetrics()));
+
+                        anim.setDuration(1000);
+                        anim.setFillAfter(true);
+
+                        Board.Groups.get(i).pawn.pawn_xy.startAnimation(anim);
+                        Board.Groups.get(i).pawn.count_columns--;
+                        Board.Groups.get(i).pawn.nr_box = 4 * Board.Groups.get(i).pawn.count_lines + (Board.Groups.get(i).pawn.count_columns + 1);
+                    }
+
+                    break;
+                }
+            }
+        }
+    }
+
+    // move forward a specified pawn on the table
+    public void move_pawn_forward(String team_name) {
 
         for(int i=0;i<Board.Groups.size();i++) {
 
@@ -166,7 +259,7 @@ public class Cart_PopUp extends Activity {
                 }
 
                 //end of the game
-                else if(Board.Groups.get(i).pawn.count_lines == 11 && Board.Groups.get(i).pawn.count_columns == 3) {
+                else if(Board.Groups.get(i).pawn.count_lines == 11 && Board.Groups.get(i).pawn.count_columns >= 3) {
                     Board.Groups.get(i).pawn.x_min = Board.Groups.get(i).pawn.x_max;
                     Board.Groups.get(i).pawn.x_max += 94.5f;
 
@@ -181,13 +274,7 @@ public class Cart_PopUp extends Activity {
 
                     Board.Groups.get(i).pawn.pawn_xy.startAnimation(anim);
 
-                    Handler hand = new Handler();
-                    hand.postDelayed(new Runnable() {
-                        @Override
-                        public void run() {
-                            Toast.makeText(Cart_PopUp.this, "Jocul s-a terminat!", Toast.LENGTH_SHORT).show();
-                        }
-                    }, 2800);
+                    finish_game = 1;
 
                     Handler handler = new Handler();
                     handler.postDelayed(new Runnable() {

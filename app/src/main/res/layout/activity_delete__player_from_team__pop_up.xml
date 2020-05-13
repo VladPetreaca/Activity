@@ -20,7 +20,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         android:background="#000"
-        android:hint="Numele Brigazii"
+        android:hint="Numele Echipei"
         android:textColor="#FFD700"
         android:textColorHint="#FFD700"/>
 
@@ -33,7 +33,7 @@
         android:layout_marginEnd="291dp"
         android:layout_marginBottom="81dp"
         android:background="#000"
-        android:hint="Numele Jupanului"
+        android:hint="Numele Jucatorului"
         android:textColor="#FFD700"
         android:textColorHint="#FFD700"
         app:layout_constraintBottom_toTopOf="@+id/button26"

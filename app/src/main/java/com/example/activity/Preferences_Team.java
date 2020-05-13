@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.SystemClock;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -19,11 +20,14 @@ public class Preferences_Team extends AppCompatActivity {
     @SuppressLint("StaticFieldLeak")
     static TextView show_teams;
     static ArrayList<String> players_in_timp = null;
+    private long lastClickTime;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_preferences_teams);
+
+        lastClickTime = 0;
 
         // hide the navigation and the title bar from the phone
         hideNavigationBar();
@@ -59,6 +63,7 @@ public class Preferences_Team extends AppCompatActivity {
         back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                back.setEnabled(false);
                 // show the list of players by going back
                 Choose_names.players.setText(Pop_up_names.show_list_of_players(Board.Players));
                 finish();
@@ -69,6 +74,12 @@ public class Preferences_Team extends AppCompatActivity {
         add_teams.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                if(SystemClock.elapsedRealtime() - lastClickTime < 1000) {
+                    return;
+                }
+
+                lastClickTime = SystemClock.elapsedRealtime();
+
                 Intent intent = new Intent(getApplicationContext(), CreateTeam_Pop_up.class);
                 startActivity(intent);
             }
@@ -78,15 +89,46 @@ public class Preferences_Team extends AppCompatActivity {
         next.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //Toast.makeText(Preferences_Team.this, "Start the game (To be continued...)", Toast.LENGTH_SHORT).show();
-                Intent intent = new Intent(getApplicationContext(), Game.class);
-                startActivity(intent);
+                if(SystemClock.elapsedRealtime() - lastClickTime < 1000) {
+                    return;
+                }
+
+                lastClickTime = SystemClock.elapsedRealtime();
+
+                if(Board.Groups.size() >= 2) {
+                    int count = Board.Groups.get(0).Players.size();
+
+                    for(int i=1;i<Board.Groups.size();i++) {
+                        if(count != Board.Groups.get(i).Players.size()) {
+                            count = -1;
+                            break;
+                        }
+                    }
+
+                    if(count != -1) {
+                        Intent intent = new Intent(getApplicationContext(), Game.class);
+                        startActivity(intent);
+                    }
+                    else {
+                        Toast.makeText(Preferences_Team.this, "Echipele trebuie sa aiba acelasi numar de jucatori " , Toast.LENGTH_SHORT).show();
+                    }
+
+                }
+                else {
+                    Toast.makeText(Preferences_Team.this, "Prea putine echipe. Trebuie sa fie minim 2!" , Toast.LENGTH_SHORT).show();
+                }
             }
         });
 
         remove_teams.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                if(SystemClock.elapsedRealtime() - lastClickTime < 1000) {
+                    return;
+                }
+
+                lastClickTime = SystemClock.elapsedRealtime();
+
                 Intent intent = new Intent(getApplicationContext(), Delete_team_PopUp.class);
                 startActivity(intent);
             }
@@ -95,6 +137,12 @@ public class Preferences_Team extends AppCompatActivity {
         remove_player.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                if(SystemClock.elapsedRealtime() - lastClickTime < 1000) {
+                    return;
+                }
+
+                lastClickTime = SystemClock.elapsedRealtime();
+
                 Intent intent = new Intent(getApplicationContext(), Delete_PlayerFromTeam_PopUp.class);
                 startActivity(intent);
             }

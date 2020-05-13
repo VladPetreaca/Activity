@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.media.MediaPlayer;
 import android.os.Bundle;
+import android.os.SystemClock;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
@@ -20,6 +21,7 @@ public class MainActivity extends AppCompatActivity {
 	public static MediaPlayer mySong;
 	public static boolean stop_song = false;
 	public static boolean save_state = false;
+	private long lastClickTime;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -28,6 +30,8 @@ public class MainActivity extends AppCompatActivity {
 
 		// hide the navigation and the title bar from the phone
 		hideNavigationBar();
+
+		lastClickTime = 0;
 
 		// identify the buttons from xml files
 		setting_btn = (Button) findViewById(R.id.button2);
@@ -45,16 +49,21 @@ public class MainActivity extends AppCompatActivity {
 
 		//initialize the players_list
 		Board.AddPlayer("Alege jucator");
-		Board.AddPlayer("vlad");
-		Board.AddPlayer("ser");
-		Board.AddPlayer("vladau");
-		Board.AddPlayer("villy");
-
+		Board.AddPlayer("Boby");
+		Board.AddPlayer("Titan");
+		Board.AddPlayer("George");
+		Board.AddPlayer("Willy");
 
 		//if setting_button is clicked
 		setting_btn.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
+				if(SystemClock.elapsedRealtime() - lastClickTime < 1000) {
+					return;
+				}
+
+				lastClickTime = SystemClock.elapsedRealtime();
+
 				openSettings();
 			}
 		});
@@ -63,6 +72,12 @@ public class MainActivity extends AppCompatActivity {
 		info_btn.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
+				if(SystemClock.elapsedRealtime() - lastClickTime < 1000) {
+					return;
+				}
+
+				lastClickTime = SystemClock.elapsedRealtime();
+
 				openHelp();
 			}
 		});
@@ -71,6 +86,7 @@ public class MainActivity extends AppCompatActivity {
 		joc_nou.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
+				joc_nou.setEnabled(false);
 				openJocNou();
 			}
 		});
@@ -79,6 +95,7 @@ public class MainActivity extends AppCompatActivity {
 		exit.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
+				exit.setEnabled(false);
 				finish();
 				System.exit(0);
 			}
@@ -96,6 +113,7 @@ public class MainActivity extends AppCompatActivity {
 		continue_game.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
+				continue_game.setEnabled(false);
 				if(stop_song) {
 					Toast.makeText(MainActivity.this, "Click pe button!", Toast.LENGTH_SHORT).show();
 				}

@@ -2,6 +2,7 @@ package com.example.activity;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.os.SystemClock;
 import android.util.DisplayMetrics;
 import android.view.View;
 import android.widget.AdapterView;
@@ -23,7 +24,8 @@ public class CreateTeam_Pop_up extends Activity {
     static ArrayAdapter<String> adapter;
     ArrayList<String> aux_list;
     boolean check;
-    
+    private long lastClickTime;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -35,6 +37,7 @@ public class CreateTeam_Pop_up extends Activity {
         // initialize the variables
         aux_list = new ArrayList<>();
         check = false;
+        lastClickTime = 0;
         adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, Preferences_Team.players_in_timp);
 
         // identify the buttons from xml files
@@ -72,10 +75,21 @@ public class CreateTeam_Pop_up extends Activity {
         add.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(!name.equals("Alege jucator")) {
-                    aux_list.add(name);
-                    adapter.remove(name);
-                    dropdown.setAdapter(adapter);
+                if(SystemClock.elapsedRealtime() - lastClickTime < 1000) {
+                    return;
+                }
+
+                lastClickTime = SystemClock.elapsedRealtime();
+
+                if(!editText.getText().toString().equals("")) {
+                    if(!name.equals("Alege jucator")) {
+                        aux_list.add(name);
+                        adapter.remove(name);
+                        dropdown.setAdapter(adapter);
+                    }
+                }
+                else {
+                    Toast.makeText(CreateTeam_Pop_up.this, "Ai uitat sa scrii numele!", Toast.LENGTH_SHORT).show();
                 }
             }
         });
@@ -84,30 +98,33 @@ public class CreateTeam_Pop_up extends Activity {
         done.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(!aux_list.isEmpty()) {
-                    for(int i=0;i<Board.Groups.size();i++) {
-                        if(editText.getText().toString().equals(Board.Groups.get(i).name)) {
-                            //System.out.println(editText.getText().toString());
-                            check = true;
-                            break;
-                        }
-                    }
+                done.setEnabled(false);
 
-                    if(!check) {
-                        Board.Groups.add(new Group(editText.getText().toString(),aux_list));
-                        //System.out.println(Teams.players_in_timp);
-                        Preferences_Team.show_teams.setText(Board.show_group());
-                        finish();
-                    }
-                    else {
-                        Toast.makeText(CreateTeam_Pop_up.this, "Aceasta brigada deja exista!", Toast.LENGTH_SHORT).show();
-                        check = false;
+                if(!editText.getText().toString().equals("")) {
+                    if(!aux_list.isEmpty()) {
+                        for(int i=0;i<Board.Groups.size();i++) {
+                            if(editText.getText().toString().equals(Board.Groups.get(i).name)) {
+                                check = true;
+                                break;
+                            }
+                        }
+
+                        if(!check) {
+                            Board.Groups.add(new Group(editText.getText().toString(),aux_list));
+                            Preferences_Team.show_teams.setText(Board.show_group());
+                            finish();
+                        }
+                        else {
+                            Toast.makeText(CreateTeam_Pop_up.this, "Aceasta echipa deja exista!", Toast.LENGTH_SHORT).show();
+                            check = false;
+                        }
                     }
                 }
                 else {
-
-                    finish();
+                    Toast.makeText(CreateTeam_Pop_up.this, "Ai uitat sa scrii numele!" , Toast.LENGTH_SHORT).show();
                 }
+
+                finish();
             }
         });
     }

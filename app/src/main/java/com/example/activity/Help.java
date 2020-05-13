@@ -58,6 +58,7 @@ public class Help extends AppCompatActivity {
 		btn.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
+				btn.setEnabled(false);
 				finish();
 			}
 		});

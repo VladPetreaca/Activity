@@ -57,13 +57,13 @@ class Board {
     public static String show_group() {
 
         if(Groups.isEmpty()) {
-            return "Nu avem nici o brigada!\n";
+            return "Nu avem nici o echipa!\n";
         }
         else {
             String result = "";
 
             for(int i=0;i<Groups.size();i++) {
-                result += "Brigada " + Groups.get(i).name + " are jucatorii: ";
+                result += "Echipa " + Groups.get(i).name + " are jucatorii: ";
 
                 for(int j=0;j<Groups.get(i).GetPlayers().size();j++) {
                     if(j != Groups.get(i).GetPlayers().size() - 1) {

@@ -14,7 +14,7 @@
         android:layout_marginTop="30dp"
         android:layout_centerHorizontal="true"
         android:background="#000"
-        android:hint="Numele Brigazii"
+        android:hint="Numele Echipei"
         android:textColor="#FFD700"
         android:textColorHint="#FFD700"/>
 
@@ -37,7 +37,7 @@
         android:layout_marginTop="68dp"
         android:background="@drawable/round_button"
         android:gravity="center"
-        android:text="Add"
+        android:text="Adauga"
         android:textSize="14sp" />
 
     <Button
@@ -46,6 +46,6 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="115dp"
         android:layout_centerHorizontal="true"
-        android:text="Terminat"
+        android:text="Gata"
         android:background="@drawable/round_button"/>
 </RelativeLayout>

@@ -41,6 +41,7 @@ public class Delete_PlayerFromTeam_PopUp extends AppCompatActivity {
         back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                back.setEnabled(false);
                 int ok ;
 
                 for(int i=0;i<Board.Groups.size();i++) {

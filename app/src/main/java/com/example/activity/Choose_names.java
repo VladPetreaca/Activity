@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.SystemClock;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -16,11 +17,14 @@ public class Choose_names extends AppCompatActivity {
 	Button back, add_player, next, remove_player;
 	TextView view;
 	public static TextView players;
+	private long lastClickTime;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_choose_name);
+
+		lastClickTime = 0;
 
 		// hide the navigation and the title bar from the phone
 		hideNavigationBar();
@@ -51,6 +55,7 @@ public class Choose_names extends AppCompatActivity {
 		back.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
+				back.setEnabled(false);
 				finish();
 			}
 		});
@@ -59,6 +64,11 @@ public class Choose_names extends AppCompatActivity {
 		add_player.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
+				if(SystemClock.elapsedRealtime() - lastClickTime < 1000) {
+					return;
+				}
+
+				lastClickTime = SystemClock.elapsedRealtime();
 				Intent intent = new Intent(getApplicationContext(), Pop_up_names.class);
 				startActivity(intent);
 			}
@@ -68,6 +78,12 @@ public class Choose_names extends AppCompatActivity {
 		remove_player.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
+				if(SystemClock.elapsedRealtime() - lastClickTime < 1000) {
+					return;
+				}
+
+				lastClickTime = SystemClock.elapsedRealtime();
+
 				Intent intent = new Intent(getApplicationContext(), Delete_pop_up.class);
 				startActivity(intent);
 			}
@@ -77,8 +93,12 @@ public class Choose_names extends AppCompatActivity {
 		next.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
+				next.setEnabled(false);
 				if(Board.Players.size() < 5) {
-					Toast.makeText(Choose_names.this, "Nu sunt suficienti jupani!", Toast.LENGTH_SHORT).show();
+					Toast.makeText(Choose_names.this, "Nu sunt suficienti jucatori!", Toast.LENGTH_SHORT).show();
+				}
+				else if(Board.Players.size() > 17) {
+					Toast.makeText(Choose_names.this, "Prea multi jucatori!", Toast.LENGTH_SHORT).show();
 				}
 				else {
 					Intent intent = new Intent(getApplicationContext(), Choose_your_destiny.class);

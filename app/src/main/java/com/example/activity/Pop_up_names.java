@@ -41,6 +41,8 @@ public class Pop_up_names extends Activity {
         back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                back.setEnabled(false);
+
                 String new_name = editText.getText().toString();
                 if(!new_name.equals("")) {
                     if(!check_name(Board.Players, new_name)) {
@@ -48,7 +50,7 @@ public class Pop_up_names extends Activity {
                         Board.AddPlayer(new_name);
                     }
                     else {
-                        Toast.makeText(Pop_up_names.this, "Avem un astfel de jupan!", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(Pop_up_names.this, "Avem un astfel de jucator!", Toast.LENGTH_SHORT).show();
                     }
 
                     Choose_names.players.setText(show_list_of_players(Board.Players));
@@ -61,10 +63,10 @@ public class Pop_up_names extends Activity {
     // show the list_of_players
     public static String show_list_of_players (ArrayList<Player> players) {
 
-        String result = "Jupanii alesi sunt: ";
+        String result = "Jucatorii alesi sunt: ";
 
         if(players.size() == 1) {
-            return "N-avem jupani :(";
+            return "N-avem jucatori :(";
         }
         else {
             result += (players.get(1).Name);

@@ -37,6 +37,7 @@ public class Exit_PopUp extends AppCompatActivity {
         no.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                no.setEnabled(false);
                 Board.Groups.clear();
                 Board.Players.clear();
 
@@ -51,7 +52,7 @@ public class Exit_PopUp extends AppCompatActivity {
         yes.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                yes.setEnabled(false);
                 //aici se vor salva datele jocului in fisier
 
                 Board.Groups.clear();

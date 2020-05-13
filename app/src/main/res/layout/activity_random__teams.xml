@@ -26,7 +26,7 @@
         android:layout_marginTop="110dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Schimbare nume brigada"
+        android:text="Schimbare nume echipa"
         android:background="@drawable/round_button"
         android:textColor="#000" />
 

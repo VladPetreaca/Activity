@@ -40,6 +40,8 @@ public class Delete_team_PopUp extends AppCompatActivity {
         back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                back.setEnabled(false);
+
                 for(int i=0;i<Board.Groups.size();i++) {
                     if(editText.getText().toString().equals(Board.Groups.get(i).name)) {
                         for(int j=0;j<Board.Groups.get(i).Players.size();j++) {
@@ -50,7 +52,7 @@ public class Delete_team_PopUp extends AppCompatActivity {
                         break;
                     }
                     else if(i == Board.Groups.size() - 1) {
-                        Toast.makeText(Delete_team_PopUp.this, "Aceasta brigada nu exista!", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(Delete_team_PopUp.this, "Aceasta echipa nu exista!", Toast.LENGTH_SHORT).show();
                     }
                 }
                 Preferences_Team.show_teams.setText(Board.show_group());

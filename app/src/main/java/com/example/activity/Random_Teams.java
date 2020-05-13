@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.SystemClock;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -16,11 +17,14 @@ public class Random_Teams extends AppCompatActivity {
     TextView view;
     EditText editText;
     static TextView textView;
+    private long lastClickTime;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_random__teams);
+
+        lastClickTime = 0;
 
         // hide the navigation and the title bar from the phone
         hideNavigationBar();
@@ -58,33 +62,61 @@ public class Random_Teams extends AppCompatActivity {
         next.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //Toast.makeText(Random_Teams.this, "Start the game (To be continued...)", Toast.LENGTH_SHORT).show();
-                Intent intent = new Intent(Random_Teams.this, Game.class);
-                startActivity(intent);
+                next.setEnabled(false);
+
+                if(Board.Groups.size() >= 2) {
+                    Intent intent = new Intent(Random_Teams.this, Game.class);
+                    startActivity(intent);
+                }
+                else {
+                    Toast.makeText(Random_Teams.this, "Prea putine echipe. Trebuie sa fie minim 2!" , Toast.LENGTH_SHORT).show();
+                }
             }
         });
 
         change_name.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(), Change_Team_Name.class);
-                startActivity(intent);
+                if(SystemClock.elapsedRealtime() - lastClickTime < 1000) {
+                    return;
+                }
+
+                lastClickTime = SystemClock.elapsedRealtime();
+
+                if(Board.Groups.size() >= 2) {
+                    Intent intent = new Intent(getApplicationContext(), Change_Team_Name.class);
+                    startActivity(intent);
+                }
+                else {
+                    Toast.makeText(Random_Teams.this, "Prea putine echipe. Trebuie sa fie minim 2!" , Toast.LENGTH_SHORT).show();
+                }
             }
         });
 
         create_teams.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if((Board.Players.size() - 1) % Integer.parseInt(editText.getText().toString()) == 0) {
-                    if(Board.CreateRandomGroups(Integer.parseInt(editText.getText().toString()))) {
-                        textView.setText(Board.show_group());
+                if(SystemClock.elapsedRealtime() - lastClickTime < 1000) {
+                    return;
+                }
+
+                lastClickTime = SystemClock.elapsedRealtime();
+
+                if(!editText.getText().toString().equals("") && Integer.parseInt(editText.getText().toString()) >= 2) {
+                    if((Board.Players.size() - 1) % Integer.parseInt(editText.getText().toString()) == 0) {
+                        if(Board.CreateRandomGroups(Integer.parseInt(editText.getText().toString()))) {
+                            textView.setText(Board.show_group());
+                        }
+                        else {
+                            Toast.makeText(Random_Teams.this, "Trebuie sa fie minim 2 jucatori intr-o echipa" , Toast.LENGTH_SHORT).show();
+                        }
                     }
                     else {
-                        Toast.makeText(Random_Teams.this, "Eroare ca esti prost!!!!" , Toast.LENGTH_SHORT).show();
+                        Toast.makeText(Random_Teams.this, "Numarul de jucatori trebuie sa fie multiplu de " +  editText.getText().toString(), Toast.LENGTH_SHORT).show();
                     }
                 }
                 else {
-                    Toast.makeText(Random_Teams.this, "Nu sunt jucatori" , Toast.LENGTH_SHORT).show();
+                    Toast.makeText(Random_Teams.this, "Prea putine echipe. Trebuie sa fie minim 2!" , Toast.LENGTH_SHORT).show();
                 }
             }
         });

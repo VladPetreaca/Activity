@@ -138,38 +138,5 @@
         </FrameLayout>
 
     </FrameLayout>
-    <Button
-        android:id="@+id/button40"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Button"
-        android:layout_centerInParent="true"/>
-    <!--    <ImageView-->
-<!--        android:id="@+id/pion1"-->
-<!--        android:layout_width="16dp"-->
-<!--        android:layout_height="16dp"-->
-<!--        android:layout_marginTop="28dp"-->
-<!--        android:layout_marginStart="584dp" />-->
-
-<!--    <ImageView-->
-<!--        android:id="@+id/pion2"-->
-<!--        android:layout_width="16dp"-->
-<!--        android:layout_height="16dp"-->
-<!--        android:layout_marginTop="28dp"-->
-<!--        android:layout_marginStart="568dp" />-->
-
-<!--    <ImageView-->
-<!--        android:id="@+id/pion3"-->
-<!--        android:layout_width="16dp"-->
-<!--        android:layout_height="16dp"-->
-<!--        android:layout_marginTop="28dp"-->
-<!--        android:layout_marginStart="552dp" />-->
-
-<!--    <ImageView-->
-<!--        android:id="@+id/pion4"-->
-<!--        android:layout_width="16dp"-->
-<!--        android:layout_height="16dp"-->
-<!--        android:layout_marginTop="28dp"-->
-<!--        android:layout_marginStart="535dp" />-->
 
 </RelativeLayout>

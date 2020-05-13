@@ -39,6 +39,7 @@ public class Change_Team_Name extends AppCompatActivity {
         back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                back.setEnabled(false);
                 for(int i=0;i<Board.Groups.size();i++) {
                     if(old_name.getText().toString().equals(Board.Groups.get(i).name)) {
                         Board.Groups.get(i).name = new_name.getText().toString();
