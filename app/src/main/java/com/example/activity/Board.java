@@ -45,8 +45,8 @@ class Board {
         return true;
     }
 
-    public void Get(){
-
+    public ArrayList<Group> getGroups(){
+        return Groups;
     }
 
     public boolean addGroup(String name, ArrayList<String> Players) {

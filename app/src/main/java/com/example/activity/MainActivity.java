@@ -53,6 +53,11 @@ public class MainActivity extends AppCompatActivity {
 		Board.AddPlayer("Titan");
 		Board.AddPlayer("George");
 		Board.AddPlayer("Willy");
+		Board.AddPlayer("vld");
+		Board.AddPlayer("negru");
+		Board.AddPlayer("ser");
+		Board.AddPlayer("dumitru");
+
 
 		//if setting_button is clicked
 		setting_btn.setOnClickListener(new View.OnClickListener() {
