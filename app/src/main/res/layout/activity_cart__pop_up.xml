@@ -13,29 +13,76 @@
         android:background="#333333" />
 
     <TextView
+        android:id="@+id/chronos"
+        android:layout_width="100dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="115dp"
+        android:layout_marginStart="580dp"
+        android:textSize="34sp"
+        android:text="01:00"
+        android:gravity="center"/>
+
+    <TextView
         android:id="@+id/cart_view"
         android:layout_width="300dp"
         android:layout_height="350dp"
         android:layout_centerInParent="true"
-        android:background="@drawable/carte_de_joc" >
+        android:background="#AF002A">
     </TextView>
 
-    <Button
-        android:id="@+id/button41"
-        android:layout_width="80dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="230dp"
-        android:layout_marginStart="590dp"
-        android:text="Gata" />
+    <TextView
+        android:id="@+id/adrian_textView"
+        android:layout_width="195dp"
+        android:layout_height="32dp"
+        android:layout_marginStart="295dp"
+        android:layout_marginTop="45dp"
+        android:gravity="center_vertical"
+        android:textColor="#000" />
+
+    <TextView
+        android:id="@+id/guta_textView"
+        android:layout_width="195dp"
+        android:layout_height="32dp"
+        android:layout_marginStart="295dp"
+        android:layout_marginTop="103dp"
+        android:gravity="center_vertical"
+        android:textColor="#000"/>
+
+    <TextView
+        android:id="@+id/salam_textView"
+        android:layout_width="195dp"
+        android:layout_height="32dp"
+        android:layout_marginStart="295dp"
+        android:layout_marginTop="160dp"
+        android:gravity="center_vertical"
+        android:textColor="#000"/>
     
-    <Chronometer
-        android:id="@+id/chronometer"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textColor="#fff"
-        android:textSize="24sp"
-        android:layout_marginTop="130dp"
-        android:layout_marginStart="595dp"/>
+    <TextView
+        android:id="@+id/valcea_textView"
+        android:layout_width="195dp"
+        android:layout_height="32dp"
+        android:layout_marginStart="295dp"
+        android:layout_marginTop="218dp"
+        android:gravity="center_vertical"
+        android:textColor="#000"/>
+
+    <TextView
+        android:id="@+id/jador_textView"
+        android:layout_width="195dp"
+        android:layout_height="32dp"
+        android:layout_marginStart="295dp"
+        android:layout_marginTop="275dp"
+        android:gravity="center_vertical"
+        android:textColor="#000"/>
+
+    <TextView
+        android:id="@+id/vijelie_textView"
+        android:layout_width="195dp"
+        android:layout_height="32dp"
+        android:layout_marginStart="295dp"
+        android:layout_marginTop="330dp"
+        android:gravity="center_vertical"
+        android:textColor="#000"/>
 
     <Button
         android:id="@+id/button42"

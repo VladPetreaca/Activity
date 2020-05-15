@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.os.Handler;
 import android.os.SystemClock;
 import android.text.SpannableString;
@@ -24,41 +25,127 @@ import android.widget.Toast;
 
 import java.sql.Time;
 import java.util.ArrayList;
+import java.util.Locale;
+import java.util.Random;
 import java.util.concurrent.TimeUnit;
 
 public class Cart_PopUp extends Activity {
 
-    Button back, start;
-    TextView textView;
-    Chronometer chrom;
-    boolean running;
-    long pauseOffset;
+    Button start;
+    TextView textView, adrian, guta, salam, valcea, jador, vijelie, chronos;
     int mode;
     static int finish_game;
     static int moves;
+    CountDownTimer watch;
+    static final long TIME = 60000;
+    long max_time;
+    boolean choronos_running;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cart__pop_up);
 
+        max_time = TIME;
+        choronos_running = false;
+
         // hide the navigation and the title bar from the phone
         hideNavigationBar();
 
-        back = findViewById(R.id.button41);
         textView = findViewById(R.id.cart_view);
         start = findViewById(R.id.button42);
-        chrom = findViewById(R.id.chronometer);
+        adrian = findViewById(R.id.adrian_textView);
+        guta = findViewById(R.id.guta_textView);
+        salam = findViewById(R.id.salam_textView);
+        valcea = findViewById(R.id.valcea_textView);
+        jador = findViewById(R.id.jador_textView);
+        vijelie = findViewById(R.id.vijelie_textView);
         mode = 0;
         finish_game = 0;
         moves = 0;
+        chronos = findViewById(R.id.chronos);
 
-        back.setOnClickListener(new View.OnClickListener() {
+        updateCountDownText();
+
+        Handler hand = new Handler();
+        hand.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                textView.setBackgroundResource(R.drawable.carte_de_joc);
+
+                // the pawn is on the start box
+                if(Board.Groups.get(Game.index_teams).pawn.nr_box == 0) {
+                    adrian.setTextColor(Color.parseColor("#AF002A"));
+                    guta.setTextColor(Color.parseColor("#AF002A"));
+                    salam.setTextColor(Color.parseColor("#AF002A"));
+                    valcea.setTextColor(Color.parseColor("#AF002A"));
+                    jador.setTextColor(Color.parseColor("#AF002A"));
+                    vijelie.setTextColor(Color.parseColor("#AF002A"));
+                }
+                else {
+                    // coloreaza doar casuta pe care este
+                    // trebuie stiut pe ce manelist sta pionul
+                    for(int i=0;i<Game.boxes.size();i++) {
+                        if(Game.boxes.get(i).specified_boxes.contains(Board.Groups.get(Game.index_teams).pawn.nr_box)) {
+                            if(Game.boxes.get(i).name.equals("adrian")) {
+                                adrian.setTextColor(Color.parseColor("#AF002A"));
+                                break;
+                            }
+                            else if(Game.boxes.get(i).name.equals("guta")) {
+                                guta.setTextColor(Color.parseColor("#AF002A"));
+                                break;
+                            }
+                            else if(Game.boxes.get(i).name.equals("salam")) {
+                                salam.setTextColor(Color.parseColor("#AF002A"));
+                                break;
+                            }
+                            else if(Game.boxes.get(i).name.equals("valcea")) {
+                                valcea.setTextColor(Color.parseColor("#AF002A"));
+                                break;
+                            }
+                            else if(Game.boxes.get(i).name.equals("jador")) {
+                                jador.setTextColor(Color.parseColor("#AF002A"));
+                                break;
+                            }
+                            else {
+                                vijelie.setTextColor(Color.parseColor("#AF002A"));
+                                break;
+                            }
+                        }
+                    }
+                }
+
+                Random rand = new Random();
+                int random_number = rand.nextInt(Board.Cards.size());
+
+                adrian.setText(Board.Cards.get(random_number).adrian);
+                guta.setText(Board.Cards.get(random_number).guta);
+                salam.setText(Board.Cards.get(random_number).salam);
+                valcea.setText(Board.Cards.get(random_number).avalcea);
+                jador.setText(Board.Cards.get(random_number).jador);
+                vijelie.setText(Board.Cards.get(random_number).vijelie);
+
+                Board.Used_Cards.add(Board.Cards.get(random_number));
+                Board.Cards.remove(Board.Cards.get(random_number));
+
+                if(Board.Cards.isEmpty()) {
+                    Board.Cards = new ArrayList<>(Board.Used_Cards);
+                    Board.Used_Cards.clear();
+                }
+
+
+            }
+        }, 2500);
+
+        start.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                back.setEnabled(false);
-                if(mode == 1) {
-
+                if(!choronos_running) {
+                    startTimer();
+                    choronos_running = true;
+                    start.setBackgroundResource(R.drawable.stop_button_2);
+                }
+                else if(mode == 1) {
                     Handler hand = new Handler();
                     hand.postDelayed(new Runnable() {
                         @Override
@@ -78,7 +165,7 @@ public class Cart_PopUp extends Activity {
                                         }
                                     }, i * 900);
                                 }
-                               else if(i == Game.pressed_button) {
+                                else if(i == Game.pressed_button) {
                                     moves = 0;
 
                                     Handler h = new Handler();
@@ -117,7 +204,7 @@ public class Cart_PopUp extends Activity {
                                         }
                                     }, i * 900);
                                 }
-                               else if(i == Game.pressed_button + 1){
+                                else if(i == Game.pressed_button + 1){
 
                                     Handler h = new Handler();
                                     h.postDelayed(new Runnable() {
@@ -152,54 +239,63 @@ public class Cart_PopUp extends Activity {
                             }
                         }
                     }, 850);
+                    finish();
                 }
-                else {
+                else if(mode == 2) {
                     Game.player_over();
                     Game.player_turn();
 
                     Game.scrollView.fullScroll(ScrollView.FOCUS_DOWN);
                     Game.scrollView.scrollTo(0, Game.scrollView.getBottom());
+                    finish();
                 }
-                finish();
-            }
-        });
-
-        Handler hand = new Handler();
-        hand.postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                textView.setBackgroundResource(R.drawable.carte_de_joc);
-            }
-        }, 3000);
-
-        chrom.setOnChronometerTickListener(new Chronometer.OnChronometerTickListener() {
-            @Override
-            public void onChronometerTick(Chronometer chronometer) {
-                if((SystemClock.elapsedRealtime() - chronometer.getBase()) >= 5000) {
-                    chronometer.stop();
-                    mode = 2;
-                    start.setEnabled(false);
-                    start.setBackgroundColor(Color.parseColor("#333333"));
-                }
-            }
-        });
-
-        start.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if(!running) {
-                    chrom.setBase(SystemClock.elapsedRealtime() - pauseOffset);
-                    chrom.start();
-                    running = true;
-                    start.setBackgroundResource(R.drawable.stop_button_2);
-                }
-                else if(running) {
-                    chrom.stop();
-                    pauseOffset = SystemClock.elapsedRealtime() - chrom.getBase();
+                else if(choronos_running){
+                    pauseTimer();
                     mode = 1;
+                    start.setBackgroundResource(R.drawable.check_button);
                 }
             }
         });
+    }
+
+    private void startTimer() {
+        watch = new CountDownTimer(max_time, 1000) {
+            @Override
+            public void onTick(long millisUntilFinished) {
+                max_time = millisUntilFinished;
+                try {
+                    Thread.sleep(2);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                updateCountDownText();
+            }
+
+            @Override
+            public void onFinish() {
+
+            }
+        }.start();
+    }
+
+    private void pauseTimer() {
+        watch.cancel();
+    }
+
+    //////////////////////////////////
+    private void updateCountDownText() {
+
+        int minutes= (int) ((max_time / 1000) / 60);
+        int seconds = (int) ((max_time / 1000) % 60);
+
+        String timeleftFormat = String.format(Locale.getDefault(), "%02d:%02d",minutes, seconds);
+
+        chronos.setText(timeleftFormat);
+
+        if(seconds == 0 && minutes == 0) {
+            start.setBackgroundResource(R.drawable.wrong);
+            mode = 2;
+        }
     }
 
     // move forward a specified pawn on the table
@@ -349,6 +445,8 @@ public class Cart_PopUp extends Activity {
             anim.setDuration(800);
             anim.setFillAfter(true);
 
+            Game.order++;
+            Board.Groups.get(i).pawn.order = Game.order;
             Board.Groups.get(i).pawn.pawn_xy.startAnimation(anim);
             Board.Groups.get(i).pawn.count_columns = 3;
             Board.Groups.get(i).pawn.count_lines--;
@@ -369,6 +467,8 @@ public class Cart_PopUp extends Activity {
             anim.setDuration(800);
             anim.setFillAfter(true);
 
+            Game.order++;
+            Board.Groups.get(i).pawn.order = Game.order;
             Board.Groups.get(i).pawn.pawn_xy.startAnimation(anim);
             Board.Groups.get(i).pawn.count_columns--;
             Board.Groups.get(i).pawn.nr_box = 4 * Board.Groups.get(i).pawn.count_lines + (Board.Groups.get(i).pawn.count_columns + 1);
@@ -388,6 +488,8 @@ public class Cart_PopUp extends Activity {
             anim.setDuration(800);
             anim.setFillAfter(true);
 
+            Game.order++;
+            Board.Groups.get(i).pawn.order = Game.order;
             Board.Groups.get(i).pawn.pawn_xy.startAnimation(anim);
             Board.Groups.get(i).pawn.count_columns--;
             Board.Groups.get(i).pawn.nr_box = 4 * Board.Groups.get(i).pawn.count_lines + (Board.Groups.get(i).pawn.count_columns + 1);

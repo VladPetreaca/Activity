@@ -1,12 +1,14 @@
 package com.example.activity;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Random;
 
 class Board {
     static ArrayList<Player> Players = new ArrayList<Player>();
     static ArrayList<Group> Groups = new  ArrayList<Group>();
-    private Carts Carts= new Carts();
+    static ArrayList<Card> Cards = new ArrayList<Card>();
+    static ArrayList<Card> Used_Cards = new ArrayList<>();
 
     private Board() {
 

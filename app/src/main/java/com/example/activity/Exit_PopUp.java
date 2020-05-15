@@ -11,7 +11,7 @@ import android.widget.Button;
 public class Exit_PopUp extends AppCompatActivity {
 
     DisplayMetrics dm;
-    Button yes, no;
+    Button yes, no, remain;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,6 +24,7 @@ public class Exit_PopUp extends AppCompatActivity {
         // identify the buttons from xml files
         yes = findViewById(R.id.button_yes);
         no = findViewById(R.id.button_no);
+        remain = findViewById(R.id.button43);
 
         // initialize and set the DisplayMatrics
         dm = new DisplayMetrics();
@@ -64,6 +65,13 @@ public class Exit_PopUp extends AppCompatActivity {
                 Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(intent);
+            }
+        });
+
+        remain.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
             }
         });
     }

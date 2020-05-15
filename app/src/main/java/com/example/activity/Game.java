@@ -1,22 +1,17 @@
 package com.example.activity;
 
-import androidx.appcompat.app.AppCompatActivity;
-
-import android.animation.ObjectAnimator;
 import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.SystemClock;
-import android.text.Layout;
 import android.text.SpannableString;
 import android.text.SpannableStringBuilder;
 import android.text.Spanned;
 import android.text.style.ForegroundColorSpan;
 import android.util.TypedValue;
 import android.view.View;
-import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.TranslateAnimation;
 import android.widget.Button;
@@ -24,9 +19,13 @@ import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.ScrollView;
 import android.widget.TextView;
-import android.widget.Toast;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 
 public class Game extends Activity {
@@ -43,6 +42,7 @@ public class Game extends Activity {
     static int order;
     static ArrayList<Integer> colors;
     static SpannableStringBuilder ff;
+    static ArrayList<Box> boxes;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,6 +54,9 @@ public class Game extends Activity {
 
         //initialize the data
         initialize();
+
+        // read cards
+        read_cards();
 
         // put the beginning text in box
         history_view.setText("Se asteapta crearea ordinii echipelor...");
@@ -442,8 +445,46 @@ public class Game extends Activity {
         lastClickTime = 0;
         order = 0;
 
+        boxes = new ArrayList<>();
+
+        boxes.add(new Box("adrian", new ArrayList<Integer>(Arrays.asList(2, 13, 16, 22, 31, 33, 39, 46))));
+        boxes.add(new Box("guta", new ArrayList<Integer>(Arrays.asList(3, 9, 14, 18, 20, 27, 37, 40, 47))));
+        boxes.add(new Box("salam", new ArrayList<Integer>(Arrays.asList(1, 4, 5 ,10, 17, 28, 36, 45))));
+        boxes.add(new Box("valcea", new ArrayList<Integer>(Arrays.asList(8, 11, 21, 23, 25, 32, 38, 41))));
+        boxes.add(new Box("jador", new ArrayList<Integer>(Arrays.asList(6, 15, 19, 24, 29, 34, 35, 44, 48))));
+        boxes.add(new Box("vijelie", new ArrayList<Integer>(Arrays.asList(7, 12, 26, 30, 42, 43, 49))));
+
         // shuffle the order teams
         Collections.shuffle(Board.Groups);
+    }
+
+    public void read_cards() {
+
+        try {
+            int nr_of_cards = 0;
+            int contor = 1;
+
+            InputStream in = getAssets().open("cards_info.txt");
+            BufferedReader br = new BufferedReader(new InputStreamReader(in));
+
+            nr_of_cards = Integer.parseInt(br.readLine());
+
+            for(int i=0;i<nr_of_cards;i++) {
+                int id = Integer.parseInt(br.readLine());
+                String adrian = br.readLine();
+                String guta = br.readLine();
+                String salam = br.readLine();
+                String valcea = br.readLine();
+                String jador = br.readLine();
+                String vijelie = br.readLine();
+
+                Card res = new Card(id, adrian, guta, salam, valcea, jador, vijelie);
+                Board.Cards.add(res);
+            }
+        }
+        catch (IOException ex) {
+            ex.printStackTrace();
+        }
     }
 
     // hide bar function after re-enter in it
