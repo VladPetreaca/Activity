@@ -57,11 +57,11 @@ public class Settings extends AppCompatActivity {
 			@Override
 			public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
 				if(!isChecked) {
-					MainActivity.mySong.pause();
 					SharedPreferences.Editor editor = getSharedPreferences("save", MODE_PRIVATE).edit();
 					editor.putBoolean("value", false);
 					editor.apply();
 					sw.setChecked(false);
+					MainActivity.mySong.pause();
 				}
 				else {
 					SharedPreferences.Editor editor = getSharedPreferences("save", MODE_PRIVATE).edit();

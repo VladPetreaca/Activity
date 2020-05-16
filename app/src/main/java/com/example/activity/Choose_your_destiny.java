@@ -74,7 +74,12 @@ public class Choose_your_destiny extends Activity {
         back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                back.setEnabled(false);
+                if(SystemClock.elapsedRealtime() - lastClickTime < 1000) {
+                    return;
+                }
+
+                lastClickTime = SystemClock.elapsedRealtime();
+
                 finish();
             }
         });

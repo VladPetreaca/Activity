@@ -55,7 +55,11 @@ public class Choose_names extends AppCompatActivity {
 		back.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				back.setEnabled(false);
+				if(SystemClock.elapsedRealtime() - lastClickTime < 1000) {
+					return;
+				}
+
+				lastClickTime = SystemClock.elapsedRealtime();
 				finish();
 			}
 		});
@@ -93,7 +97,12 @@ public class Choose_names extends AppCompatActivity {
 		next.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				next.setEnabled(false);
+				if(SystemClock.elapsedRealtime() - lastClickTime < 1000) {
+					return;
+				}
+
+				lastClickTime = SystemClock.elapsedRealtime();
+				
 				if(Board.Players.size() < 5) {
 					Toast.makeText(Choose_names.this, "Nu sunt suficienti jucatori!", Toast.LENGTH_SHORT).show();
 				}

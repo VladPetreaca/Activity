@@ -21,6 +21,8 @@ import android.widget.ScrollView;
 import android.widget.TextView;
 
 import java.io.BufferedReader;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -30,11 +32,11 @@ import java.util.Collections;
 
 public class Game extends Activity {
 
-    Button back, button_3, button_4, button_5, settings, info, test;
+    static Button back, button_3, button_4, button_5, settings, info;
     ImageView pion1, pion2, pion3, pion4;
     ArrayList<Integer> resids;
     FrameLayout pion1_xy ,pion2_xy, pion3_xy, pion4_xy;
-    ArrayList<Pawn> pawns;
+    static ArrayList<Pawn> pawns;
     static ScrollView scrollView;
     static TextView history_view;
     static int pressed_button, index_teams, index_players;
@@ -43,23 +45,54 @@ public class Game extends Activity {
     static ArrayList<Integer> colors;
     static SpannableStringBuilder ff;
     static ArrayList<Box> boxes;
+    private String FILE_NAME = "save_state.txt";
+
+    //trebuie sa mai salvezi si team_index si players_index
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game);
 
+//        FILE_NAME = "";
+//        FILE_NAME += getFilesDir();
+//        FILE_NAME += "/" + "save_state.txt";
+
         // hide the navigation and the title bar from the phone
         hideNavigationBar();
 
         //initialize the data
         initialize();
+        back.setEnabled(false);
+        button_3.setEnabled(false);
+        button_4.setEnabled(false);
+        button_5.setEnabled(false);
+        settings.setEnabled(false);
+        info.setEnabled(false);
 
         // read cards
         read_cards();
 
-        // put the beginning text in box
-        history_view.setText("Se asteapta crearea ordinii echipelor...");
+        // read from file
+        if(MainActivity.save_state) {
+            read_from_file();
+            retake_positions();
+
+            history_view.setText("Se asteapta reincarcarea datelor...");
+        }
+        else {
+            // shuffle the order teams
+            Collections.shuffle(Board.Groups);
+
+            // initialize the pawns
+            for(int i=0;i<Board.Groups.size();i++) {
+                //pawns.get(i).img_pawn.setBackgroundResource(resids.get(i));
+                Board.Groups.get(i).pawn = pawns.get(i);
+            }
+
+            // put the beginning text in box
+            history_view.setText("Se asteapta crearea ordinii echipelor...");
+        }
 
         Handler hr = new Handler();
         hr.postDelayed(new Runnable() {
@@ -73,14 +106,14 @@ public class Game extends Activity {
             @Override
             public void run() {
                 player_turn();
+                back.setEnabled(true);
+                button_3.setEnabled(true);
+                button_4.setEnabled(true);
+                button_5.setEnabled(true);
+                settings.setEnabled(true);
+                info.setEnabled(true);
             }
         }, 2500);
-
-        for(int i=0;i<Board.Groups.size();i++) {
-            pawns.get(i).img_pawn.setBackgroundResource(resids.get(i));
-            Board.Groups.get(i).pawn = pawns.get(i);
-            //Board.Groups.get(i).color = R.drawable.pion_1;
-        }
 
         button_3.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -90,6 +123,13 @@ public class Game extends Activity {
                 }
 
                 lastClickTime = SystemClock.elapsedRealtime();
+
+                back.setEnabled(false);
+                button_3.setEnabled(false);
+                button_4.setEnabled(false);
+                button_5.setEnabled(false);
+                settings.setEnabled(false);
+                info.setEnabled(false);
 
                 pressed_button = 3;
                 Intent intent = new Intent(getApplicationContext(), Cart_PopUp.class);
@@ -106,6 +146,13 @@ public class Game extends Activity {
 
                 lastClickTime = SystemClock.elapsedRealtime();
 
+                back.setEnabled(false);
+                button_3.setEnabled(false);
+                button_4.setEnabled(false);
+                button_5.setEnabled(false);
+                settings.setEnabled(false);
+                info.setEnabled(false);
+
                 pressed_button = 4;
                 Intent intent = new Intent(getApplicationContext(), Cart_PopUp.class);
                 startActivity(intent);
@@ -121,6 +168,13 @@ public class Game extends Activity {
 
                 lastClickTime = SystemClock.elapsedRealtime();
 
+                back.setEnabled(false);
+                button_3.setEnabled(false);
+                button_4.setEnabled(false);
+                button_5.setEnabled(false);
+                settings.setEnabled(false);
+                info.setEnabled(false);
+
                 pressed_button = 5;
                 Intent intent = new Intent(getApplicationContext(), Cart_PopUp.class);
                 startActivity(intent);
@@ -131,8 +185,6 @@ public class Game extends Activity {
             @Override
             public void onClick(View v) {
 
-                // aici se vor scrie in fisier datele despre jocul curent
-                // inainte de a se inchide, cum ar fi: jucatorii, echipele, pozitii, etc
                 if(SystemClock.elapsedRealtime() - lastClickTime < 1000) {
                     return;
                 }
@@ -171,13 +223,130 @@ public class Game extends Activity {
                 startActivity(intent);
             }
         });
+    }
 
-        test.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                move_pawn_forward(Board.Groups.get(0).name);
+    public void read_from_file() {
+
+        FileInputStream fis = null;
+        //FileOutputStream fos = null;
+
+        try {
+            fis = openFileInput(FILE_NAME);
+            //fos = getApplicationContext().openFileOutput(FILE_NAME, MODE_PRIVATE);
+
+            InputStreamReader isr = new InputStreamReader(fis);
+            BufferedReader br = new BufferedReader(isr);
+            String line;
+            int size = -1;
+            String[] id_cards = null;
+
+            if((line = br.readLine()) != null) {
+                size = Integer.parseInt(line);
             }
-        });
+
+            for(int i=0;i<size;i++) {
+
+                String team_name = br.readLine();
+                int columns, lines, order, nr_box, start;
+                float x_min,x_max, y_min, y_max, start_over;
+                ArrayList<String> aux = new ArrayList<>();
+                Pawn pawn;
+                String[] names = null;
+
+                if((line = br.readLine()) != null) {
+                    names = line.split(",");
+                }
+
+                for (String name : names) {
+                    aux.add(name);
+                }
+
+                columns = Integer.parseInt(br.readLine());
+                lines = Integer.parseInt(br.readLine());
+                nr_box = Integer.parseInt(br.readLine());
+                order = Integer.parseInt(br.readLine());
+                start_over = Float.parseFloat(br.readLine());
+                x_min = Float.parseFloat(br.readLine());
+                x_max = Float.parseFloat(br.readLine());
+                y_min = Float.parseFloat(br.readLine());
+                y_max = Float.parseFloat(br.readLine());
+                start = Integer.parseInt(br.readLine());
+
+                pawn = new Pawn(Game.pawns.get(i).pawn_xy, Game.pawns.get(i).img_pawn, start_over);
+                if(start == 1) {
+                    pawn.start = true;
+                }
+                else {
+                    pawn.start = false;
+                }
+
+                pawn.count_columns = columns;
+                pawn.count_lines = lines;
+                pawn.nr_box = nr_box;
+                pawn.order = order;
+                pawn.x_min = x_min;
+                pawn.x_max = x_max;
+                pawn.y_min = y_min;
+                pawn.y_max = y_max;
+
+                Group grp = new Group(team_name, aux);
+                grp.pawn = pawn;
+
+                Board.Groups.add(grp);
+            }
+
+            if((line = br.readLine()) != null) {
+                id_cards = line.split(",");
+            }
+
+            if(id_cards != null) {
+                for(String ids : id_cards) {
+                    for(int j=0;j<Board.Cards.size();j++) {
+                        if(Board.Cards.get(j).id == Integer.parseInt(ids)) {
+                            Board.Used_Cards.add(Board.Cards.get(j));
+                            Board.Cards.remove(Board.Cards.get(j));
+
+                            break;
+                        }
+                    }
+                }
+            }
+
+            index_teams = Integer.parseInt(br.readLine());
+            index_players = Integer.parseInt(br.readLine());
+            order = Integer.parseInt(br.readLine());
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+            if(fis != null) {
+                try {
+
+                    fis.close();
+                    FileOutputStream fos = null;
+
+                    fos = getApplicationContext().openFileOutput(FILE_NAME, MODE_PRIVATE);
+                    fos.write("".getBytes());
+                    fos.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+    }
+
+    public void retake_positions() {
+        for(int i=0;i<Board.Groups.size();i++) {
+            TranslateAnimation anim = new TranslateAnimation(
+                    0,
+                    TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP,Board.Groups.get(i).pawn.x_max , getResources().getDisplayMetrics()),
+                    Animation.ABSOLUTE,
+                    TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP,Board.Groups.get(i).pawn.y_max , getResources().getDisplayMetrics()));
+
+            anim.setDuration(0);
+            anim.setFillAfter(true);
+            Board.Groups.get(i).pawn.pawn_xy.startAnimation(anim);
+        }
     }
 
     public void move_pawn_forward(String team_name) {
@@ -418,7 +587,6 @@ public class Game extends Activity {
         pion4_xy = findViewById(R.id.pion4_xy);
         history_view = findViewById(R.id.history_view);
         scrollView = findViewById(R.id.scroll_view);
-        test = findViewById(R.id.button40);
 
         resids = new ArrayList<>();
         resids.add(R.drawable.pion_1);
@@ -438,6 +606,10 @@ public class Game extends Activity {
         pawns.add(new Pawn(pion3_xy, pion3, 95.25f));
         pawns.add(new Pawn(pion4_xy, pion4, 111.25f));
 
+        for(int i=0;i<pawns.size();i++) {
+            pawns.get(i).img_pawn.setBackgroundResource(resids.get(i));
+        }
+
         ff = new SpannableStringBuilder();
 
         index_teams = 0;
@@ -454,15 +626,12 @@ public class Game extends Activity {
         boxes.add(new Box("jador", new ArrayList<Integer>(Arrays.asList(6, 15, 19, 24, 29, 34, 35, 44, 48))));
         boxes.add(new Box("vijelie", new ArrayList<Integer>(Arrays.asList(7, 12, 26, 30, 42, 43, 49))));
 
-        // shuffle the order teams
-        Collections.shuffle(Board.Groups);
     }
 
     public void read_cards() {
 
         try {
             int nr_of_cards = 0;
-            int contor = 1;
 
             InputStream in = getAssets().open("cards_info.txt");
             BufferedReader br = new BufferedReader(new InputStreamReader(in));

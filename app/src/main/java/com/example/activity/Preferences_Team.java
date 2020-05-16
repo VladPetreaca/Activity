@@ -11,6 +11,11 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
 
 public class Preferences_Team extends AppCompatActivity {
@@ -21,6 +26,7 @@ public class Preferences_Team extends AppCompatActivity {
     static TextView show_teams;
     static ArrayList<String> players_in_timp = null;
     private long lastClickTime;
+    private String FILE_NAME = "save_state.txt";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,6 +34,9 @@ public class Preferences_Team extends AppCompatActivity {
         setContentView(R.layout.activity_preferences_teams);
 
         lastClickTime = 0;
+//        FILE_NAME = "";
+//        FILE_NAME += getFilesDir();
+//        FILE_NAME += "/" + "save_state.txt";
 
         // hide the navigation and the title bar from the phone
         hideNavigationBar();
@@ -106,6 +115,25 @@ public class Preferences_Team extends AppCompatActivity {
                     }
 
                     if(count != -1) {
+                        FileOutputStream fos = null;
+
+                        try {
+                            fos = getApplicationContext().openFileOutput(FILE_NAME, MODE_PRIVATE);
+                            fos.write('\n');
+
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        } finally {
+                            if(fos != null) {
+                                try {
+                                    fos.close();
+                                } catch (IOException e) {
+                                    e.printStackTrace();
+                                }
+                            }
+                        }
+
+                        MainActivity.save_state = false;
                         Intent intent = new Intent(getApplicationContext(), Game.class);
                         startActivity(intent);
                     }

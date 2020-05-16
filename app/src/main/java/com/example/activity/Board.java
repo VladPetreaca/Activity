@@ -10,9 +10,6 @@ class Board {
     static ArrayList<Card> Cards = new ArrayList<Card>();
     static ArrayList<Card> Used_Cards = new ArrayList<>();
 
-    private Board() {
-
-    }
     public static void AddPlayer(String Name) {
         Player player = new Player(Name);
         Players.add(player);
@@ -52,7 +49,7 @@ class Board {
     }
 
     public boolean addGroup(String name, ArrayList<String> Players) {
-
+        Groups.add(new Group(name, Players));
         return true;
     }
 

@@ -10,7 +10,6 @@ public class Group {
     ArrayList<Player> Players;
     String name;
     Pawn pawn;
-    int color;
 
     Group(int next){
         Players = new ArrayList<>();

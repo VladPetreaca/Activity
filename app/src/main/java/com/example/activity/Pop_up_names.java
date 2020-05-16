@@ -46,7 +46,6 @@ public class Pop_up_names extends Activity {
                 String new_name = editText.getText().toString();
                 if(!new_name.equals("")) {
                     if(!check_name(Board.Players, new_name)) {
-                        //Board.Players.add(new_name);
                         Board.AddPlayer(new_name);
                     }
                     else {

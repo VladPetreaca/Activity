@@ -65,12 +65,15 @@ public class Cart_PopUp extends Activity {
         moves = 0;
         chronos = findViewById(R.id.chronos);
 
+        start.setEnabled(false);
+
         updateCountDownText();
 
         Handler hand = new Handler();
         hand.postDelayed(new Runnable() {
             @Override
             public void run() {
+                start.setEnabled(true);
                 textView.setBackgroundResource(R.drawable.carte_de_joc);
 
                 // the pawn is on the start box
@@ -163,7 +166,7 @@ public class Cart_PopUp extends Activity {
                                         public void run() {
                                             move_pawn_forward(Board.Groups.get(Game.index_teams).name);
                                         }
-                                    }, i * 900);
+                                    }, i * 950);
                                 }
                                 else if(i == Game.pressed_button) {
                                     moves = 0;
@@ -199,10 +202,10 @@ public class Cart_PopUp extends Activity {
                                                             }
                                                         }
                                                     }
-                                                },c * 900);
+                                                },c * 950);
                                             }
                                         }
-                                    }, i * 900);
+                                    }, i * 950);
                                 }
                                 else if(i == Game.pressed_button + 1){
 
@@ -223,7 +226,7 @@ public class Cart_PopUp extends Activity {
                                                 Game.player_turn();
                                             }
                                         }
-                                    }, i * 1000 + 900);
+                                    }, i * 1000 + 950);
 
                                     Handler hand = new Handler();
                                     hand.postDelayed(new Runnable() {
@@ -231,6 +234,13 @@ public class Cart_PopUp extends Activity {
                                         public void run() {
                                             Game.scrollView.fullScroll(ScrollView.FOCUS_DOWN);
                                             Game.scrollView.scrollTo(0, Game.scrollView.getBottom());
+
+                                            Game.back.setEnabled(true);
+                                            Game.button_3.setEnabled(true);
+                                            Game.button_4.setEnabled(true);
+                                            Game.button_5.setEnabled(true);
+                                            Game.settings.setEnabled(true);
+                                            Game.info.setEnabled(true);
                                         }
                                     },i * 1000 + 1000 + 1000);
 
@@ -238,7 +248,7 @@ public class Cart_PopUp extends Activity {
 
                             }
                         }
-                    }, 850);
+                    }, 950);
                     finish();
                 }
                 else if(mode == 2) {
@@ -247,6 +257,14 @@ public class Cart_PopUp extends Activity {
 
                     Game.scrollView.fullScroll(ScrollView.FOCUS_DOWN);
                     Game.scrollView.scrollTo(0, Game.scrollView.getBottom());
+
+                    Game.back.setEnabled(true);
+                    Game.button_3.setEnabled(true);
+                    Game.button_4.setEnabled(true);
+                    Game.button_5.setEnabled(true);
+                    Game.settings.setEnabled(true);
+                    Game.info.setEnabled(true);
+
                     finish();
                 }
                 else if(choronos_running){

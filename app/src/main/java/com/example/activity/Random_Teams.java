@@ -11,6 +11,9 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.io.FileOutputStream;
+import java.io.IOException;
+
 public class Random_Teams extends AppCompatActivity {
 
     Button next, back, change_name, create_teams;
@@ -18,6 +21,7 @@ public class Random_Teams extends AppCompatActivity {
     EditText editText;
     static TextView textView;
     private long lastClickTime;
+    private String FILE_NAME = "save_state.txt";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,6 +29,9 @@ public class Random_Teams extends AppCompatActivity {
         setContentView(R.layout.activity_random__teams);
 
         lastClickTime = 0;
+//        FILE_NAME = "";
+//        FILE_NAME += getFilesDir();
+//        FILE_NAME += "/" + "save_state.txt";
 
         // hide the navigation and the title bar from the phone
         hideNavigationBar();
@@ -55,6 +62,7 @@ public class Random_Teams extends AppCompatActivity {
         back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                back.setEnabled(false);
                 finish();
             }
         });
@@ -62,9 +70,32 @@ public class Random_Teams extends AppCompatActivity {
         next.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                next.setEnabled(false);
+                if(SystemClock.elapsedRealtime() - lastClickTime < 1000) {
+                    return;
+                }
+
+                lastClickTime = SystemClock.elapsedRealtime();
 
                 if(Board.Groups.size() >= 2) {
+                    FileOutputStream fos = null;
+
+                    try {
+                        fos = getApplicationContext().openFileOutput(FILE_NAME, MODE_PRIVATE);
+                        fos.write('\n');
+
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    } finally {
+                        if(fos != null) {
+                            try {
+                                fos.close();
+                            } catch (IOException e) {
+                                e.printStackTrace();
+                            }
+                        }
+                    }
+
+                    MainActivity.save_state = false;
                     Intent intent = new Intent(Random_Teams.this, Game.class);
                     startActivity(intent);
                 }

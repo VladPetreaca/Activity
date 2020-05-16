@@ -3,6 +3,7 @@ package com.example.activity;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.media.MediaPlayer;
 import android.os.Bundle;
@@ -12,6 +13,9 @@ import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.Toast;
 
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
@@ -22,6 +26,8 @@ public class MainActivity extends AppCompatActivity {
 	public static boolean stop_song = false;
 	public static boolean save_state = false;
 	private long lastClickTime;
+	//private static final String FILE_NAME = "/data/user/0/com.example.activity/files/save_state.txt";
+	private String FILE_NAME;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -32,6 +38,9 @@ public class MainActivity extends AppCompatActivity {
 		hideNavigationBar();
 
 		lastClickTime = 0;
+		FILE_NAME = "";
+		FILE_NAME += getFilesDir();
+		FILE_NAME += "/" + "save_state.txt";
 
 		// identify the buttons from xml files
 		setting_btn = (Button) findViewById(R.id.button2);
@@ -58,6 +67,28 @@ public class MainActivity extends AppCompatActivity {
 		Board.AddPlayer("ser");
 		Board.AddPlayer("dumitru");
 
+		FileInputStream fis = null;
+		try {
+			fis = new FileInputStream(FILE_NAME);
+
+			if(fis.available() > 2) {
+				save_state = true;
+				System.out.println("plm");
+			}
+			else {
+				save_state = false;
+			}
+		} catch (IOException e) {
+			e.printStackTrace();
+		} finally {
+			if(fis != null) {
+				try {
+					fis.close();
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+			}
+		}
 
 		//if setting_button is clicked
 		setting_btn.setOnClickListener(new View.OnClickListener() {
@@ -91,7 +122,12 @@ public class MainActivity extends AppCompatActivity {
 		joc_nou.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				joc_nou.setEnabled(false);
+				if(SystemClock.elapsedRealtime() - lastClickTime < 1000) {
+					return;
+				}
+
+				lastClickTime = SystemClock.elapsedRealtime();
+
 				openJocNou();
 			}
 		});
@@ -118,9 +154,15 @@ public class MainActivity extends AppCompatActivity {
 		continue_game.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				continue_game.setEnabled(false);
-				if(stop_song) {
-					Toast.makeText(MainActivity.this, "Click pe button!", Toast.LENGTH_SHORT).show();
+				if(SystemClock.elapsedRealtime() - lastClickTime < 1000) {
+					return;
+				}
+
+				lastClickTime = SystemClock.elapsedRealtime();
+
+				if(save_state) {
+					Intent intent = new Intent(getApplicationContext(), Game.class);
+					startActivity(intent);
 				}
 			}
 		});
