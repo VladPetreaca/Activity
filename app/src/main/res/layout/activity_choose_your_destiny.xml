@@ -7,22 +7,14 @@
     tools:context=".Choose_your_destiny">
 
     <TextView
-        android:id="@+id/title_help"
-        android:layout_width="match_parent"
-        android:layout_height="80dp"
-        android:background="@drawable/money_strap_100bills" />
-
-    <TextView
         android:id="@+id/title_content_3"
-        android:layout_below="@id/title_help"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 
     <Button
         android:id="@+id/button27"
-        android:layout_below="@id/title_help"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="20dp"
+        android:layout_marginStart="455dp"
+        android:layout_marginTop="147dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Creare Echipa"
@@ -31,11 +23,10 @@
 
     <Button
         android:id="@+id/button28"
-        android:layout_below="@id/title_help"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="80dp"
+        android:layout_marginTop="205dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="455dp"
         android:text="Echipa random"
         android:background="@drawable/round_button"
         android:textColor="#000"/>

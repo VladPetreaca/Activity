@@ -115,32 +115,44 @@ public class Settings extends AppCompatActivity {
 		back_50.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				Toast.makeText(Settings.this, "Changed 50.", Toast.LENGTH_SHORT).show();
+				Toast.makeText(Settings.this, "Changed!", Toast.LENGTH_SHORT).show();
 				choice = 1;
+				if(MainActivity.change_board_bk == 1) {
+					Game.view.setBackgroundResource(R.drawable.back_g1);
+				}
 			}
 		});
 
 		back_100.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				Toast.makeText(Settings.this, "Changed 100.", Toast.LENGTH_SHORT).show();
+				Toast.makeText(Settings.this, "Changed!", Toast.LENGTH_SHORT).show();
 				choice = 2;
+				if(MainActivity.change_board_bk == 1) {
+					Game.view.setBackgroundResource(R.drawable.back_g5);
+				}
 			}
 		});
 
 		back_200.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				Toast.makeText(Settings.this, "Changed 200.", Toast.LENGTH_SHORT).show();
+				Toast.makeText(Settings.this, "Changed!", Toast.LENGTH_SHORT).show();
 				choice = 3;
+				if(MainActivity.change_board_bk == 1) {
+					Game.view.setBackgroundResource(R.drawable.back_g3);
+				}
 			}
 		});
 
 		back_500.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				Toast.makeText(Settings.this, "Changed 500.", Toast.LENGTH_SHORT).show();
+				Toast.makeText(Settings.this, "Changed!", Toast.LENGTH_SHORT).show();
 				choice = 4;
+				if(MainActivity.change_board_bk == 1) {
+					Game.view.setBackgroundResource(R.drawable.back_g7);
+				}
 			}
 		});
 

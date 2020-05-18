@@ -32,6 +32,7 @@ import java.util.Collections;
 
 public class Game extends Activity {
 
+    static TextView view;
     static Button back, button_3, button_4, button_5, settings, info;
     ImageView pion1, pion2, pion3, pion4;
     ArrayList<Integer> resids;
@@ -65,6 +66,17 @@ public class Game extends Activity {
 
         //initialize the data
         initialize();
+
+        // set the background by the case
+        if(Settings.choice == 1){
+            view.setBackgroundResource(R.drawable.back_g1);
+        } else if(Settings.choice == 2) {
+            view.setBackgroundResource(R.drawable.back_g5);
+        } else if(Settings.choice == 3) {
+            view.setBackgroundResource(R.drawable.back_g3);
+        } else {
+            view.setBackgroundResource(R.drawable.back_g7);
+        }
 
         back.setEnabled(false);
         button_3.setEnabled(false);
@@ -594,6 +606,7 @@ public class Game extends Activity {
         pion3_xy = findViewById(R.id.pion3_xy);
         pion4_xy = findViewById(R.id.pion4_xy);
         scrollView = findViewById(R.id.scroll_view);
+        view = findViewById(R.id.game_background);
 
         resids = new ArrayList<>();
         resids.add(R.drawable.pion_1);
@@ -608,10 +621,10 @@ public class Game extends Activity {
         colors.add(Color.parseColor("#E566FF"));
 
         pawns = new ArrayList<>();
-        pawns.add(new Pawn(pion1_xy, pion1, 63.25f));
-        pawns.add(new Pawn(pion2_xy, pion2, 79.25f));
-        pawns.add(new Pawn(pion3_xy, pion3, 95.25f));
-        pawns.add(new Pawn(pion4_xy, pion4, 111.25f));
+        pawns.add(new Pawn(pion1_xy, pion1, 60.5f));
+        pawns.add(new Pawn(pion2_xy, pion2, 76.5f));
+        pawns.add(new Pawn(pion3_xy, pion3, 92.5f));
+        pawns.add(new Pawn(pion4_xy, pion4, 108.5f));
 
         for(int i=0;i<Board.Groups.size();i++) {
             pawns.get(i).img_pawn.setBackgroundResource(resids.get(i));

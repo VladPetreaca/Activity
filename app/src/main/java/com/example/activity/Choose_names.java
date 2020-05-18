@@ -39,13 +39,13 @@ public class Choose_names extends AppCompatActivity {
 
 		// set the background by the case
 		if(Settings.choice == 1){
-			view.setBackgroundResource(R.drawable.euro_1);
+			view.setBackgroundResource(R.drawable.back_g1);
 		} else if(Settings.choice == 2) {
-			view.setBackgroundResource(R.drawable.euro_2);
+			view.setBackgroundResource(R.drawable.back_g5);
 		} else if(Settings.choice == 3) {
-			view.setBackgroundResource(R.drawable.euro_3);
+			view.setBackgroundResource(R.drawable.back_g3);
 		} else {
-			view.setBackgroundResource(R.drawable.euro_4);
+			view.setBackgroundResource(R.drawable.back_g7);
 		}
 
 		// show the list of players at the beginning

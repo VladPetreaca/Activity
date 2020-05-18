@@ -28,6 +28,7 @@ public class MainActivity extends AppCompatActivity {
 	private long lastClickTime;
 	//private static final String FILE_NAME = "/data/user/0/com.example.activity/files/save_state.txt";
 	private String FILE_NAME;
+	public static int change_board_bk;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -41,6 +42,8 @@ public class MainActivity extends AppCompatActivity {
 		FILE_NAME = "";
 		FILE_NAME += getFilesDir();
 		FILE_NAME += "/" + "save_state.txt";
+
+		change_board_bk = 0;
 
 		// identify the buttons from xml files
 		setting_btn = (Button) findViewById(R.id.button2);

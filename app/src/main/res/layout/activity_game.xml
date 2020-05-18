@@ -4,8 +4,12 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Game"
-    android:background="@drawable/game_board">
+    tools:context=".Game" >
+
+    <TextView
+        android:id="@+id/game_background"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
 
     <Button
         android:id="@+id/button34"
@@ -67,8 +71,9 @@
         android:id="@+id/scroll_view"
         android:layout_width="match_parent"
         android:layout_height="260dp"
-        android:layout_marginStart="540dp"
-        android:layout_marginTop="60dp" >
+        android:layout_marginStart="520dp"
+        android:layout_marginTop="60dp"
+        android:background="#80000000">
 
         <TextView
             android:id="@+id/history_view"
@@ -83,14 +88,15 @@
         android:layout_width="472.5dp"
         android:layout_height="368dp"
         android:layout_marginStart="150dp"
-        android:layout_marginTop="20dp">
+        android:layout_marginTop="20dp"
+        android:background="@drawable/tabla_v4">
 
         <FrameLayout
             android:id="@+id/pion1_xy"
             android:layout_width="16dp"
             android:layout_height="16dp"
-            android:layout_marginStart="386dp"
-            android:layout_marginTop="7.33dp">
+            android:layout_marginStart="362dp"
+            android:layout_marginTop="5dp">
 
             <ImageView
                 android:id="@+id/pion1"
@@ -102,8 +108,8 @@
             android:id="@+id/pion2_xy"
             android:layout_width="16dp"
             android:layout_height="16dp"
-            android:layout_marginStart="402dp"
-            android:layout_marginTop="7.33dp">
+            android:layout_marginStart="378dp"
+            android:layout_marginTop="5dp">
 
             <ImageView
                 android:id="@+id/pion2"
@@ -115,8 +121,8 @@
             android:id="@+id/pion3_xy"
             android:layout_width="16dp"
             android:layout_height="16dp"
-            android:layout_marginStart="418dp"
-            android:layout_marginTop="7.33dp">
+            android:layout_marginStart="394dp"
+            android:layout_marginTop="5dp">
 
             <ImageView
                 android:id="@+id/pion3"
@@ -128,8 +134,8 @@
             android:id="@+id/pion4_xy"
             android:layout_width="16dp"
             android:layout_height="16dp"
-            android:layout_marginStart="434dp"
-            android:layout_marginTop="7.33dp">
+            android:layout_marginStart="410dp"
+            android:layout_marginTop="5dp">
 
             <ImageView
                 android:id="@+id/pion4"

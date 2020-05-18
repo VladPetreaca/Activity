@@ -40,7 +40,7 @@ public class Cart_PopUp extends Activity {
     static final long TIME = 60000;
     long max_time;
     boolean choronos_running;
-    public final float length = 94.5f;
+    public final float length = 89f;
     public final float width = 31f;
 
     @Override

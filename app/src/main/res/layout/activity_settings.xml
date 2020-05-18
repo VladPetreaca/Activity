@@ -6,29 +6,17 @@
     android:layout_height="match_parent"
     tools:context=".Settings">
 
-    <pl.droidsonroids.gif.GifImageView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@drawable/gold_bars"
-        android:src="@drawable/dollars" />
-
-    <TextView
-        android:id="@+id/titleWindow"
-        android:layout_width="match_parent"
-        android:layout_height="80dp"
-        android:background="@drawable/money_strap_100bills" />
-
     <TextView
         android:layout_below="@+id/titleWindow"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent"
+        android:background="@drawable/golden_foil"/>
 
     <androidx.appcompat.widget.SwitchCompat
         android:id="@+id/switch1"
-        android:layout_below="@+id/titleWindow"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="110dp"
         android:layout_marginLeft="50dp"
         android:layout_marginRight="50dp"
         android:theme="@style/MySwitch"
@@ -36,7 +24,7 @@
         android:textSize="25sp"
         android:gravity="left"
         android:checked="true"
-        android:textColor="#ffffff" />
+        android:textColor="#000" />
 
     <Button
         android:id="@+id/button4"
@@ -67,7 +55,7 @@
         android:layout_height="30dp"
         android:layout_marginTop="287dp"
         android:layout_marginStart="290dp"
-        android:background="@drawable/eur_1_2" />
+        android:background="@drawable/back_g1" />
 
     <Button
         android:id="@+id/button9"
@@ -75,7 +63,7 @@
         android:layout_height="30dp"
         android:layout_marginTop="287dp"
         android:layout_marginStart="370dp"
-        android:background="@drawable/euro_2_2" />
+        android:background="@drawable/back_g5" />
 
     <Button
         android:id="@+id/button10"
@@ -83,7 +71,7 @@
         android:layout_height="30dp"
         android:layout_marginTop="287dp"
         android:layout_marginStart="450dp"
-        android:background="@drawable/euro_3_3" />
+        android:background="@drawable/back_g3" />
 
     <Button
         android:id="@+id/button11"
@@ -91,7 +79,7 @@
         android:layout_height="30dp"
         android:layout_marginTop="287dp"
         android:layout_marginStart="530dp"
-        android:background="@drawable/euro_4_4" />
+        android:background="@drawable/back_g7" />
 
 
     <SeekBar
@@ -111,7 +99,7 @@
         android:layout_marginRight="50dp"
         android:text="Fundal Joc"
         android:textSize="30sp"
-        android:textColor="#fff" />
+        android:textColor="#000" />
 
 
 </RelativeLayout>

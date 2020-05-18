@@ -4,33 +4,24 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Choose_names">
-
-    <TextView
-        android:id="@+id/title_help"
-        android:layout_width="match_parent"
-        android:layout_height="80dp"
-        android:background="@drawable/money_strap_100bills" />
+    tools:context=".Choose_names" >
 
     <TextView
         android:id="@+id/title_content"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@id/title_help">
-    </TextView>
+        android:background="@drawable/back_g5"></TextView>
 
     <TextView
         android:id="@+id/jupani_question"
-        android:layout_below="@id/title_help"
         android:layout_width="190dp"
         android:layout_height="35dp"
-        android:layout_marginTop="20dp"
-        android:layout_marginStart="280dp"
-        android:layout_centerHorizontal="true"
+        android:layout_marginTop="100dp"
+        android:layout_marginStart="420dp"
         android:background="#CC000000"
         android:text="Care sunt jucatorii?"
         android:gravity="center"
-        android:textColor="#fff">
+        android:textColor="#fff" >
     </TextView>
 
     <Button
@@ -42,45 +33,22 @@
 
     <Button
         android:id="@+id/button13"
-        android:layout_below="@id/title_help"
         android:layout_width="wrap_content"
         android:layout_height="30dp"
-        android:layout_marginStart="315dp"
-        android:layout_marginTop="67dp"
-        android:layout_centerHorizontal="true"
+        android:layout_marginStart="455dp"
+        android:layout_marginTop="147dp"
         android:background="@drawable/round_button"
         android:text="Adauga jucator"
         android:textColor="#000"/>
 
-<!--    <TextView-->
-<!--        android:layout_below="@id/title_help"-->
-<!--        android:layout_width="wrap_content"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:layout_marginTop="73dp"-->
-<!--        android:text="@string/adauga_un_jupan"-->
-<!--        android:layout_marginStart="430dp"-->
-<!--        android:background="#CC000000"-->
-<!--        android:textColor="#fff" />-->
-
-<!--    <TextView-->
-<!--        android:layout_below="@id/title_help"-->
-<!--        android:layout_width="wrap_content"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:layout_marginTop="117dp"-->
-<!--        android:text="Avem noi grija de el"-->
-<!--        android:layout_marginStart="430dp"-->
-<!--        android:background="#CC000000"-->
-<!--        android:textColor="#fff" />-->
-
     <TextView
         android:id="@+id/players"
-        android:layout_below="@id/title_help"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:maxWidth="300dp"
         android:background="#000"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="200dp"
+        android:layout_marginStart="370dp"
+        android:layout_marginTop="330dp"
         android:textColor="#fff"/>
 
     <Button
@@ -93,12 +61,10 @@
 
     <Button
         android:id="@+id/button15"
-        android:layout_below="@id/title_help"
         android:layout_width="wrap_content"
         android:layout_height="30dp"
-        android:layout_marginStart="315dp"
-        android:layout_marginTop="110dp"
-        android:layout_centerHorizontal="true"
+        android:layout_marginStart="455dp"
+        android:layout_marginTop="190dp"
         android:background="@drawable/round_button"
         android:text="Sterge jucator"
         android:textColor="#000"/>
