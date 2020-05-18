@@ -61,8 +61,11 @@ public class Game extends Activity {
         // hide the navigation and the title bar from the phone
         hideNavigationBar();
 
+        history_view = findViewById(R.id.history_view);
+
         //initialize the data
         initialize();
+
         back.setEnabled(false);
         button_3.setEnabled(false);
         button_4.setEnabled(false);
@@ -76,6 +79,11 @@ public class Game extends Activity {
         // read from file
         if(MainActivity.save_state) {
             read_from_file();
+
+            for(int i=0;i<Board.Groups.size();i++) {
+                pawns.get(i).img_pawn.setBackgroundResource(resids.get(i));
+            }
+
             retake_positions();
 
             history_view.setText("Se asteapta reincarcarea datelor...");
@@ -585,7 +593,6 @@ public class Game extends Activity {
         pion2_xy = findViewById(R.id.pion2_xy);
         pion3_xy = findViewById(R.id.pion3_xy);
         pion4_xy = findViewById(R.id.pion4_xy);
-        history_view = findViewById(R.id.history_view);
         scrollView = findViewById(R.id.scroll_view);
 
         resids = new ArrayList<>();
@@ -606,7 +613,7 @@ public class Game extends Activity {
         pawns.add(new Pawn(pion3_xy, pion3, 95.25f));
         pawns.add(new Pawn(pion4_xy, pion4, 111.25f));
 
-        for(int i=0;i<pawns.size();i++) {
+        for(int i=0;i<Board.Groups.size();i++) {
             pawns.get(i).img_pawn.setBackgroundResource(resids.get(i));
         }
 

@@ -40,6 +40,8 @@ public class Cart_PopUp extends Activity {
     static final long TIME = 60000;
     long max_time;
     boolean choronos_running;
+    public final float length = 94.5f;
+    public final float width = 31f;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -348,7 +350,7 @@ public class Cart_PopUp extends Activity {
                 //end of the game
                 else if(Board.Groups.get(i).pawn.count_lines == 11 && Board.Groups.get(i).pawn.count_columns >= 3) {
                     Board.Groups.get(i).pawn.x_min = Board.Groups.get(i).pawn.x_max;
-                    Board.Groups.get(i).pawn.x_max += 94.5f;
+                    Board.Groups.get(i).pawn.x_max += length;
 
                     TranslateAnimation anim = new TranslateAnimation(
                             TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP,Board.Groups.get(i).pawn.x_min , getResources().getDisplayMetrics()),
@@ -382,7 +384,7 @@ public class Cart_PopUp extends Activity {
                 // even lines
                 else if(Board.Groups.get(i).pawn.count_columns < 3 && Board.Groups.get(i).pawn.count_lines % 2 == 0){
                     Board.Groups.get(i).pawn.x_min = Board.Groups.get(i).pawn.x_max;
-                    Board.Groups.get(i).pawn.x_max -= 94.5f;
+                    Board.Groups.get(i).pawn.x_max -= length;
 
                     TranslateAnimation anim = new TranslateAnimation(
                             TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP,Board.Groups.get(i).pawn.x_min , getResources().getDisplayMetrics()),
@@ -406,7 +408,7 @@ public class Cart_PopUp extends Activity {
                     Board.Groups.get(i).pawn.count_columns = 0;
 
                     Board.Groups.get(i).pawn.y_min = Board.Groups.get(i).pawn.y_max;
-                    Board.Groups.get(i).pawn.y_max = Board.Groups.get(i).pawn.count_lines * 31f;
+                    Board.Groups.get(i).pawn.y_max = Board.Groups.get(i).pawn.count_lines * width;
 
                     TranslateAnimation anim = new TranslateAnimation(
                             TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP,Board.Groups.get(i).pawn.x_max , getResources().getDisplayMetrics()),
@@ -426,7 +428,7 @@ public class Cart_PopUp extends Activity {
                 // odd lines
                 else if(Board.Groups.get(i).pawn.count_columns < 3 && Board.Groups.get(i).pawn.count_lines % 2 == 1) {
                     Board.Groups.get(i).pawn.x_min = Board.Groups.get(i).pawn.x_max;
-                    Board.Groups.get(i).pawn.x_max += 94.5f;
+                    Board.Groups.get(i).pawn.x_max += length;
 
                     TranslateAnimation anim = new TranslateAnimation(
                             TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP,Board.Groups.get(i).pawn.x_min , getResources().getDisplayMetrics()),
@@ -452,7 +454,7 @@ public class Cart_PopUp extends Activity {
     public void go_back_numbers(int i) {
         if(Board.Groups.get(i).pawn.count_columns == 0) {
             Board.Groups.get(i).pawn.y_min = Board.Groups.get(i).pawn.y_max;
-            Board.Groups.get(i).pawn.y_max -= 31f;
+            Board.Groups.get(i).pawn.y_max -= width;
 
             TranslateAnimation anim = new TranslateAnimation(
                     TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP,Board.Groups.get(i).pawn.x_max , getResources().getDisplayMetrics()),
@@ -474,7 +476,7 @@ public class Cart_PopUp extends Activity {
         // the pawn remaining on the same line (odd line)
         else if(Board.Groups.get(i).pawn.count_columns <= 3 && Board.Groups.get(i).pawn.count_lines % 2 == 1) {
             Board.Groups.get(i).pawn.x_min = Board.Groups.get(i).pawn.x_max;
-            Board.Groups.get(i).pawn.x_max -= 94.5f;
+            Board.Groups.get(i).pawn.x_max -= length;
 
             TranslateAnimation anim = new TranslateAnimation(
                     TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP,Board.Groups.get(i).pawn.x_min , getResources().getDisplayMetrics()),
@@ -495,7 +497,7 @@ public class Cart_PopUp extends Activity {
         // the pawn remaining on the same line (even line)
         else if(Board.Groups.get(i).pawn.count_columns <= 3 && Board.Groups.get(i).pawn.count_lines % 2 == 0) {
             Board.Groups.get(i).pawn.x_min = Board.Groups.get(i).pawn.x_max;
-            Board.Groups.get(i).pawn.x_max += 94.5f;
+            Board.Groups.get(i).pawn.x_max += length;
 
             TranslateAnimation anim = new TranslateAnimation(
                     TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP,Board.Groups.get(i).pawn.x_min , getResources().getDisplayMetrics()),

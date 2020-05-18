@@ -69,6 +69,9 @@ public class Delete_PlayerFromTeam_PopUp extends AppCompatActivity {
                             Board.Groups.remove(Board.Groups.get(i));
                             break;
                         }
+                        else {
+                            break;
+                        }
                     }
                     else if(i == Board.Groups.size() - 1) {
                         Toast.makeText(Delete_PlayerFromTeam_PopUp.this, "Aceasta echipa nu exista!", Toast.LENGTH_SHORT).show();

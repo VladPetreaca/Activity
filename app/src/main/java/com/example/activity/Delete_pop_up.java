@@ -8,6 +8,7 @@ import android.util.DisplayMetrics;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 public class Delete_pop_up extends Activity {
 
@@ -46,6 +47,9 @@ public class Delete_pop_up extends Activity {
                     if(editText.getText().toString().equals(Board.Players.get(i).Name)) {
                         Board.Players.remove(i);
                         break;
+                    }
+                    else if(i == Board.Players.size() - 1) {
+                        Toast.makeText(Delete_pop_up.this, "Nu exista acest jucator!", Toast.LENGTH_SHORT).show();
                     }
                 }
                 Choose_names.players.setText(Pop_up_names.show_list_of_players(Board.Players));
