@@ -17,9 +17,12 @@ import android.util.TypedValue;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.TranslateAnimation;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Chronometer;
 import android.widget.ScrollView;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -42,6 +45,10 @@ public class Cart_PopUp extends Activity {
     boolean choronos_running;
     public final float length = 89f;
     public final float width = 31f;
+    public int card_for_all;
+    Spinner spinner;
+    ArrayList<String> spinner_teams;
+    String specified_team;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,12 +69,15 @@ public class Cart_PopUp extends Activity {
         valcea = findViewById(R.id.valcea_textView);
         jador = findViewById(R.id.jador_textView);
         vijelie = findViewById(R.id.vijelie_textView);
+        spinner = findViewById(R.id.spinner2);
         mode = 0;
         finish_game = 0;
         moves = 0;
+        card_for_all = 0;
         chronos = findViewById(R.id.chronos);
 
         start.setEnabled(false);
+        spinner.setEnabled(false);
 
         updateCountDownText();
 
@@ -78,6 +88,24 @@ public class Cart_PopUp extends Activity {
                 start.setEnabled(true);
                 textView.setBackgroundResource(R.drawable.carte_de_joc);
 
+                Random rand = new Random();
+                int random_number = rand.nextInt(Board.Cards.size() - 1);
+
+                adrian.setText(Board.Cards.get(random_number).adrian);
+                guta.setText(Board.Cards.get(random_number).guta);
+                salam.setText(Board.Cards.get(random_number).salam);
+                valcea.setText(Board.Cards.get(random_number).avalcea);
+                jador.setText(Board.Cards.get(random_number).jador);
+                vijelie.setText(Board.Cards.get(random_number).vijelie);
+
+                Board.Used_Cards.add(Board.Cards.get(random_number));
+                Board.Cards.remove(Board.Cards.get(random_number));
+
+                if(Board.Cards.isEmpty()) {
+                    Board.Cards = new ArrayList<>(Board.Used_Cards);
+                    Board.Used_Cards.clear();
+                }
+
                 // the pawn is on the start box
                 if(Board.Groups.get(Game.index_teams).pawn.nr_box == 0) {
                     adrian.setTextColor(Color.parseColor("#AF002A"));
@@ -86,6 +114,16 @@ public class Cart_PopUp extends Activity {
                     valcea.setTextColor(Color.parseColor("#AF002A"));
                     jador.setTextColor(Color.parseColor("#AF002A"));
                     vijelie.setTextColor(Color.parseColor("#AF002A"));
+                }
+                else if(Board.Cards.get(random_number).id % 3 == 0) {
+                    card_for_all = 1;
+
+                    adrian.setTextColor(Color.parseColor("#0048BA"));
+                    guta.setTextColor(Color.parseColor("#0048BA"));
+                    salam.setTextColor(Color.parseColor("#0048BA"));
+                    valcea.setTextColor(Color.parseColor("#0048BA"));
+                    jador.setTextColor(Color.parseColor("#0048BA"));
+                    vijelie.setTextColor(Color.parseColor("#0048BA"));
                 }
                 else {
                     // coloreaza doar casuta pe care este
@@ -120,25 +158,6 @@ public class Cart_PopUp extends Activity {
                     }
                 }
 
-                Random rand = new Random();
-                int random_number = rand.nextInt(Board.Cards.size());
-
-                adrian.setText(Board.Cards.get(random_number).adrian);
-                guta.setText(Board.Cards.get(random_number).guta);
-                salam.setText(Board.Cards.get(random_number).salam);
-                valcea.setText(Board.Cards.get(random_number).avalcea);
-                jador.setText(Board.Cards.get(random_number).jador);
-                vijelie.setText(Board.Cards.get(random_number).vijelie);
-
-                Board.Used_Cards.add(Board.Cards.get(random_number));
-                Board.Cards.remove(Board.Cards.get(random_number));
-
-                if(Board.Cards.isEmpty()) {
-                    Board.Cards = new ArrayList<>(Board.Used_Cards);
-                    Board.Used_Cards.clear();
-                }
-
-
             }
         }, 2500);
 
@@ -151,106 +170,265 @@ public class Cart_PopUp extends Activity {
                     start.setBackgroundResource(R.drawable.stop_button_2);
                 }
                 else if(mode == 1) {
-                    Handler hand = new Handler();
-                    hand.postDelayed(new Runnable() {
-                        @Override
-                        public void run() {
-                            if(Board.Groups.get(Game.index_teams).pawn.nr_box + Game.pressed_button > 48) {
-                                Game.pressed_button = 49 - Board.Groups.get(Game.index_teams).pawn.nr_box;
-                            }
+                    if(card_for_all == 1) {
 
-                            for(int i=0;i<=Game.pressed_button + 1;i++) {
+                        Handler h = new Handler();
+                        h.postDelayed(new Runnable() {
+                            @Override
+                            public void run() {
+                                int i;
 
-                                if(i <= Game.pressed_button - 1) {
-                                    Handler h = new Handler();
-                                    h.postDelayed(new Runnable() {
-                                        @Override
-                                        public void run() {
-                                            move_pawn_forward(Board.Groups.get(Game.index_teams).name);
-                                        }
-                                    }, i * 950);
+                                if(Board.Groups.get(Game.index_teams).pawn.nr_box + Game.pressed_button > 48) {
+                                    Game.pressed_button = 49 - Board.Groups.get(Game.index_teams).pawn.nr_box;
                                 }
-                                else if(i == Game.pressed_button) {
-                                    moves = 0;
 
-                                    Handler h = new Handler();
-                                    h.postDelayed(new Runnable() {
-                                        @Override
-                                        public void run() {
+                                for(i = 0;i <= Game.pressed_button;i++) {
+                                    if(i < Game.pressed_button) {
+                                        Handler h = new Handler();
+                                        h.postDelayed(new Runnable() {
+                                            @Override
+                                            public void run() {
+                                                move_pawn_forward(specified_team);
+                                            }
+                                        }, i * 950);
+                                    }
+                                    else if(i == Game.pressed_button) {
+                                        moves = 0;
 
-                                            for(int c=0; c < 3; c++) {
-                                                Handler h = new Handler();
-                                                h.postDelayed(new Runnable() {
-                                                    @Override
-                                                    public void run() {
-                                                        moves = 0;
+                                        Handler h = new Handler();
+                                        h.postDelayed(new Runnable() {
+                                            @Override
+                                            public void run() {
 
-                                                        for(int j=0;j<Board.Groups.size();j++) {
-                                                            for(int k=0;k<Board.Groups.size();k++) {
-                                                                if(Board.Groups.get(j).pawn.nr_box == Board.Groups.get(k).pawn.nr_box && j != k && Board.Groups.get(j).pawn.nr_box != 0 && Board.Groups.get(k).pawn.nr_box != 0) {
-                                                                    moves++;
-                                                                    if(Board.Groups.get(j).pawn.order < Board.Groups.get(k).pawn.order) {
-                                                                        go_back_numbers(j);
+                                                for(int c=0; c < 3; c++) {
+                                                    Handler h = new Handler();
+                                                    h.postDelayed(new Runnable() {
+                                                        @Override
+                                                        public void run() {
+                                                            moves = 0;
+
+                                                            for(int j=0;j<Board.Groups.size();j++) {
+                                                                for(int k=0;k<Board.Groups.size();k++) {
+                                                                    if(Board.Groups.get(j).pawn.nr_box == Board.Groups.get(k).pawn.nr_box && j != k && Board.Groups.get(j).pawn.nr_box != 0 && Board.Groups.get(k).pawn.nr_box != 0) {
+                                                                        moves++;
+                                                                        if(Board.Groups.get(j).pawn.order < Board.Groups.get(k).pawn.order) {
+                                                                            go_back_numbers(j);
+                                                                        }
+                                                                        else {
+                                                                            go_back_numbers(k);
+                                                                        }
+                                                                        break;
                                                                     }
-                                                                    else {
-                                                                        go_back_numbers(k);
-                                                                    }
+                                                                }
+
+                                                                if(moves == 1) {
                                                                     break;
                                                                 }
                                                             }
+                                                        }
+                                                    },c * 950);
+                                                }
+                                            }
+                                        }, i * 950);
+                                    }
+                                }
+                                i += 3;
+                                int var = i;
 
-                                                            if(moves == 1) {
-                                                                break;
+                                if(!Board.Groups.get(Game.index_teams).name.equals(specified_team)) {
+                                    for(i = var; i < Game.pressed_button + var; i++) {
+                                        if(i < Game.pressed_button + var - 1) {
+                                            Handler h = new Handler();
+                                            h.postDelayed(new Runnable() {
+                                                @Override
+                                                public void run() {
+                                                    move_pawn_forward(Board.Groups.get(Game.index_teams).name);
+                                                }
+                                            }, i * 950);
+                                        }
+                                        else if(i == Game.pressed_button + var - 1) {
+                                            moves = 0;
+
+                                            Handler h = new Handler();
+                                            h.postDelayed(new Runnable() {
+                                                @Override
+                                                public void run() {
+
+                                                    for(int c=0; c < 3; c++) {
+                                                        Handler h = new Handler();
+                                                        h.postDelayed(new Runnable() {
+                                                            @Override
+                                                            public void run() {
+                                                                moves = 0;
+
+                                                                for(int j=0;j<Board.Groups.size();j++) {
+                                                                    for(int k=0;k<Board.Groups.size();k++) {
+                                                                        if(Board.Groups.get(j).pawn.nr_box == Board.Groups.get(k).pawn.nr_box && j != k && Board.Groups.get(j).pawn.nr_box != 0 && Board.Groups.get(k).pawn.nr_box != 0) {
+                                                                            moves++;
+                                                                            if(Board.Groups.get(j).pawn.order < Board.Groups.get(k).pawn.order) {
+                                                                                go_back_numbers(j);
+                                                                            }
+                                                                            else {
+                                                                                go_back_numbers(k);
+                                                                            }
+                                                                            break;
+                                                                        }
+                                                                    }
+
+                                                                    if(moves == 1) {
+                                                                        break;
+                                                                    }
+                                                                }
+                                                            }
+                                                        },c * 950);
+                                                    }
+                                                }
+                                            }, i * 950);
+                                        }
+                                    }
+                                }
+
+                                Handler h = new Handler();
+                                h.postDelayed(new Runnable() {
+                                    @Override
+                                    public void run() {
+
+                                        if(finish_game == 1) {
+                                            SpannableString ss = new SpannableString("\n\nJocul s-a terminat! Felicitari echipei " + Board.Groups.get(Game.index_teams).name + "!\n");
+                                            ForegroundColorSpan color = new ForegroundColorSpan(Game.colors.get(Game.index_teams));
+                                            ss.setSpan(color, 0, ("\n\nJocul s-a terminat! Felicitari echipei " + Board.Groups.get(Game.index_teams).name + "!\n").length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+                                            Game.ff.append(ss);
+                                            Game.history_view.setText(Game.ff);
+                                        }
+                                        else {
+                                            Game.player_over();
+                                            Game.player_turn();
+                                        }
+                                    }
+                                }, i * 1000 + 950);
+
+                                Handler hand = new Handler();
+                                hand.postDelayed(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        Game.scrollView.fullScroll(ScrollView.FOCUS_DOWN);
+                                        Game.scrollView.scrollTo(0, Game.scrollView.getBottom());
+
+                                        Game.back.setEnabled(true);
+                                        Game.button_3.setEnabled(true);
+                                        Game.button_4.setEnabled(true);
+                                        Game.button_5.setEnabled(true);
+                                        Game.settings.setEnabled(true);
+                                        Game.info.setEnabled(true);
+                                    }
+                                },i * 1000 + 1000 + 1000);
+                            }
+                        }, 950);
+                    }
+                    else {
+                        // normal move
+                        Handler hand = new Handler();
+                        hand.postDelayed(new Runnable() {
+                            @Override
+                            public void run() {
+                                if(Board.Groups.get(Game.index_teams).pawn.nr_box + Game.pressed_button > 48) {
+                                    Game.pressed_button = 49 - Board.Groups.get(Game.index_teams).pawn.nr_box;
+                                }
+
+                                for(int i=0;i<=Game.pressed_button + 1;i++) {
+
+                                    if(i <= Game.pressed_button - 1) {
+                                        Handler h = new Handler();
+                                        h.postDelayed(new Runnable() {
+                                            @Override
+                                            public void run() {
+                                                move_pawn_forward(Board.Groups.get(Game.index_teams).name);
+                                            }
+                                        }, i * 950);
+                                    }
+                                    else if(i == Game.pressed_button) {
+                                        moves = 0;
+
+                                        Handler h = new Handler();
+                                        h.postDelayed(new Runnable() {
+                                            @Override
+                                            public void run() {
+
+                                                for(int c=0; c < 3; c++) {
+                                                    Handler h = new Handler();
+                                                    h.postDelayed(new Runnable() {
+                                                        @Override
+                                                        public void run() {
+                                                            moves = 0;
+
+                                                            for(int j=0;j<Board.Groups.size();j++) {
+                                                                for(int k=0;k<Board.Groups.size();k++) {
+                                                                    if(Board.Groups.get(j).pawn.nr_box == Board.Groups.get(k).pawn.nr_box && j != k && Board.Groups.get(j).pawn.nr_box != 0 && Board.Groups.get(k).pawn.nr_box != 0) {
+                                                                        moves++;
+                                                                        if(Board.Groups.get(j).pawn.order < Board.Groups.get(k).pawn.order) {
+                                                                            go_back_numbers(j);
+                                                                        }
+                                                                        else {
+                                                                            go_back_numbers(k);
+                                                                        }
+                                                                        break;
+                                                                    }
+                                                                }
+
+                                                                if(moves == 1) {
+                                                                    break;
+                                                                }
                                                             }
                                                         }
-                                                    }
-                                                },c * 950);
+                                                    },c * 950);
+                                                }
                                             }
-                                        }
-                                    }, i * 950);
+                                        }, i * 950);
+                                    }
+                                    else if(i == Game.pressed_button + 1){
+
+                                        Handler h = new Handler();
+                                        h.postDelayed(new Runnable() {
+                                            @Override
+                                            public void run() {
+
+                                                if(finish_game == 1) {
+                                                    SpannableString ss = new SpannableString("\n\nJocul s-a terminat! Felicitari echipei " + Board.Groups.get(Game.index_teams).name + "!\n");
+                                                    ForegroundColorSpan color = new ForegroundColorSpan(Game.colors.get(Game.index_teams));
+                                                    ss.setSpan(color, 0, ("\n\nJocul s-a terminat! Felicitari echipei " + Board.Groups.get(Game.index_teams).name + "!\n").length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+                                                    Game.ff.append(ss);
+                                                    Game.history_view.setText(Game.ff);
+                                                }
+                                                else {
+                                                    Game.player_over();
+                                                    Game.player_turn();
+                                                }
+                                            }
+                                        }, i * 1000 + 950);
+
+                                        Handler hand = new Handler();
+                                        hand.postDelayed(new Runnable() {
+                                            @Override
+                                            public void run() {
+                                                Game.scrollView.fullScroll(ScrollView.FOCUS_DOWN);
+                                                Game.scrollView.scrollTo(0, Game.scrollView.getBottom());
+
+                                                Game.back.setEnabled(true);
+                                                Game.button_3.setEnabled(true);
+                                                Game.button_4.setEnabled(true);
+                                                Game.button_5.setEnabled(true);
+                                                Game.settings.setEnabled(true);
+                                                Game.info.setEnabled(true);
+                                            }
+                                        },i * 1000 + 1000 + 1000);
+
+                                    }
+
                                 }
-                                else if(i == Game.pressed_button + 1){
-
-                                    Handler h = new Handler();
-                                    h.postDelayed(new Runnable() {
-                                        @Override
-                                        public void run() {
-
-                                            if(finish_game == 1) {
-                                                SpannableString ss = new SpannableString("\n\nJocul s-a terminat! Felicitari echipei " + Board.Groups.get(Game.index_teams).name + "!\n");
-                                                ForegroundColorSpan color = new ForegroundColorSpan(Game.colors.get(Game.index_teams));
-                                                ss.setSpan(color, 0, ("\n\nJocul s-a terminat! Felicitari echipei " + Board.Groups.get(Game.index_teams).name + "!\n").length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
-                                                Game.ff.append(ss);
-                                                Game.history_view.setText(Game.ff);
-                                            }
-                                            else {
-                                                Game.player_over();
-                                                Game.player_turn();
-                                            }
-                                        }
-                                    }, i * 1000 + 950);
-
-                                    Handler hand = new Handler();
-                                    hand.postDelayed(new Runnable() {
-                                        @Override
-                                        public void run() {
-                                            Game.scrollView.fullScroll(ScrollView.FOCUS_DOWN);
-                                            Game.scrollView.scrollTo(0, Game.scrollView.getBottom());
-
-                                            Game.back.setEnabled(true);
-                                            Game.button_3.setEnabled(true);
-                                            Game.button_4.setEnabled(true);
-                                            Game.button_5.setEnabled(true);
-                                            Game.settings.setEnabled(true);
-                                            Game.info.setEnabled(true);
-                                        }
-                                    },i * 1000 + 1000 + 1000);
-
-                                }
-
                             }
-                        }
-                    }, 950);
+                        }, 950);
+                    }
+
                     finish();
                 }
                 else if(mode == 2) {
@@ -273,6 +451,36 @@ public class Cart_PopUp extends Activity {
                     pauseTimer();
                     mode = 1;
                     start.setBackgroundResource(R.drawable.check_button);
+
+                    if(card_for_all == 1) {
+                        spinner_teams = new ArrayList<>();
+
+                        spinner_teams.add("Alege echipa");
+                        for(int i=0;i<Board.Groups.size();i++) {
+                            spinner_teams.add(Board.Groups.get(i).name);
+                        }
+
+                        spinner.setBackgroundColor(Color.parseColor("#F19CBB"));
+                        spinner.setEnabled(true);
+
+                        ArrayAdapter<String> adap = new ArrayAdapter<>(Cart_PopUp.this, android.R.layout.simple_list_item_1, spinner_teams);
+                        adap.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                        spinner.setAdapter(adap);
+
+                        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                            @Override
+                            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                                if(!parent.getItemAtPosition(position).toString().equals("Alege echipa")) {
+                                    specified_team = parent.getItemAtPosition(position).toString();
+                                }
+                            }
+
+                            @Override
+                            public void onNothingSelected(AdapterView<?> parent) {
+
+                            }
+                        });
+                    }
                 }
             }
         });

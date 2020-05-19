@@ -53,6 +53,7 @@ public class Exit_PopUp extends AppCompatActivity {
                 Board.Players.clear();
 
                 MainActivity.stop_song = true;
+                MainActivity.change_board_bk = 0;
 
                 Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
@@ -72,6 +73,7 @@ public class Exit_PopUp extends AppCompatActivity {
 
                 MainActivity.stop_song = true;
                 MainActivity.save_state = true;
+                MainActivity.change_board_bk = 0;
 
                 Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);

@@ -12,6 +12,17 @@
         android:layout_height="match_parent"
         android:background="#333333" />
 
+    <Spinner
+        android:id="@+id/spinner2"
+        android:layout_width="wrap_content"
+        android:layout_height="30dp"
+        android:tooltipText="#000"
+        android:background="#333333"
+        android:layout_centerVertical="true"
+        android:layout_marginStart="50dp"
+        android:spinnerMode="dropdown"
+        android:theme="@style/Theme.Transparent"/>
+
     <TextView
         android:id="@+id/chronos"
         android:layout_width="100dp"

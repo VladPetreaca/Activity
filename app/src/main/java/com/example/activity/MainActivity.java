@@ -162,6 +162,7 @@ public class MainActivity extends AppCompatActivity {
 				}
 
 				lastClickTime = SystemClock.elapsedRealtime();
+				change_board_bk = 1;
 
 				if(save_state) {
 					Intent intent = new Intent(getApplicationContext(), Game.class);
