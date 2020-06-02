@@ -19,7 +19,6 @@ public class Group {
         this.name = name;
         Players = new ArrayList<>();
         for(int i =0;i < players.size(); i++) {
-            System.out.println(players.get(i));
             Player aux = new Player(players.get(i));
             Players.add(aux);
         }

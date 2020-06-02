@@ -88,8 +88,14 @@ public class Choose_names extends AppCompatActivity {
 
 				lastClickTime = SystemClock.elapsedRealtime();
 
-				Intent intent = new Intent(getApplicationContext(), Delete_pop_up.class);
-				startActivity(intent);
+				if(Board.Players.size() > 1) {
+					Intent intent = new Intent(getApplicationContext(), Delete_pop_up.class);
+					startActivity(intent);
+				}
+				else {
+					Toast.makeText(Choose_names.this, "Nu exista jucatori!", Toast.LENGTH_SHORT).show();
+				}
+
 			}
 		});
 

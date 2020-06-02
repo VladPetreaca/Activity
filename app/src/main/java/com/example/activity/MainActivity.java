@@ -53,22 +53,22 @@ public class MainActivity extends AppCompatActivity {
 		continue_game = findViewById(R.id.button5);
 
 		// play music
-//		if(!stop_song) {
-//			mySong = MediaPlayer.create(MainActivity.this, R.raw.vremea);
-//			mySong.setLooping(true);
-//			mySong.start();
-//		}
+		if(!stop_song) {
+			mySong = MediaPlayer.create(MainActivity.this, R.raw.vremea);
+			mySong.setLooping(true);
+			mySong.start();
+		}
 
 		//initialize the players_list
 		Board.AddPlayer("Alege jucator");
-		Board.AddPlayer("Boby");
-		Board.AddPlayer("Titan");
-		Board.AddPlayer("George");
-		Board.AddPlayer("Willy");
-		Board.AddPlayer("vld");
-		Board.AddPlayer("negru");
-		Board.AddPlayer("ser");
-		Board.AddPlayer("dumitru");
+//		Board.AddPlayer("Boby");
+//		Board.AddPlayer("Titan");
+//		Board.AddPlayer("George");
+//		Board.AddPlayer("Willy");
+//		Board.AddPlayer("vld");
+//		Board.AddPlayer("negru");
+//		Board.AddPlayer("ser");
+//		Board.AddPlayer("dumitru");
 
 		FileInputStream fis = null;
 		try {
@@ -76,7 +76,6 @@ public class MainActivity extends AppCompatActivity {
 
 			if(fis.available() > 2) {
 				save_state = true;
-				System.out.println("plm");
 			}
 			else {
 				save_state = false;

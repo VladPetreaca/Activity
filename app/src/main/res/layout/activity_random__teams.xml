@@ -11,26 +11,54 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 
-    <Button
-        android:id="@+id/button19"
-        android:layout_marginStart="455dp"
-        android:layout_marginTop="207dp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Schimbare nume echipa"
-        android:background="@drawable/round_button"
-        android:textColor="#000" />
+    <FrameLayout
+        android:layout_width="400dp"
+        android:layout_height="match_parent"
+        android:layout_alignParentEnd="true" >
 
-    <TextView
-        android:id="@+id/show_random_teams"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:maxWidth="340dp"
-        android:maxHeight="90dp"
-        android:layout_marginStart="370dp"
-        android:layout_marginTop="310dp"
-        android:background="#CC000000"
-        android:textColor="#fff" />
+        <EditText
+            android:id="@+id/nr_groups"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="#000"
+            android:layout_marginTop="100dp"
+            android:hint="Numar echipe"
+            android:inputType="number"
+            android:textColor="#FFD700"
+            android:textColorHint="#FFD700"
+            android:layout_gravity="center_horizontal"/>
+
+        <Button
+            android:id="@+id/button32"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="147dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Creare echipe random"
+            android:background="@drawable/round_button"
+            android:textColor="#000"/>
+
+        <Button
+            android:id="@+id/button19"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="207dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Schimbare nume echipa"
+            android:background="@drawable/round_button"
+            android:textColor="#000" />
+
+        <TextView
+            android:id="@+id/show_random_teams"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:maxWidth="340dp"
+            android:maxHeight="90dp"
+            android:layout_marginTop="310dp"
+            android:background="#CC000000"
+            android:textColor="#fff"
+            android:layout_marginStart="60dp"/>
+    </FrameLayout>
 
     <Button
         android:id="@+id/button30"
@@ -45,28 +73,6 @@
         android:layout_height="35dp"
         android:layout_marginTop="21dp"
         android:background="@drawable/next_button"
-        android:layout_marginStart="663dp" />
-
-    <Button
-        android:id="@+id/button32"
-        android:layout_marginStart="455dp"
-        android:layout_marginTop="147dp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Creare echipe random"
-        android:background="@drawable/round_button"
-        android:textColor="#000"/>
-
-    <EditText
-        android:id="@+id/nr_groups"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="#000"
-        android:layout_marginTop="100dp"
-        android:layout_marginStart="480dp"
-        android:hint="Numar echipe"
-        android:inputType="number"
-        android:textColor="#FFD700"
-        android:textColorHint="#FFD700" />
+        android:layout_alignParentEnd="true"/>
 
 </RelativeLayout>

@@ -11,14 +11,36 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 
-    <Button
-        android:id="@+id/button34"
-        android:layout_width="70dp"
-        android:layout_height="40dp"
-        android:layout_marginStart="670dp"
-        android:layout_marginTop="15dp"
-        android:layout_marginBottom="196dp"
-        android:background="@drawable/exit_button_2"/>
+    <FrameLayout
+        android:layout_width="192dp"
+        android:layout_height="368dp"
+        android:layout_alignStart="@+id/board"
+        android:layout_alignParentEnd="true"
+        android:layout_marginStart="472dp"
+        android:layout_centerVertical="true">
+
+        <Button
+            android:id="@+id/button34"
+            android:layout_width="70dp"
+            android:layout_height="40dp"
+            android:layout_gravity="center_horizontal"
+            android:background="@drawable/exit_button_2" />
+
+        <Button
+            android:id="@+id/button38"
+            android:layout_width="55dp"
+            android:layout_height="25dp"
+            android:layout_gravity="bottom"
+            android:background="@drawable/info_icon_2" />
+
+        <Button
+            android:id="@+id/button39"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:layout_gravity="bottom|end"
+            android:layout_marginRight="10dp"
+            android:background="@drawable/settings_icon" />
+    </FrameLayout>
 
     <Button
         android:id="@+id/button35"
@@ -50,29 +72,15 @@
         android:layout_marginBottom="26dp"
         android:background="@drawable/carte_5" />
 
-    <Button
-        android:id="@+id/button38"
-        android:layout_width="55dp"
-        android:layout_height="25dp"
-        android:layout_marginStart="680dp"
-        android:layout_marginTop="365dp"
-        android:layout_marginBottom="196dp"
-        android:background="@drawable/info_icon_2"/>
-
-    <Button
-        android:id="@+id/button39"
-        android:layout_width="25dp"
-        android:layout_height="25dp"
-        android:layout_marginStart="645dp"
-        android:layout_marginTop="365dp"
-        android:background="@drawable/settings_icon"/>
-
     <ScrollView
         android:id="@+id/scroll_view"
         android:layout_width="match_parent"
         android:layout_height="260dp"
-        android:layout_marginStart="520dp"
         android:layout_marginTop="60dp"
+        android:layout_marginStart="365dp"
+        android:layout_alignParentEnd="true"
+        android:layout_alignStart="@+id/board"
+        android:layout_centerVertical="true"
         android:background="#80000000">
 
         <TextView
@@ -87,9 +95,8 @@
         android:id="@+id/board"
         android:layout_width="472.5dp"
         android:layout_height="368dp"
-        android:layout_marginStart="150dp"
-        android:layout_marginTop="20dp"
-        android:background="@drawable/tabla_v4">
+        android:background="@drawable/tabla_v4"
+        android:layout_centerInParent="true">
 
         <FrameLayout
             android:id="@+id/pion1_xy"

@@ -4,13 +4,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Choose_names" >
+    tools:context=".Choose_names">
 
     <TextView
         android:id="@+id/title_content"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@drawable/back_g5"></TextView>
+        android:background="@drawable/back_g5" />
 
     <TextView
         android:id="@+id/jupani_question"
@@ -32,6 +32,14 @@
         android:background="@drawable/back_button"  />
 
     <Button
+        android:id="@+id/button14"
+        android:layout_width="70dp"
+        android:layout_height="35dp"
+        android:layout_marginTop="21dp"
+        android:background="@drawable/next_button"
+        android:layout_alignParentEnd="true"/>
+
+    <Button
         android:id="@+id/button13"
         android:layout_width="wrap_content"
         android:layout_height="30dp"
@@ -50,14 +58,6 @@
         android:layout_marginStart="370dp"
         android:layout_marginTop="330dp"
         android:textColor="#fff"/>
-
-    <Button
-        android:id="@+id/button14"
-        android:layout_width="70dp"
-        android:layout_height="35dp"
-        android:layout_marginTop="21dp"
-        android:background="@drawable/next_button"
-        android:layout_marginStart="663dp"/>
 
     <Button
         android:id="@+id/button15"

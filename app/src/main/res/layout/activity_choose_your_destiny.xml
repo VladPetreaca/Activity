@@ -11,25 +11,31 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 
-    <Button
-        android:id="@+id/button27"
-        android:layout_marginStart="455dp"
-        android:layout_marginTop="147dp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Creare Echipa"
-        android:background="@drawable/round_button"
-        android:textColor="#000"/>
+    <FrameLayout
+        android:layout_width="400dp"
+        android:layout_height="match_parent"
+        android:layout_alignParentEnd="true" >
 
-    <Button
-        android:id="@+id/button28"
-        android:layout_marginTop="205dp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="455dp"
-        android:text="Echipa random"
-        android:background="@drawable/round_button"
-        android:textColor="#000"/>
+        <Button
+            android:id="@+id/button27"
+            android:layout_marginTop="147dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Creare Echipa"
+            android:background="@drawable/round_button"
+            android:textColor="#000"
+            android:layout_gravity="center_horizontal"/>
+
+        <Button
+            android:id="@+id/button28"
+            android:layout_marginTop="205dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Echipa random"
+            android:background="@drawable/round_button"
+            android:textColor="#000"
+            android:layout_gravity="center_horizontal"/>
+    </FrameLayout>
 
     <Button
         android:id="@+id/button29"

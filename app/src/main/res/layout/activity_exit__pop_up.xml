@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -7,58 +7,49 @@
     android:background="@drawable/gold_bars"
     tools:context=".Exit_PopUp">
 
-    <Button
-        android:id="@+id/button_yes"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="290dp"
-        android:layout_marginTop="108dp"
-        android:layout_marginEnd="291dp"
-        android:text="Da"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:textColor="#000"
-        android:background="@drawable/round_button"/>
+    <FrameLayout
+        android:layout_width="444dp"
+        android:layout_height="216dp"
+        android:layout_centerInParent="true">
 
-    <Button
-        android:id="@+id/button_no"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_marginStart="321dp"
-        android:layout_marginTop="120dp"
-        android:layout_marginEnd="322dp"
-        android:layout_marginBottom="151dp"
-        android:text="Nu"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button_yes"
-        android:textColor="#000"
-        android:background="@drawable/round_button"/>
+        <TextView
+            android:id="@+id/question"
+            android:layout_width="110dp"
+            android:layout_height="20dp"
+            android:layout_marginTop="20dp"
+            android:layout_gravity="center_horizontal"
+            android:background="#000"
+            android:gravity="center"
+            android:text="Vrei sa salvezi?"
+            android:textColor="#FFD700" />
 
-    <TextView
-        android:id="@+id/question"
-        android:layout_width="110dp"
-        android:layout_height="20dp"
-        android:layout_marginStart="290dp"
-        android:layout_marginTop="72dp"
-        android:layout_marginEnd="291dp"
-        android:background="#000"
-        android:gravity="center"
-        android:text="Vrei sa salvezi?"
-        android:textColor="#FFD700"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        <Button
+            android:id="@+id/button_yes"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="70dp"
+            android:layout_gravity="center_horizontal"
+            android:text="Da"
+            android:textColor="#000"
+            android:background="@drawable/round_button"/>
 
-    <Button
-        android:id="@+id/button43"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        android:background="@drawable/no_button"
-        tools:layout_editor_absoluteX="784dp"
-        tools:layout_editor_absoluteY="134dp" />
+        <Button
+            android:id="@+id/button_no"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="130dp"
+            android:layout_gravity="center_horizontal"
+            android:text="Nu"
+            android:textColor="#000"
+            android:background="@drawable/round_button"/>
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <Button
+            android:id="@+id/button43"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:background="@drawable/no_button"
+            android:layout_gravity="end"/>
+    </FrameLayout>
+
+
+</RelativeLayout>
