@@ -26,7 +26,6 @@ public class MainActivity extends AppCompatActivity {
 	public static boolean stop_song = false;
 	public static boolean save_state = false;
 	private long lastClickTime;
-	//private static final String FILE_NAME = "/data/user/0/com.example.activity/files/save_state.txt";
 	private String FILE_NAME;
 	public static int change_board_bk;
 
@@ -61,14 +60,6 @@ public class MainActivity extends AppCompatActivity {
 
 		//initialize the players_list
 		Board.AddPlayer("Alege jucator");
-//		Board.AddPlayer("Boby");
-//		Board.AddPlayer("Titan");
-//		Board.AddPlayer("George");
-//		Board.AddPlayer("Willy");
-//		Board.AddPlayer("vld");
-//		Board.AddPlayer("negru");
-//		Board.AddPlayer("ser");
-//		Board.AddPlayer("dumitru");
 
 		FileInputStream fis = null;
 		try {
